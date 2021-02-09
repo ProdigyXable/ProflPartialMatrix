@@ -5,8 +5,10 @@
  */
 package com.mycompany.proflpartialmatrix;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -110,6 +112,7 @@ public class ExtractPartialMatrix {
             File patchFile = new File(String.format("%s/patches/%s.patch", generalSus.getParentFile().getAbsolutePath(), testID));
 
             Collection<String> testInformation = readMatrixData(f);
+
             Collection<String> methodSigs;
             try {
                 if (type.equals("nopol")) {
@@ -131,8 +134,9 @@ public class ExtractPartialMatrix {
                 for (String methodSig : methodSigs) {
                     Double d = getSus(methodSig, generalSus);
                     if (d > 0) {
-                        createPartialMatrix(testInformation, methodSig, d);
-                        createFullMatrix(testInformation, methodSig, d);
+
+                        // createPartialMatrix(testInformation, methodSig, d);
+                        createFullMatrix(testInformation, methodSig, d, f);
                     }
                 }
             } catch (Exception e) {
@@ -140,7 +144,7 @@ public class ExtractPartialMatrix {
                 System.out.println("\tError message: " + e.getMessage());
             }
         }
-        
+
     }
 
     private Collection<String> readMatrixData(File f) {
@@ -163,7 +167,7 @@ public class ExtractPartialMatrix {
         return Collections.EMPTY_LIST;
     }
 
-    private void createFullMatrix(Collection<String> testInformation, String methodSig, Double d) {
+    private void createFullMatrix(Collection<String> testInformation, String methodSig, Double d, File f) {
         int ff = 0;
         int fp = 0;
         int pf = 0;
@@ -182,7 +186,7 @@ public class ExtractPartialMatrix {
         }
 
         addToProflStandard(ff, fp, pf, pp, methodSig, d, this.p_full_standard);
-        addToProflExtended(ff, fp, pf, pp, methodSig, d, this.p_full_extended);
+        addToProflExtended(ff, fp, pf, pp, methodSig, d, this.p_full_extended, f);
     }
 
     private void createPartialMatrix(Collection<String> testInformation, String methodSig, Double d) {
@@ -209,10 +213,10 @@ public class ExtractPartialMatrix {
         }
 
         addToProflStandard(ff, fp, pf, pp, methodSig, d, this.p_partial_standard);
-        addToProflExtended(ff, fp, pf, pp, methodSig, d, this.p_partial_extended);
+        addToProflExtended(ff, fp, pf, pp, methodSig, d, this.p_partial_extended, null);
     }
 
-    private void addToProflExtended(int ff, int fp, int pf, int pp, String methodSig, Double sus, ProflResultRanking p) {
+    private void addToProflExtended(int ff, int fp, int pf, int pp, String methodSig, Double sus, ProflResultRanking p, File f) {
         PatchCategory pc;
         if (fp > 0 && pf == 0) {
             if (ff == 0) {
@@ -231,11 +235,10 @@ public class ExtractPartialMatrix {
         } else {
             pc = DefaultPatchCategories.NEG_FIX;
         }
-        
-        
+
         Map<String, Double> m = new TreeMap();
         m.put(methodSig, sus);
-
+        fixjmutrepair(f, pc);
         p.addCategoryEntry(pc, m);
     }
 
@@ -251,11 +254,11 @@ public class ExtractPartialMatrix {
         } else {
             pc = DefaultPatchCategories.NEG_FIX;
         }
-        
+
         // System.out.println(String.format("ff=%d, fp=%d, pf=%d, pp=%d pc=%s", ff, fp, pf, pp, pc.getCategoryName()));
         Map<String, Double> m = new TreeMap();
         m.put(methodSig, sus);
-        
+
         p.addCategoryEntry(pc, m);
     }
 
@@ -418,4 +421,27 @@ public class ExtractPartialMatrix {
         pc.removePatchCategory(DefaultPatchCategories.NOISY_FIX_PARTIAL);
     }
 
+    private void fixjmutrepair(File f, PatchCategory pc) {
+        System.out.println(f == null);
+        try {
+            List<String> data = Files.readAllLines(f.toPath());
+            BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+
+            bw.write("Patch Category: " + pc.getCategoryName());
+            bw.newLine();
+
+            for (String s : data) {
+                bw.write(s);
+                bw.newLine();
+            }
+
+            bw.close();
+
+        } catch (Exception e) {
+            System.out.print("ERROR: ");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
 }

@@ -74,8 +74,8 @@ public class generatePatchesTBarFamily {
                             p.setFp(failPass);
                             p.setPp(passPass);
 
-                             p.output();
-                             p.save(f.getParentFile());
+                            p.output();
+                            p.save(f.getParentFile());
                             // System.out.println("======================================");
                             failFail.clear();
                             failPass.clear();

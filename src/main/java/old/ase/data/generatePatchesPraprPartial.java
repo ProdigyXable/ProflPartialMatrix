@@ -65,10 +65,10 @@ public class generatePatchesPraprPartial {
                             prr.removePatchCategory(DefaultPatchCategories.CLEAN_FIX_PARTIAL);
                             prr.removePatchCategory(DefaultPatchCategories.NOISY_FIX_FULL);
                             prr.removePatchCategory(DefaultPatchCategories.NOISY_FIX_PARTIAL);
-                          
+
                             PatchCategory CleanFix = new PatchCategory(DefaultPatchCategories.CLEAN_FIX_PARTIAL.getCategoryPriority() - 1, "CleanFix");
                             PatchCategory NoisyFix = new PatchCategory(DefaultPatchCategories.NOISY_FIX_PARTIAL.getCategoryPriority() - 1, "NoisyFix");
-                            
+
                             prr.addPatchCategory(CleanFix);
                             prr.addPatchCategory(NoisyFix);
                             if (fp > 0 && pf == 0) {

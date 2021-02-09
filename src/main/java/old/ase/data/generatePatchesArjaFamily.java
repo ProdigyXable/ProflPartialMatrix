@@ -84,7 +84,7 @@ public class generatePatchesArjaFamily {
                             p.save(f.getParentFile());
 
                         }
-                        
+
                         if (s.contains("-------------")) {
                             newPatch = false;
                             failFail.clear();
