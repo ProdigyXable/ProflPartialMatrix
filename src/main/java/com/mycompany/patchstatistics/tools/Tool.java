@@ -9,7 +9,6 @@ import com.mycompany.patchstatistics.Patch;
 import com.mycompany.patchstatistics.PatchCharacteristic;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
@@ -29,23 +28,23 @@ import utdallas.edu.profl.replicate.patchcategory.PatchCategory;
  */
 public abstract class Tool implements ToolInterface {
 
-    enum METRICS {
+    public enum METRICS {
         PLAUSIBLE, P_INC, INCORRECT, LOW_QUALITY, HIGH_QUALITY
     }
 
+    // Determines which 
     public Set<METRICS> ACTIVE_METRICS = new TreeSet(Arrays.asList(
-            METRICS.PLAUSIBLE
-//            METRICS.PLAUSIBLE,
-//            METRICS.P_INC,
-//            METRICS.INCORRECT,
-//            METRICS.HIGH_QUALITY,
-//            METRICS.LOW_QUALITY
-            
+            //            METRICS.PLAUSIBLE
+            METRICS.PLAUSIBLE,
+            METRICS.P_INC,
+            METRICS.INCORRECT,
+            METRICS.HIGH_QUALITY,
+            METRICS.LOW_QUALITY
     ));
 
-    final int DEFAULT = -1000;
-    int originalEarliest = DEFAULT;
-    int newEarliest = DEFAULT;
+    final int DEFAULT_BASELINE = -1000;
+    int originalBaseline = DEFAULT_BASELINE;
+    int newBaseline = DEFAULT_BASELINE;
     String projectID;
 
     // Fixed patch characteristics available in every tool
@@ -73,9 +72,8 @@ public abstract class Tool implements ToolInterface {
     }
 
     public Tool(String dirString) {
-
         File dir = new File(dirString);
-        this.projectID = dir.getName().replace("_", "-").replace("AstorMain-", "").toLowerCase();
+        this.projectID = dir.getName().replace("_", "-").replace("AstorMain-", "").toLowerCase(); // unification of tool format
 
         for (METRICS m : this.ACTIVE_METRICS) {
             this.potentialQueriedPatches.put(m, new TreeMap());
@@ -93,8 +91,8 @@ public abstract class Tool implements ToolInterface {
     }
 
     void reset() {
-        this.originalEarliest = DEFAULT;
-        this.newEarliest = DEFAULT;
+        this.originalBaseline = DEFAULT_BASELINE;
+        this.newBaseline = DEFAULT_BASELINE;
         this.patchSetOrderingNew.clear();
     }
 
@@ -143,6 +141,7 @@ public abstract class Tool implements ToolInterface {
         // Load + create modifiable list of patch information
         this.loadPatches(metric);
 
+        // Iteration through each metric in the ACTIVE_METRICS set
         for (METRICS m : this.ACTIVE_METRICS) {
             int firstBestPatch = 0;
 
@@ -153,35 +152,38 @@ public abstract class Tool implements ToolInterface {
             } else {
             }
 
-            // Manipulate patches; promoting high-quality + demoting lower-quality
+            // Manipulate patches; promoting high-quality and/or demoting lower-quality
             this.reprioritize(m);
 
             PatchCategory patchCategory = null;
 
+            // Establish original baseline
             for (int i = 0; i < this.patchSetOrderingOld.size(); i++) {
                 if (this.patchSetOrderingOld.get(i).id == firstBestPatch) {
-                    this.originalEarliest = i + 1;
+                    this.originalBaseline = i + 1;
                 }
             }
 
+            // Establish new baseline
             for (int i = 0; i < this.patchSetOrderingNew.size(); i++) {
                 for (Integer pid : this.queriedPatches) {
 
-                    if (this.patchSetOrderingNew.get(i).id == pid && this.newEarliest == DEFAULT) {
-                        this.newEarliest = i + 1;
+                    if (this.patchSetOrderingNew.get(i).id == pid && this.newBaseline == DEFAULT_BASELINE) {
+                        this.newBaseline = i + 1;
                         patchCategory = (PatchCategory) this.patchSetOrderingNew.get(i).pChar.getCharacteristic(PATCH_CAT_KEY);
                     }
                 }
             }
 
+            // Output results
             String patchCategoryString = "N/A";
 
             if (patchCategory != null) {
                 patchCategoryString = patchCategory.getCategoryName();
             }
 
-            if (!patchCategoryString.equals("N/A") && this.originalEarliest != DEFAULT) {
-                System.out.println(String.format("%d, %d, %d, %s, %s, METRIC-%s", this.originalEarliest, this.newEarliest, (this.newEarliest - this.originalEarliest), patchCategoryString, this.projectID, m.name()));
+            if (!patchCategoryString.equals("N/A") && this.originalBaseline != DEFAULT_BASELINE) {
+                System.out.println(String.format("%d, %d, %d, %s, %s, METRIC-%s", this.originalBaseline, this.newBaseline, (this.newBaseline - this.originalBaseline), patchCategoryString, this.projectID, m.name()));
             }
 
             this.reset();
@@ -273,16 +275,17 @@ public abstract class Tool implements ToolInterface {
         }
 
         int originalSize = this.patchSetOrderingOld.size();
-        BufferedWriter bw = new BufferedWriter(new FileWriter(new File(String.format("%s-%s", this.getClass().getSimpleName(), m.name()))));
 
-        // Execution iterations = number of patches
+        //BufferedWriter bw = new BufferedWriter(new FileWriter(new File(String.format("%s-%s", this.getClass().getSimpleName(), m.name()))));
+        BufferedWriter bw = null; // Execution iterations = number of patches
         for (int i = 0; i < originalSize; i++) {
             // Pop lowest priority patch
             Patch poppedPatch = patchSetDuplicate.pop();
 
-            bw.write(String.format("%d,%d,%s", i, poppedPatch.id, ((PatchCategory) poppedPatch.pChar.getCharacteristic(Tool.PATCH_CAT_KEY)).getCategoryPriority()));
-            bw.newLine();
-
+            if (bw != null) {
+                bw.write(String.format("%d,%d,%s", i, poppedPatch.id, ((PatchCategory) poppedPatch.pChar.getCharacteristic(Tool.PATCH_CAT_KEY)).getCategoryPriority()));
+                bw.newLine();
+            }
             // Save + maintain order of popped patches
             this.patchSetOrderingNew.add(poppedPatch);
             TreeSet<Integer> data = new TreeSet();
@@ -293,7 +296,7 @@ public abstract class Tool implements ToolInterface {
             }
 
             if (data.contains(poppedPatch.id)) {
-                // break; // SHORTCUT
+                break; // SHORTCUT
             }
 
             PatchCategory pc = (PatchCategory) poppedPatch.pChar.getCharacteristic(Tool.PATCH_CAT_KEY);
@@ -320,7 +323,9 @@ public abstract class Tool implements ToolInterface {
             Collections.sort(patchSetDuplicate);
         }
 
-        bw.close();
+        if (bw != null) {
+            bw.close();
+        }
     }
 
 }

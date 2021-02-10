@@ -18,21 +18,19 @@ import utdallas.edu.profl.replicate.patchcategory.PatchCategory;
  */
 public class Patch implements Comparable {
 
-    int match = 0;
-    int differ = 0;
+    int matchCount = 0;
+    int differCount = 0;
 
     static HashSet<PatchCategory> GOOD_PATCHES = new HashSet(Arrays.asList(
-            DefaultPatchCategories.CLEAN_FIX_FULL,
-            DefaultPatchCategories.CLEAN_FIX_PARTIAL,
-            DefaultPatchCategories.NOISY_FIX_FULL,
-            DefaultPatchCategories.NOISY_FIX_PARTIAL
-    ));
-
-    static HashSet<PatchCategory> IGNORE_PATCHES = new HashSet(Arrays.asList(
-            DefaultPatchCategories.NONE_FIX
+            DefaultPatchCategories.CLEAN_FIX_FULL
+    //            DefaultPatchCategories.CLEAN_FIX_FULL,
+    //            DefaultPatchCategories.CLEAN_FIX_PARTIAL,
+    //            DefaultPatchCategories.NOISY_FIX_FULL,
+    //            DefaultPatchCategories.NOISY_FIX_PARTIAL
     ));
 
     static HashSet<PatchCategory> BAD_PATCHES = new HashSet(Arrays.asList(
+            DefaultPatchCategories.NONE_FIX,
             DefaultPatchCategories.NEG_FIX
     ));
 
@@ -64,7 +62,7 @@ public class Patch implements Comparable {
         Patch po = (Patch) o;
 
         if (this.priority == po.priority) {
-            return this.id - po.id;
+            return Integer.compare(this.id, po.id);
         } else {
             return Double.compare(po.priority, this.priority);
 
@@ -72,16 +70,15 @@ public class Patch implements Comparable {
     }
 
     private void addMatch() {
-        this.match += 1;
+        this.matchCount += 1;
     }
 
     private void addDifference() {
-        this.differ += 1;
+        this.differCount += 1;
     }
 
     public void finalizeStatAdjustments(PatchCategory comparisonPatch) {
-
-        if (this.match > this.differ) {
+        if (this.matchCount > this.differCount) {
             if (GOOD_PATCHES.contains(comparisonPatch)) { // matches high-quality patch characteristic
                 statistics.addTruePositive();
             } else if (BAD_PATCHES.contains(comparisonPatch)) { // matches low-quality patch characteristic
@@ -95,8 +92,8 @@ public class Patch implements Comparable {
             }
         }
 
-        this.match = 0;
-        this.differ = 0;
+        this.matchCount = 0;
+        this.differCount = 0;
         this.priority = statistics.getPrimaryValue();
     }
 

@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  *
  * @author Sam Benton
  */
-public class PatchNumStatistics {
+public class GenerateComparisonStatistics {
 
     public static void main(String args[]) throws Exception {
         String buggyMethodFile = args[0].trim();

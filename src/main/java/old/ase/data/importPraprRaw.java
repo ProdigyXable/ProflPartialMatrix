@@ -90,7 +90,9 @@ public class importPraprRaw {
             for (String k : keys) {
                 if (s.contains(String.format("%s=", k))) {
                     patchData.put(k, s.split("=")[1].replace("]", ""));
-                    //pc.defineCharacteristic(k, s.split("=")[1].replace("]", ""));
+                    if (!keys.equals("lineNumber")) {
+                        pc.defineCharacteristic(k, s.split("=")[1].replace("]", ""));
+                    }
                 }
             }
         }

@@ -7,7 +7,7 @@ package com.mycompany.patchstatistics.tools;
 
 import com.mycompany.patchstatistics.Patch;
 import com.mycompany.patchstatistics.PatchCharacteristic;
-import com.mycompany.patchstatistics.PatchNumStatistics;
+import com.mycompany.patchstatistics.GenerateComparisonStatistics;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
@@ -40,15 +40,15 @@ public class Prapr extends Tool {
 
             for (int i = 0; i < this.patchSetOrderingOld.size(); i++) {
                 if (this.patchSetOrderingOld.get(i).id == firstBestPatch) {
-                    this.originalEarliest = i + 1;
+                    this.originalBaseline = i + 1;
                 }
             }
 
             for (int i = 0; i < this.patchSetOrderingNew.size(); i++) {
                 for (Integer pid : this.queriedPatches) {
 
-                    if (this.patchSetOrderingNew.get(i).id == pid && this.newEarliest == DEFAULT) {
-                        this.newEarliest = i + 1;
+                    if (this.patchSetOrderingNew.get(i).id == pid && this.newBaseline == DEFAULT_BASELINE) {
+                        this.newBaseline = i + 1;
                         patchCategory = (PatchCategory) this.patchSetOrderingNew.get(i).pChar.getCharacteristic(PATCH_CAT_KEY);
                     }
                 }
@@ -60,8 +60,8 @@ public class Prapr extends Tool {
                 patchCategoryString = patchCategory.getCategoryName();
             }
 
-            if (!patchCategoryString.equals("N/A") && this.originalEarliest != DEFAULT) {
-                System.out.println(String.format("%d, %d, %d, %s, %s, METRIC-%s", this.originalEarliest, this.newEarliest, (this.newEarliest - this.originalEarliest), patchCategoryString, this.projectID, m.name()));
+            if (!patchCategoryString.equals("N/A") && this.originalBaseline != DEFAULT_BASELINE) {
+                System.out.println(String.format("%d, %d, %d, %s, %s, METRIC-%s", this.originalBaseline, this.newBaseline, (this.newBaseline - this.originalBaseline), patchCategoryString, this.projectID, m.name()));
             }
 
             super.reset();
@@ -69,7 +69,7 @@ public class Prapr extends Tool {
     }
 
     public Prapr(Collection<Patch> p, String methodDir) throws IOException {
-        this.incorrectMethods = PatchNumStatistics.getBuggyMethods(methodDir);
+        this.incorrectMethods = GenerateComparisonStatistics.getBuggyMethods(methodDir);
         this.patchSetOrderingOld.addAll(p);
 
         for (METRICS m : ACTIVE_METRICS) {
