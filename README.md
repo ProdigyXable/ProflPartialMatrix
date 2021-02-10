@@ -19,7 +19,7 @@ FSE'21 Relevant Packages
 	Once all the patch characteristics / features have been compared, the various statistics (accuracy, recall, f1, etc) are computed
   
   ### Class Stats
-	* Contains all the statistical metrics that patches may be sorted by
+	* Contains all the statistical metrics that patches may be sorted by, such as recall, miss rate, accuracy, etc. All formulas based on true positive, true negatives, false positive, false negatives
   
   ### Class PatchCharacteristic
 	* Data class which contains all the characteristics / features per patch. Currently, every tool except prapr has the following features
