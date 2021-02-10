@@ -1,0 +1,1118 @@
+{
+    "Chart": {
+        "25": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "12": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 103
+        },
+        "6": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 410
+        },
+        "7": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "13": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 457
+        },
+        "8": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "5": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 29
+        },
+        "20": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 765
+        },
+        "3": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 243
+        },
+        "24": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "11": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 174
+        },
+        "15": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 127
+        },
+        "9": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 31
+        }
+    },
+    "Closure": {
+        "105": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 17
+        },
+        "98": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 134
+        },
+        "63": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "28": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "31": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "74": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 76
+        },
+        "95": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 112
+        },
+        "102": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 123
+        },
+        "117": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "64": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "42": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "119": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "24": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "36": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 8
+        },
+        "65": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "123": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "70": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "93": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 115
+        },
+        "52": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "112": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "79": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 91
+        },
+        "120": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "101": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 63
+        },
+        "90": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 59
+        },
+        "57": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "1": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "91": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 54
+        },
+        "15": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "76": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 89
+        },
+        "51": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "81": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 130
+        },
+        "44": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "3": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "68": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "17": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "21": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "85": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 37
+        },
+        "46": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "73": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 57
+        },
+        "41": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "125": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "61": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "12": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "23": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "26": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "6": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "13": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "82": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 91
+        },
+        "56": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "69": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "110": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "111": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "106": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "104": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "40": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "86": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "92": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 39
+        },
+        "29": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "94": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 117
+        },
+        "37": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "89": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 56
+        },
+        "124": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "87": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 55
+        },
+        "132": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "11": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "18": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "4": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "30": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "39": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "83": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 64
+        },
+        "38": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "84": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 74
+        },
+        "99": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 126
+        },
+        "67": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "19": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "129": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "55": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "2": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 7
+        },
+        "127": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "10": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "33": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "25": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "45": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "62": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "122": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "27": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "7": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "128": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "71": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "88": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 55
+        },
+        "80": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 91
+        },
+        "35": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "20": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "103": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 64
+        },
+        "50": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "49": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "60": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "72": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 118
+        },
+        "9": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "48": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "121": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "130": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "43": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "131": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "97": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 121
+        },
+        "77": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 67
+        },
+        "54": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 7
+        },
+        "96": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 113
+        },
+        "32": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "58": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "22": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "47": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "118": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "66": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "16": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 8
+        },
+        "34": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "8": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "53": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "59": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "14": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "5": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "100": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 134
+        }
+    },
+    "Lang": {
+        "24": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 839
+        },
+        "63": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "15": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 516
+        },
+        "4": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 71
+        },
+        "1": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 71
+        },
+        "59": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "53": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 434
+        },
+        "38": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 773
+        },
+        "2": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 71
+        },
+        "61": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 215
+        },
+        "49": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 255
+        },
+        "45": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 293
+        },
+        "33": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 28
+        },
+        "64": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 149
+        },
+        "57": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 17
+        },
+        "62": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 97
+        },
+        "44": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 30
+        },
+        "58": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 111
+        },
+        "22": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 409
+        },
+        "55": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 309
+        },
+        "51": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 266
+        },
+        "25": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 839
+        },
+        "65": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 141
+        },
+        "26": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 839
+        },
+        "56": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 27
+        },
+        "43": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "3": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 71
+        }
+    },
+    "Math": {
+        "34": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "62": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 71
+        },
+        "95": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "75": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 10
+        },
+        "79": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 125
+        },
+        "4": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 25
+        },
+        "84": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 86
+        },
+        "97": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 11
+        },
+        "64": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "5": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 16
+        },
+        "2": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 89
+        },
+        "103": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 5
+        },
+        "32": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "78": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 391
+        },
+        "99": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 91
+        },
+        "26": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 11
+        },
+        "67": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 285
+        },
+        "106": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 496
+        },
+        "44": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "71": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "3": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "40": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 216
+        },
+        "100": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 51
+        },
+        "81": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 94
+        },
+        "82": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "87": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "65": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 191
+        },
+        "15": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 9
+        },
+        "66": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 333
+        },
+        "83": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 26
+        },
+        "80": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "17": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 5
+        },
+        "12": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 68
+        },
+        "7": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 5
+        },
+        "11": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "9": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "54": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 8
+        },
+        "73": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 412
+        },
+        "30": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 51
+        },
+        "1": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "63": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 28
+        },
+        "102": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 27
+        },
+        "29": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 121
+        },
+        "96": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 261
+        },
+        "68": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 539
+        },
+        "85": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "28": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "18": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "61": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 162
+        },
+        "45": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "89": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 12
+        },
+        "20": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "8": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "14": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "13": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 9
+        },
+        "51": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 16
+        },
+        "6": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "70": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 28
+        },
+        "74": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 5
+        },
+        "50": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "94": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "10": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "16": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "58": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 56
+        },
+        "19": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 2
+        },
+        "104": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 12
+        },
+        "57": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 24
+        },
+        "48": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 10
+        },
+        "36": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 47
+        }
+    },
+    "Time": {
+        "8": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 210
+        },
+        "11": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 22
+        },
+        "2": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 189
+        },
+        "14": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "10": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "16": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "4": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 57
+        },
+        "23": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "17": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 25
+        },
+        "24": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 177
+        },
+        "22": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "7": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 110
+        },
+        "26": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "18": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "13": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 306
+        },
+        "19": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 173
+        },
+        "6": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "20": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 178
+        },
+        "15": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 174
+        },
+        "1": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 189
+        },
+        "25": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "27": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 151
+        }
+    },
+    "Mockito": {
+        "38": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 9
+        },
+        "15": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 100
+        },
+        "24": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 31
+        },
+        "28": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 8
+        },
+        "36": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 37
+        },
+        "8": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 29
+        },
+        "37": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "29": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 30
+        },
+        "33": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "23": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 24
+        },
+        "4": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 12
+        },
+        "12": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 7
+        },
+        "22": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 31
+        },
+        "30": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "27": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "26": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "14": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "13": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 12
+        },
+        "31": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 87
+        },
+        "17": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "10": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 5
+        },
+        "7": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 11
+        },
+        "2": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        }
+    }
+}
