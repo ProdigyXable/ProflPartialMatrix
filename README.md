@@ -30,11 +30,12 @@ FSE'21 Relevant Packages
 
 ## Class Tool
 The core method in this script is Tool.process(). After loading patch / test data, this method
+
 	For each metric (i.e looking at the change in placement in PLAUSIBLE patches, NoisyFix or better patches, etc)
 	1. Determines the baseline for the metric
-	1. While any releveant patch has not been found (i.e PLAUSIBLE patches with the PLAUSIBLE metric)
+	2. While any releveant patch has not been found (i.e PLAUSIBLE patches with the PLAUSIBLE metric)
 		1. Pops the leading patch
-		1. Compares leading patch to all other patches in the list
-		1. Calculates new statistics per metric
-		1. Reorder patches in descending order of statistic
-	1. Determines the new baseline after sorting the set of patches
+		2. Compares leading patch to all other patches in the list
+		3. Calculates new statistics per metric
+		4. Reorder patches in descending order of statistic
+	3. Determines the new baseline after sorting the set of patches
