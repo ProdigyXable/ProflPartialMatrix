@@ -15,7 +15,7 @@ PATCH_CATEGORY_DICT ={
 
 
 class PatchReranker:
-    def __init__(self, data_dir, baseline_dir, output_dir):
+    def __init__(self, data_dir, baseline_dir, output_dir, weight_list):
         self._data_dir = data_dir
         self._baseline_dir = baseline_dir
         self._output_dir = output_dir
@@ -34,7 +34,7 @@ class PatchReranker:
             "tbar",
         ]
         self._baselines = {}
-        self._weight_arr = np.array([-0.5, 0.3, 0.1])
+        self._weight_arr = np.array(weight_list)
         self._MAX_SCORE = 1000000000
 
         if not os.path.exists(self._output_dir):
@@ -190,6 +190,7 @@ if __name__ == "__main__":
     data_dir = os.path.abspath("../parsed_data")
     baseline_dir = os.path.abspath("../baselines")
     output_dir = os.path.abspath("../eval")
-    pr = PatchReranker(data_dir, baseline_dir, output_dir)
+    weight_list = [-0.5, 0.3, 0.1]
+    pr = PatchReranker(data_dir, baseline_dir, output_dir, weight_list)
     pr.read_baselines()
     pr.run_all_tools()
