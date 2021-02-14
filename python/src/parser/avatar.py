@@ -63,7 +63,7 @@ class AvatarParser(ParserBase):
         method_list = []
         with open(patch_filename) as file:
             for line in file:
-                line = self._purify_line(line, "Method: ")
+                line = self._purify_line(line, "Modified method: ")
                 if line:
                     method_list.append(line)
 

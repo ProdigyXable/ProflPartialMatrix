@@ -48,6 +48,6 @@ ap.runAll()
 
 # PraprParser
 prapr_data_root_dir = os.path.abspath("../data/prapr")
-print("Processing {}".format(prapr))
+print("Processing {}".format("prapr"))
 pp = PraprParser(prapr_data_root_dir, output_dir)
 pp.runAll()

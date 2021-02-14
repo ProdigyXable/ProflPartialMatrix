@@ -102,6 +102,22 @@ class AstorParser(ParserBase):
                 if pp_test:
                     test_result_dict["pp_test"].append(pp_test)
             
+            if len(test_result_dict["patch_category"]) == 0:
+                ff_len = len(test_result_dict["ff_test"])
+                fp_len = len(test_result_dict["fp_test"])
+                pf_len = len(test_result_dict["pf_test"])
+                pp_len = len(test_result_dict["pp_test"])
+
+                if pf_len == 0:
+                    if fp_len > 0:
+                        if ff_len == 0:
+                            test_result_dict["patch_category"] = "PatchCategory.CleanFixFull"
+                        else:
+                            test_result_dict["patch_category"] = "PatchCategory.CleanFixPartial"
+                else:
+                    # this is not completely corret, but works for now
+                    test_result_dict["patch_category"] = "PatchCategory.NoneFix"
+
             return test_result_dict
 
 
