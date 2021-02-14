@@ -29,3 +29,4 @@ __pycache__/
 
 python/data/*
 python/parsed_data/*
+python/eval/*
