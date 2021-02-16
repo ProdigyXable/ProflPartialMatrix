@@ -30,4 +30,6 @@ __pycache__/
 python/data/*
 python/parsed_data/*
 python/eval/*
+python/figs/*
+python/tables/*
 python/src/test.py
