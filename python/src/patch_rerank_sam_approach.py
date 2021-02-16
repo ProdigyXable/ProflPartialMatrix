@@ -4,19 +4,107 @@ from pprint import pprint
 import numpy as np
 
 
-PATCH_CATEGORY_PRIORITY_DICT ={
-    'PatchCategory.NegFix': 0,
-    'PatchCategory.NoneFix': 1,
-    'PatchCategory.NoRecord': 2, 
-    'PatchCategory.NoisyFixPartial': 3,
-    'PatchCategory.NoisyFixFull': 4,
-    'PatchCategory.CleanFixPartial': 5,
-    'PatchCategory.CleanFixFull': 6,
+PATCH_CATEGORY_QUALITY_DICT ={
+    'PatchCategory.NegFix': "BAD",
+    'PatchCategory.NoneFix': "NONE", 
+    'PatchCategory.NoisyFixPartial': "GOOD",
+    'PatchCategory.NoisyFixFull': "GOOD",
+    'PatchCategory.CleanFixPartial': "GOOD",
+    'PatchCategory.CleanFixFull': "GOOD",
 }
 
 
-class PatchRerankerUnifiedDebugging:
-    def __init__(self, data_dir, baseline_dir, output_dir, modified_entity_level):
+STATS = [
+    "prevalence",
+    "accuracy",
+    "recall",
+    "missRate",
+    "specificity",
+    "fallOut",
+    "precision",
+    "falseDiscoveryRate",
+    "negativePredictiveRate",
+    "falseOmissionRate",
+    "positiveLikelihood",
+    "negativeLikelihood",
+    "diagnosticOdds",
+    "fScore",
+    "threatScore",
+]
+
+
+def compute_score(tP, fP, tN, fN, stats):
+    # this is moved from ProflPartialMatrix/src/main/java/com/mycompany/patchstatistics/Stats.java
+    tP = float(tP)
+    fP = float(fP)
+    tN = float(tN)
+    fN = float(fN)
+
+    predicted_positive = tP + fP
+    predicted_negative = tN + fN
+
+    actual_positive = tP + fN
+    actual_negative = fP + tN
+
+    total = tP + tN + fP + fN
+
+    prevalence = (actual_positive) / (total)
+    accuracy = (tP + tN) / (total)
+
+    recall = (tP) / (actual_positive)
+    missRate = (fN) / (actual_positive)
+
+    specificity = (tN) / (actual_negative)
+    fallOut = (fP) / (actual_negative)
+
+    precision = (tP) / (predicted_positive)
+    falseDiscoveryRate = (fP) / (predicted_positive)
+
+    negativePredictiveRate = (tN) / (predicted_negative)
+    falseOmissionRate = (fN) / (predicted_negative)
+
+    positiveLikelihood = recall / fallOut
+    negativeLikelihood = missRate / specificity
+
+    diagnosticOdds = positiveLikelihood / negativeLikelihood
+    fScore = (2 * (precision * recall)) / (precision + recall)
+
+    threatScore = (tP) / (tP + fN + fP)
+
+    if stats == "prevalence":
+        return prevalence
+    elif stats == "accuracy":
+        return accuracy
+    elif stats == "recall":
+        return recall
+    elif stats == "missRate":
+        return missRate
+    elif stats == "specificity":
+        return specificity
+    elif stats == "fallOut":
+        return fallOut
+    elif stats == "precision":
+        return precision
+    elif stats == "falseDiscoveryRate":
+        return falseDiscoveryRate
+    elif stats == "negativePredictiveRate":
+        return negativePredictiveRate
+    elif stats == "falseOmissionRate":
+        return falseOmissionRate
+    elif stats == "positiveLikelihood":
+        return positiveLikelihood
+    elif stats == "negativeLikelihood":
+        return negativeLikelihood
+    elif stats == "diagnosticOdds":
+        return diagnosticOdds
+    elif stats == "fScore":
+        return fScore
+    elif stats == "threatScore":
+        return threatScore
+
+
+class PatchRerankerSamApproach:
+    def __init__(self, data_dir, baseline_dir, output_dir, stats="accuracy"):
         self._data_dir = data_dir
         self._baseline_dir = baseline_dir
         self._output_dir = output_dir
@@ -35,9 +123,9 @@ class PatchRerankerUnifiedDebugging:
             "tbar",
         ]
         self._baselines = {}
-        self._modified_entity_level = modified_entity_level
+        self._stats = stats
 
-        self._output_dir = os.path.join(self._output_dir, modified_entity_level)
+        self._output_dir = os.path.join(self._output_dir, self._stats)
         if not os.path.exists(self._output_dir):
             os.makedirs(self._output_dir)
 
@@ -50,35 +138,18 @@ class PatchRerankerUnifiedDebugging:
 
 
     def _revise_subject_patch(self, subject_data):
-        modified_entity_level = self._modified_entity_level
-        # modified_entity_level can be package, class, method, signature
         revised_subject_patch_dict = {}
 
         for patch_id, patch_data in subject_data.items():
             patch_id = int(patch_id)
-            org_modified_entities = patch_data["patch"]
-            revised_modified_entities = set()
-
-            for modified_entity in org_modified_entities:
-                clazz, _ = modified_entity.split(":")
-                pkg = ".".join(clazz.split(".")[:-1])
-                method_name = modified_entity.split("(")[0]
-                method_signature = modified_entity
-
-                if modified_entity_level == "package":
-                    revised_modified_entities.add(pkg)
-                if modified_entity_level == "class":
-                    revised_modified_entities.add(clazz)
-                if modified_entity_level == "method":
-                    revised_modified_entities.add(method_name)
-                if modified_entity_level == "signature":
-                    revised_modified_entities.add(modified_entity)
-                
-            modified_entity_id = ",".join(sorted(list(revised_modified_entities)))
 
             revised_subject_patch_dict[patch_id] = {
-                "modified_entity_id": modified_entity_id,
-                "priority": "PatchCategory.NoRecord",
+                "modified_entities": patch_data["patch"],
+                "true_positive": 1,
+                "false_positive": 1,
+                "true_negative": 1,
+                "false_negative": 1,
+                "priority": 0.0,
                 "validated": False,
                 "patch_category": patch_data["patch_category"]
             }
@@ -106,16 +177,38 @@ class PatchRerankerUnifiedDebugging:
 
     def _update_subject_patch(self, revised_subject_patch_dict, selected_candidate_id):
         # patch_category relates to priority
-        selected_candidate_priority = revised_subject_patch_dict[selected_candidate_id]["patch_category"]
-        selected_modified_entity_id = revised_subject_patch_dict[selected_candidate_id]["modified_entity_id"]
+        selected_modified_entities = set(revised_subject_patch_dict[selected_candidate_id]["modified_entities"])
+        selected_patch_quality = PATCH_CATEGORY_QUALITY_DICT[
+            revised_subject_patch_dict[selected_candidate_id]["patch_category"]
+        ]
+
         revised_subject_patch_dict[selected_candidate_id]["validated"] = True
 
         for id, patch_data in revised_subject_patch_dict.items():
-            if patch_data["modified_entity_id"] == selected_modified_entity_id:
-                if patch_data["priority"] == "PatchCategory.NoRecord":
-                    patch_data["priority"] = selected_candidate_priority
-                elif selected_candidate_priority > patch_data["priority"]:
-                    patch_data["priority"] = selected_candidate_priority
+            cur_modified_entities = set(revised_subject_patch_dict[id]["modified_entities"])
+
+            entities_match = cur_modified_entities & selected_modified_entities
+            entities_diff = cur_modified_entities - entities_match
+
+            num_match = len(entities_match)
+            num_diff = len(entities_diff)
+
+            if selected_patch_quality == "GOOD":
+                revised_subject_patch_dict[id]["true_positive"] += num_match
+                revised_subject_patch_dict[id]["false_positive"] += num_diff
+
+            if selected_patch_quality == "BAD":
+                revised_subject_patch_dict[id]["true_negative"] += num_match
+                revised_subject_patch_dict[id]["false_negative"] += num_diff
+
+            # if not (num_match == 0 and num_diff == 0):
+            revised_subject_patch_dict[id]["priority"] = compute_score(
+                revised_subject_patch_dict[id]["true_positive"],
+                revised_subject_patch_dict[id]["false_positive"],
+                revised_subject_patch_dict[id]["true_negative"],
+                revised_subject_patch_dict[id]["false_negative"],
+                self._stats
+            )
 
 
     def jit_patch_rerank(self, tool):
@@ -164,29 +257,29 @@ class PatchRerankerUnifiedDebugging:
             json_filename = os.path.join(self._output_dir, "{}.json".format(tool))
             with open(json_filename, 'w') as json_file:
                 json.dump(result_dict, json_file, indent=4)
-        
-        stat_summary[tool] = result_dict
 
+            stat_summary[tool] = result_dict
+        
         gt_list = []
         eval_list = []
         for tool, tool_data in stat_summary.items():
             for proj, proj_data in tool_data.items():
                 for version_id, subj_data in proj_data.items():
+                    # print(subj_data)
                     gt_list.append(subj_data["gt"])
                     eval_list.append(subj_data["eval"])
         
         with open("result.txt", 'a+') as file:
-            file.write("unified_debugging - {}\n".format(self._modified_entity_level))
+            file.write("sam_approach - {}\n".format(self._stats))
             file.write("{} (eval)\n".format(sum(eval_list) / float(len(eval_list))))
             file.write("{} (gt)\n\n".format(sum(gt_list) / float(len(gt_list))))
-
 
 
 if __name__ == "__main__":
     data_dir = os.path.abspath("../parsed_data")
     baseline_dir = os.path.abspath("../baselines")
-    output_dir = os.path.abspath("../eval/unified_debugging")
-    for modified_entity_level in ["package", "class", "method", "signature"]:
-        pr = PatchRerankerUnifiedDebugging(data_dir, baseline_dir, output_dir, modified_entity_level)
+    output_dir = os.path.abspath("../eval/sam_approach")
+    for stat in STATS:
+        pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, stats=stat)
         pr.read_baselines()
         pr.run_all_tools()
