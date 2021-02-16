@@ -32,6 +32,8 @@ class BaselineGeneration:
                 plausible_patch_rank = -1
 
                 for rank_i in rank_ids:
+                    # this logic is correct since the first patch of some subjects/bug versions
+                    # does not start for 1, also some patches can be missing
                     if patches[str(rank_i)]["patch_category"] == "PatchCategory.CleanFixFull":
                         plausible_patch_found = True
                         plausible_patch_rank = rank_i
