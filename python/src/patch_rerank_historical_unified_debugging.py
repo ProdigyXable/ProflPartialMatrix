@@ -229,7 +229,7 @@ class PatchRerankerHistoricalUnifiedDebugging:
                     eval_list.append(subj_data["eval"])
         
         with open("result.txt", 'a+') as file:
-            file.write("unified_debugging - {}\n".format(self._modified_entity_level))
+            file.write("historical_unified_debugging - {}\n".format(self._modified_entity_level))
             file.write("{} (eval)\n".format(sum(eval_list) / float(len(eval_list))))
             file.write("{} (gt)\n".format(sum(gt_list) / float(len(gt_list))))
             file.write("{} (avg improvement)\n\n".format((sum(eval_list) - sum(gt_list)) / float(len(gt_list))))
