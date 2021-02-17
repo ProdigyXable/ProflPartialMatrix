@@ -165,7 +165,7 @@ class PatchRerankerUnifiedDebugging:
             with open(json_filename, 'w') as json_file:
                 json.dump(result_dict, json_file, indent=4)
         
-        stat_summary[tool] = result_dict
+            stat_summary[tool] = result_dict
 
         gt_list = []
         eval_list = []
