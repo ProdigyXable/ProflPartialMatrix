@@ -104,7 +104,7 @@ def compute_score(tP, fP, tN, fN, stats):
 
 
 class PatchRerankerSamApproach:
-    def __init__(self, data_dir, baseline_dir, output_dir, stats="accuracy"):
+    def __init__(self, data_dir, baseline_dir, output_dir, stats="accuracy", set_diff="asym"):
         self._data_dir = data_dir
         self._baseline_dir = baseline_dir
         self._output_dir = output_dir
@@ -124,6 +124,7 @@ class PatchRerankerSamApproach:
         ]
         self._baselines = {}
         self._stats = stats
+        self._set_diff = set_diff
 
         self._output_dir = os.path.join(self._output_dir, self._stats)
         if not os.path.exists(self._output_dir):
@@ -188,7 +189,11 @@ class PatchRerankerSamApproach:
             cur_modified_entities = set(revised_subject_patch_dict[id]["modified_entities"])
 
             entities_match = cur_modified_entities & selected_modified_entities
-            entities_diff = cur_modified_entities - entities_match
+            if self._set_diff == "asym":
+                entities_diff = cur_modified_entities - entities_match
+
+            if self._set_diff == "sym":
+                entities_diff = (cur_modified_entities - entities_match) | (entities_match - cur_modified_entities)
 
             num_match = len(entities_match)
             num_diff = len(entities_diff)
@@ -201,7 +206,6 @@ class PatchRerankerSamApproach:
                 revised_subject_patch_dict[id]["true_negative"] += num_match
                 revised_subject_patch_dict[id]["false_negative"] += num_diff
 
-            # if not (num_match == 0 and num_diff == 0):
             revised_subject_patch_dict[id]["priority"] = compute_score(
                 revised_subject_patch_dict[id]["true_positive"],
                 revised_subject_patch_dict[id]["false_positive"],
@@ -254,7 +258,7 @@ class PatchRerankerSamApproach:
         for tool in self._tool_list:
             print("processing {}".format(tool))
             result_dict = self.jit_patch_rerank(tool)
-            json_filename = os.path.join(self._output_dir, "{}.json".format(tool))
+            json_filename = os.path.join(self._output_dir, "{}_{}.json".format(self._set_diff, tool))
             with open(json_filename, 'w') as json_file:
                 json.dump(result_dict, json_file, indent=4)
 
@@ -270,9 +274,10 @@ class PatchRerankerSamApproach:
                     eval_list.append(subj_data["eval"])
         
         with open("result.txt", 'a+') as file:
-            file.write("sam_approach - {}\n".format(self._stats))
+            file.write("sam_approach - {} - {}\n".format(self._set_diff, self._stats))
             file.write("{} (eval)\n".format(sum(eval_list) / float(len(eval_list))))
             file.write("{} (gt)\n\n".format(sum(gt_list) / float(len(gt_list))))
+            file.write("{} (avg improvement)\n\n".format((sum(eval_list) - sum(gt_list)) / float(len(gt_list))))
 
 
 if __name__ == "__main__":
@@ -280,6 +285,10 @@ if __name__ == "__main__":
     baseline_dir = os.path.abspath("../baselines")
     output_dir = os.path.abspath("../eval/sam_approach")
     for stat in STATS:
-        pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, stats=stat)
+        pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, stats=stat, set_diff="asym")
+        pr.read_baselines()
+        pr.run_all_tools()
+
+        pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, stats=stat, set_diff="sym")
         pr.read_baselines()
         pr.run_all_tools()
