@@ -179,7 +179,7 @@ class PatchRerankerUnifiedDebugging:
             file.write("unified_debugging - {}\n".format(self._modified_entity_level))
             file.write("{} (eval)\n".format(sum(eval_list) / float(len(eval_list))))
             file.write("{} (gt)\n\n".format(sum(gt_list) / float(len(gt_list))))
-
+            file.write("{} (avg improvement)\n\n".format((sum(eval_list) - sum(gt_list)) / float(len(gt_list))))
 
 
 if __name__ == "__main__":
