@@ -122,6 +122,7 @@ class PatchRerankerSamApproach:
             "rsrepair",
             "tbar",
         ]
+
         self._baselines = {}
         self._stats = stats
         self._set_diff = set_diff
@@ -269,14 +270,13 @@ class PatchRerankerSamApproach:
         for tool, tool_data in stat_summary.items():
             for proj, proj_data in tool_data.items():
                 for version_id, subj_data in proj_data.items():
-                    # print(subj_data)
                     gt_list.append(subj_data["gt"])
                     eval_list.append(subj_data["eval"])
         
         with open("result.txt", 'a+') as file:
             file.write("sam_approach - {} - {}\n".format(self._set_diff, self._stats))
             file.write("{} (eval)\n".format(sum(eval_list) / float(len(eval_list))))
-            file.write("{} (gt)\n\n".format(sum(gt_list) / float(len(gt_list))))
+            file.write("{} (gt)\n".format(sum(gt_list) / float(len(gt_list))))
             file.write("{} (avg improvement)\n\n".format((sum(eval_list) - sum(gt_list)) / float(len(gt_list))))
 
 
