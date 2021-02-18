@@ -15,7 +15,9 @@ class BaselineGeneration:
 
     def _get_tool_results(self):
         json_files = os.listdir(self._data_dir)
-        self.tool_json_dict = {json_i.replace(".json", ""): os.path.join(self._data_dir, json_i) for json_i in json_files}
+        self.tool_json_dict = {
+            json_i.replace(".json", ""): os.path.join(self._data_dir, json_i) for json_i in json_files if json_i.endswith(".json")
+        }
 
 
     def get_baseline(self, subject_file):
