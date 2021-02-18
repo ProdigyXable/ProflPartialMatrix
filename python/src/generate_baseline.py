@@ -30,13 +30,14 @@ class BaselineGeneration:
                 rank_ids = sorted([int(i) for i in list(patches.keys())])
                 plausible_patch_found = False
                 plausible_patch_rank = -1
+                cnt = 0
 
                 for rank_i in rank_ids:
-                    # this logic is correct since the first patch of some subjects/bug versions
-                    # does not start for 1, also some patches can be missing
+                    # some patches can be missing, so we use a counter to get the real rank
+                    cnt += 1
                     if patches[str(rank_i)]["patch_category"] == "PatchCategory.CleanFixFull":
                         plausible_patch_found = True
-                        plausible_patch_rank = rank_i
+                        plausible_patch_rank = cnt
                         break
 
                 if plausible_patch_found:
