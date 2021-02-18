@@ -32,7 +32,7 @@
     "Math": {
         "95": {
             "plausible_patch_found": true,
-            "plausible_patch_rank": 25
+            "plausible_patch_rank": 23
         },
         "84": {
             "plausible_patch_found": true,
@@ -56,7 +56,7 @@
         },
         "82": {
             "plausible_patch_found": true,
-            "plausible_patch_rank": 110
+            "plausible_patch_rank": 109
         },
         "80": {
             "plausible_patch_found": true,
@@ -64,7 +64,7 @@
         },
         "85": {
             "plausible_patch_found": true,
-            "plausible_patch_rank": 101
+            "plausible_patch_rank": 95
         },
         "28": {
             "plausible_patch_found": true,
@@ -72,7 +72,7 @@
         },
         "8": {
             "plausible_patch_found": true,
-            "plausible_patch_rank": 83
+            "plausible_patch_rank": 73
         }
     },
     "Lang": {},
