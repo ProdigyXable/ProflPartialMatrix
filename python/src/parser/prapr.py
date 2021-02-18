@@ -58,12 +58,11 @@ class PraprParser:
 
         with open(subject_filename) as file:
             for line in file:
-                if line.startswith("MutationDetails, "):
+                if line.startswith("MutationDetails, ") and len(line_stack) > 0:
                     patch_result = self._process_queue(line_stack)
-                    if len(patch_result["failed_tests"]) > 0:
-                        patch_count += 1
-                        subject_patch_dict[str(patch_count)] = patch_result
-                    
+                    patch_count += 1
+                    subject_patch_dict[str(patch_count)] = patch_result
+                
                 line_stack.append(line)
 
             patch_result = self._process_queue(line_stack)
