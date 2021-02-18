@@ -104,8 +104,31 @@ class PraprParser:
             fp = org_failing_tests - patch_failing_tests
             ff = patch_failing_tests & org_failing_tests
 
+            ff_len = len(ff)
+            fp_len = len(fp)
+            pf_len = len(pf)
+            patch_category = ""
+
+            if fp_len > 0 and pf_len == 0 and ff_len == 0:
+                patch_category = "PatchCategory.CleanFixFull"
+
+            if fp_len > 0 and pf_len == 0 and ff_len > 0:
+                patch_category = "PatchCategory.CleanFixPartial"
+
+            if fp_len > 0 and pf_len > 0 and ff_len == 0:
+                patch_category = "PatchCategory.NoisyFixFull"
+
+            if fp_len > 0 and pf_len > 0 and ff_len > 0:
+                patch_category = "PatchCategory.NoisyFixPartial"
+
+            if fp_len == 0 and pf_len == 0 and ff_len > 0:
+                patch_category = "PatchCategory.NoneFix"
+
+            if fp_len == 0 and pf_len > 0 and ff_len > 0:
+                patch_category = "PatchCategory.NegFix"
+
             merged_result_dict[patch_id] = {
-                "patch_category": "",
+                "patch_category": patch_category,
                 "ff_test": list(ff),
                 "fp_test": list(fp),
                 "pf_test": list(pf),
@@ -140,7 +163,7 @@ class PraprParser:
 
 if __name__ == "__main__":
     data_root_dir = os.path.abspath("../../data/prapr")
-    output_dir = os.path.abspath("../../data/parsed_data")
+    output_dir = os.path.abspath("../../parsed_data")
     pp = PraprParser(data_root_dir, output_dir)
     pp.parse_all_subjects()
 
