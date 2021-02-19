@@ -261,4 +261,4 @@ if __name__ == "__main__":
         pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, stats=stat, set_diff="sym")
         pr.read_baselines()
         pr.run_all_tools()
-    print("--- %s seconds ---" % (time.time() - start_time))
+    print("--- {} mins ---".format((time.time() - start_time) / 60.0))
