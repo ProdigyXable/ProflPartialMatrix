@@ -39,8 +39,10 @@ for tool in ["avatar", "kpar", "tbar", "fixminer"]:
     ap.runAll()
 
 
-# # PraprParser
-# prapr_data_root_dir = os.path.abspath("../data/prapr")
-# print("Processing {}".format("prapr"))
-# pp = PraprParser(prapr_data_root_dir, output_dir)
-# pp.runAll()
+# PraprParser
+prapr_data_root_dir = os.path.abspath("../data/prapr")
+print("Processing {}".format("prapr"))
+pp = PraprParser(prapr_data_root_dir, output_dir, matrix_type="full")
+pp.parse_all_subjects()
+pp = PraprParser(prapr_data_root_dir, output_dir, matrix_type="partial")
+pp.parse_all_subjects()
