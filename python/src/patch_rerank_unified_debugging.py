@@ -33,6 +33,7 @@ class PatchRerankerUnifiedDebugging:
             "kpar",
             "rsrepair",
             "tbar",
+            "prapr",
         ]
         self._baselines = {}
         self._modified_entity_level = modified_entity_level
