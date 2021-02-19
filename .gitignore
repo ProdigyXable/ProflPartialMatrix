@@ -33,3 +33,5 @@ python/eval/*
 python/figs/*
 python/tables/*
 python/src/test.py
+python/src/*.txt
+python/src/*.json
