@@ -5,18 +5,18 @@ import json
 
 
 class ArjaParser(ParserBase):
-    def __init__(self, root_dir, tool_name, output_dir):
+    def __init__(self, root_dir, tool_name, output_dir, matrix_type="full"):
         self._root_dir = root_dir
         self._tool_name = tool_name
-        self._output_dir = output_dir
+        self._output_dir = os.path.join(output_dir, matrix_type)
         self._tool_suffix = "-output"
         self._subject_prefix = ""
         self._subject_path = ""
         self._subject_list = []
         self._repair_result_dict = {}
+        self._matrix_type = matrix_type
 
-        if not os.path.exists(self._output_dir):
-            os.makedirs(self._output_dir)
+        os.makedirs(self._output_dir, exist_ok=True)
 
 
     def _get_subject_list(self):
@@ -35,11 +35,13 @@ class ArjaParser(ParserBase):
 
         for id in test_ids:
             test_filename = os.path.join(test_path, "{}.tests".format(id))
-            test_result_dict = self._parse_test(test_filename)
+            if self._matrix_type == "full":
+                test_result_dict = self._parse_test_full(test_filename)
+            
+            if self._matrix_type == "partial":
+                test_result_dict = self._parse_test_partial(test_filename)
 
-            subject_repair_result_i = {}
-            subject_repair_result_i.update(test_result_dict)
-            subject_repair_result[id] = subject_repair_result_i
+            subject_repair_result[id] = test_result_dict
         return subject_name, {subject_id: subject_repair_result}
 
 
@@ -51,7 +53,7 @@ class ArjaParser(ParserBase):
             self._repair_result_dict[subject_name].update(subject_repair_result)
 
 
-    def _parse_test(self, test_filename):
+    def _parse_test_full(self, test_filename):
         test_result_dict = {
             "patch_category": "",
             "ff_test": [],
@@ -88,6 +90,76 @@ class ArjaParser(ParserBase):
                     patch = patch.split(" at line=")[0]
                     test_result_dict["patch"].append(patch)
             
+            return test_result_dict
+
+
+    def _parse_test_partial(self, test_filename):
+        test_result_dict = {
+            "patch_category": "",
+            "ff_test": [],
+            "fp_test": [],
+            "pf_test": [],
+            "pp_test": [],
+            "patch": [],
+        }
+
+        with open(test_filename) as file:
+            all_test_list = []
+            org_failed_test_list = []
+            org_passed_test_list = []
+            test_category_map = {}
+
+            for line in file:
+                patch_category = self._purify_line(line, "PatchCategory = ")
+                if patch_category:
+                    test_result_dict["patch_category"] = patch_category
+                
+                ff_test = self._purify_line(line, "[Fail->Fail] ")
+                if ff_test:
+                    all_test_list.append(ff_test)
+                    org_failed_test_list.append(ff_test)
+                    test_category_map[ff_test] = "ff"
+
+                pf_test = self._purify_line(line, "[Pass->Fail] ")
+                if pf_test:
+                    all_test_list.append(pf_test)
+                    org_passed_test_list.append(pf_test)
+                    test_category_map[pf_test] = "pf"
+
+                fp_test = self._purify_line(line, "[Fail->Pass] ")
+                if fp_test:
+                    all_test_list.append(fp_test)
+                    org_failed_test_list.append(fp_test)
+                    test_category_map[fp_test] = "fp"
+
+                pp_test = self._purify_line(line, "[Pass->Pass] ")
+                if pp_test:
+                    all_test_list.append(pp_test)
+                    org_passed_test_list.append(pp_test)
+                    test_category_map[pp_test] = "pp"
+
+                patch = self._purify_line(line, "Modified method=")
+                if patch:
+                    patch = patch.split(" at line=")[0]
+                    test_result_dict["patch"].append(patch)
+
+            sorted_test_list = sorted(org_failed_test_list) + sorted(org_passed_test_list)
+            for test_i in sorted_test_list:
+                if test_category_map[test_i] == "ff":
+                    test_result_dict["ff_test"].append(test_i)
+
+                if test_category_map[test_i] == "pf":
+                    test_result_dict["pf_test"].append(test_i)
+
+                if test_category_map[test_i] == "fp":
+                    test_result_dict["fp_test"].append(test_i)
+
+                if test_category_map[test_i] == "pp":
+                    test_result_dict["pp_test"].append(test_i)
+
+                if test_category_map[test_i] in ["ff", "pf"]:
+                    break
+
             return test_result_dict
 
 
