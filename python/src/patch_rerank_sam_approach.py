@@ -1,7 +1,8 @@
 import os
 import json
 from pprint import pprint
-import math
+from utils import compute_score
+import time
 
 
 PATCH_CATEGORY_QUALITY_DICT ={
@@ -17,129 +18,28 @@ PATCH_CATEGORY_QUALITY_DICT ={
 STATS = [
     "prevalence",
     "accuracy",
-    "recall",
-    "missRate",
-    "specificity",
-    "fallOut",
-    "precision",
-    "falseDiscoveryRate",
-    "negativePredictiveRate",
-    "falseOmissionRate",
-    "positiveLikelihood",
-    "negativeLikelihood",
-    "diagnosticOdds",
-    "fScore",
-    "threatScore",
-    "Tarantula",
-    "Ochiai",
-    "Ochiai2",
-    "Op2",
-    "SBI",
-    "Jaccard",
-    "Kulczynski",
-    "Dstar2",
+    # "recall",
+    # "missRate",
+    # "specificity",
+    # "fallOut",
+    # "precision",
+    # "falseDiscoveryRate",
+    # "negativePredictiveRate",
+    # "falseOmissionRate",
+    # "positiveLikelihood",
+    # "negativeLikelihood",
+    # "diagnosticOdds",
+    # "fScore",
+    # "threatScore",
+    # "Tarantula",
+    # "Ochiai",
+    # "Ochiai2",
+    # "Op2",
+    # "SBI",
+    # "Jaccard",
+    # "Kulczynski",
+    # "Dstar2",
 ]
-
-
-def compute_score(tP, fP, tN, fN, stats):
-    # this is moved from ProflPartialMatrix/src/main/java/com/mycompany/patchstatistics/Stats.java
-    tP = float(tP)
-    fP = float(fP)
-    tN = float(tN)
-    fN = float(fN)
-
-    predicted_positive = tP + fP
-    predicted_negative = tN + fN
-
-    actual_positive = tP + fN
-    actual_negative = fP + tN
-
-    total = tP + tN + fP + fN
-
-    prevalence = (actual_positive) / (total)
-    accuracy = (tP + tN) / (total)
-
-    recall = (tP) / (actual_positive)
-    missRate = (fN) / (actual_positive)
-
-    specificity = (tN) / (actual_negative)
-    fallOut = (fP) / (actual_negative)
-
-    precision = (tP) / (predicted_positive)
-    falseDiscoveryRate = (fP) / (predicted_positive)
-
-    negativePredictiveRate = (tN) / (predicted_negative)
-    falseOmissionRate = (fN) / (predicted_negative)
-
-    positiveLikelihood = recall / fallOut
-    negativeLikelihood = missRate / specificity
-
-    diagnosticOdds = positiveLikelihood / negativeLikelihood
-    fScore = (2 * (precision * recall)) / (precision + recall)
-
-    threatScore = (tP) / (tP + fN + fP)
-
-    # SBFL
-    ef = tP
-    ep = tN
-    nf = fP
-    np = fN
-
-    Tarantula = (ef / (ef + nf)) / ((ef / (ef + nf)) + (ep / (ep + np)))
-    Ochiai = ef / math.sqrt((ef + ep) * (ef + nf))
-    Ochiai2 = ef * np / math.sqrt((ef + ep) * (nf + np) * (ef + np) * (nf + ep))
-    Op2 = ef - ep / (ep + np + 1)
-    SBI = 1 - ep / (ep + ef)
-    Jaccard = ef / (ef + ep + nf)
-    Kulczynski = ef / (nf + ep)
-    Dstar2 = ef * ef / (ep + nf)
-
-    if stats == "prevalence":
-        return prevalence
-    elif stats == "accuracy":
-        return accuracy
-    elif stats == "recall":
-        return recall
-    elif stats == "missRate":
-        return missRate
-    elif stats == "specificity":
-        return specificity
-    elif stats == "fallOut":
-        return fallOut
-    elif stats == "precision":
-        return precision
-    elif stats == "falseDiscoveryRate":
-        return falseDiscoveryRate
-    elif stats == "negativePredictiveRate":
-        return negativePredictiveRate
-    elif stats == "falseOmissionRate":
-        return falseOmissionRate
-    elif stats == "positiveLikelihood":
-        return positiveLikelihood
-    elif stats == "negativeLikelihood":
-        return negativeLikelihood
-    elif stats == "diagnosticOdds":
-        return diagnosticOdds
-    elif stats == "fScore":
-        return fScore
-    elif stats == "threatScore":
-        return threatScore
-    elif stats == "Tarantula":
-        return Tarantula
-    elif stats == "Ochiai":
-        return Ochiai
-    elif stats == "Ochiai2":
-        return Ochiai2
-    elif stats == "Op2":
-        return Op2
-    elif stats == "SBI":
-        return SBI
-    elif stats == "Jaccard":
-        return Jaccard
-    elif stats == "Kulczynski":
-        return Kulczynski
-    elif stats == "Dstar2":
-        return Dstar2
 
 
 class PatchRerankerSamApproach:
@@ -148,18 +48,18 @@ class PatchRerankerSamApproach:
         self._baseline_dir = baseline_dir
         self._output_dir = output_dir
         self._tool_list = [
-            "arja",
-            "avatar",
+            # "arja",
+            # "avatar",
             "cardumen",
-            "fixminer",
+            # "fixminer",
             "genprog",
-            "jGenProg",
-            "jKali",
-            "jmutrepair",
-            "kali",
-            "kpar",
-            "rsrepair",
-            "tbar",
+            # "jGenProg",
+            # "jKali",
+            # "jmutrepair",
+            # "kali",
+            # "kpar",
+            # "rsrepair",
+            # "tbar",
             # "prapr"
         ]
 
@@ -170,6 +70,9 @@ class PatchRerankerSamApproach:
         self._output_dir = os.path.join(self._output_dir, self._stats)
         if not os.path.exists(self._output_dir):
             os.makedirs(self._output_dir)
+        
+        # this is an optimization to reduce cost of mem and set operation
+        self._modified_entity_index_map = {}
 
 
     def read_baselines(self):
@@ -177,6 +80,28 @@ class PatchRerankerSamApproach:
             json_filename = os.path.join(self._baseline_dir, "{}.json".format(tool))
             with open(json_filename) as file:
                 self._baselines[tool] = json.load(file)
+    
+
+    def _revise_repair_data(self, repair_data):
+        # update modified_entity_index_map
+        for project, proj_data in repair_data.items():
+            for version_id, subject_data in proj_data.items():
+                for patch_id, patch_data in subject_data.items():
+                    modified_entities = patch_data["patch"]
+                    for modified_entity_i in modified_entities:
+                        if modified_entity_i not in self._modified_entity_index_map:
+                            cur_num_keys = len(self._modified_entity_index_map.keys())
+                            self._modified_entity_index_map[modified_entity_i] = cur_num_keys
+        
+        # refresh repair_data
+
+        for project, proj_data in repair_data.items():
+            for version_id, subject_data in proj_data.items():
+                for patch_id, patch_data in subject_data.items():
+                    modified_entity_ids = [
+                        self._modified_entity_index_map[i] for i in patch_data["patch"]
+                    ]
+                    patch_data["patch"] = set(modified_entity_ids)
 
 
     def _revise_subject_patch(self, subject_data):
@@ -186,7 +111,7 @@ class PatchRerankerSamApproach:
             patch_id = int(patch_id)
 
             revised_subject_patch_dict[patch_id] = {
-                "modified_entities": patch_data["patch"],
+                "modified_entities": set(patch_data["patch"]),
                 "true_positive": 1,
                 "false_positive": 1,
                 "true_negative": 1,
@@ -219,7 +144,7 @@ class PatchRerankerSamApproach:
 
     def _update_subject_patch(self, revised_subject_patch_dict, selected_candidate_id):
         # patch_category relates to priority
-        selected_modified_entities = set(revised_subject_patch_dict[selected_candidate_id]["modified_entities"])
+        selected_modified_entities = revised_subject_patch_dict[selected_candidate_id]["modified_entities"]
         selected_patch_quality = PATCH_CATEGORY_QUALITY_DICT[
             revised_subject_patch_dict[selected_candidate_id]["patch_category"]
         ]
@@ -227,7 +152,7 @@ class PatchRerankerSamApproach:
         revised_subject_patch_dict[selected_candidate_id]["validated"] = True
 
         for id, patch_data in revised_subject_patch_dict.items():
-            cur_modified_entities = set(revised_subject_patch_dict[id]["modified_entities"])
+            cur_modified_entities = revised_subject_patch_dict[id]["modified_entities"]
 
             entities_match = cur_modified_entities & selected_modified_entities
             if self._set_diff == "asym":
@@ -260,6 +185,9 @@ class PatchRerankerSamApproach:
         json_file = os.path.join(self._data_dir, "{}.json".format(tool))
         with open(json_file) as file:
             repair_data = json.load(file)
+
+        # change modified_entities from str to int
+        self._revise_repair_data(repair_data)
         
         baseline_data = self._baselines[tool]
         result_dict = {}
@@ -324,6 +252,7 @@ if __name__ == "__main__":
     data_dir = os.path.abspath("../parsed_data/partial")
     baseline_dir = os.path.abspath("../baselines")
     output_dir = os.path.abspath("../eval/sam_approach")
+    start_time = time.time()
     for stat in STATS:
         pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, stats=stat, set_diff="asym")
         pr.read_baselines()
@@ -332,3 +261,4 @@ if __name__ == "__main__":
         pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, stats=stat, set_diff="sym")
         pr.read_baselines()
         pr.run_all_tools()
+    print("--- %s seconds ---" % (time.time() - start_time))
