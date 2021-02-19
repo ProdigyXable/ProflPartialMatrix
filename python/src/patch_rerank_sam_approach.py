@@ -1,7 +1,7 @@
 import os
 import json
 from pprint import pprint
-import numpy as np
+import math
 
 
 PATCH_CATEGORY_QUALITY_DICT ={
@@ -30,6 +30,14 @@ STATS = [
     "diagnosticOdds",
     "fScore",
     "threatScore",
+    "Tarantula",
+    "Ochiai",
+    "Ochiai2",
+    "Op2",
+    "SBI",
+    "Jaccard",
+    "Kulczynski",
+    "Dstar2",
 ]
 
 
@@ -71,6 +79,21 @@ def compute_score(tP, fP, tN, fN, stats):
 
     threatScore = (tP) / (tP + fN + fP)
 
+    # SBFL
+    ef = tP
+    ep = tN
+    nf = fP
+    np = fN
+
+    Tarantula = (ef / (ef + nf)) / ((ef / (ef + nf)) + (ep / (ep + np)))
+    Ochiai = ef / math.sqrt((ef + ep) * (ef + nf))
+    Ochiai2 = ef * np / math.sqrt((ef + ep) * (nf + np) * (ef + np) * (nf + ep))
+    Op2 = ef - ep / (ep + np + 1)
+    SBI = 1 - ep / (ep + ef)
+    Jaccard = ef / (ef + ep + nf)
+    Kulczynski = ef / (nf + ep)
+    Dstar2 = ef * ef / (ep + nf)
+
     if stats == "prevalence":
         return prevalence
     elif stats == "accuracy":
@@ -101,6 +124,22 @@ def compute_score(tP, fP, tN, fN, stats):
         return fScore
     elif stats == "threatScore":
         return threatScore
+    elif stats == "Tarantula":
+        return Tarantula
+    elif stats == "Ochiai":
+        return Ochiai
+    elif stats == "Ochiai2":
+        return Ochiai2
+    elif stats == "Op2":
+        return Op2
+    elif stats == "SBI":
+        return SBI
+    elif stats == "Jaccard":
+        return Jaccard
+    elif stats == "Kulczynski":
+        return Kulczynski
+    elif stats == "Dstar2":
+        return Dstar2
 
 
 class PatchRerankerSamApproach:
@@ -121,6 +160,7 @@ class PatchRerankerSamApproach:
             "kpar",
             "rsrepair",
             "tbar",
+            # "prapr"
         ]
 
         self._baselines = {}
@@ -272,7 +312,7 @@ class PatchRerankerSamApproach:
                 for version_id, subj_data in proj_data.items():
                     gt_list.append(subj_data["gt"])
                     eval_list.append(subj_data["eval"])
-        
+
         with open("result.txt", 'a+') as file:
             file.write("sam_approach - {} - {}\n".format(self._set_diff, self._stats))
             file.write("{} (eval)\n".format(sum(eval_list) / float(len(eval_list))))
@@ -281,7 +321,7 @@ class PatchRerankerSamApproach:
 
 
 if __name__ == "__main__":
-    data_dir = os.path.abspath("../parsed_data")
+    data_dir = os.path.abspath("../parsed_data/partial")
     baseline_dir = os.path.abspath("../baselines")
     output_dir = os.path.abspath("../eval/sam_approach")
     for stat in STATS:
