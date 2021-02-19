@@ -107,24 +107,7 @@ class AstorParser(ParserBase):
                 fp_len = len(test_result_dict["fp_test"])
                 pf_len = len(test_result_dict["pf_test"])
                 pp_len = len(test_result_dict["pp_test"])
-
-                if fp_len > 0 and pf_len == 0 and ff_len == 0:
-                    test_result_dict["patch_category"] = "PatchCategory.CleanFixFull"
-
-                if fp_len > 0 and pf_len == 0 and ff_len > 0:
-                    test_result_dict["patch_category"] = "PatchCategory.CleanFixPartial"
-
-                if fp_len > 0 and pf_len > 0 and ff_len == 0:
-                    test_result_dict["patch_category"] = "PatchCategory.NoisyFixFull"
-
-                if fp_len > 0 and pf_len > 0 and ff_len > 0:
-                    test_result_dict["patch_category"] = "PatchCategory.NoisyFixPartial"
-
-                if fp_len == 0 and pf_len == 0 and ff_len > 0:
-                    test_result_dict["patch_category"] = "PatchCategory.NoneFix"
-
-                if fp_len == 0 and pf_len > 0 and ff_len > 0:
-                    test_result_dict["patch_category"] = "PatchCategory.NegFix"
+                test_result_dict["patch_category"] = self._get_patch_category(fp_len, pf_len, ff_len)
 
             return test_result_dict
 
