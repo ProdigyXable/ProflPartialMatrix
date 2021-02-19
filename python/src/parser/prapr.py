@@ -29,7 +29,7 @@ class PraprParser:
                 if i.startswith("methodDesc="):
                     methodDesc = i.replace("methodDesc=", "")
 
-            return clazz + method + methodDesc
+            return clazz + ":" + method + methodDesc
         
         def parse_test(test_str):
             failed_test = test_str.split(" ")[1].split("(")[0]
