@@ -8,9 +8,7 @@ class BaselineGeneration:
         self._data_dir = data_dir
         self._output_dir = output_dir
         self.tool_json_dict = {}
-
-        if not os.path.exists(self._output_dir):
-            os.makedirs(self._output_dir)
+        os.makedirs(self._output_dir, exist_ok=True)
 
 
     def _get_tool_results(self):
@@ -65,7 +63,7 @@ class BaselineGeneration:
 
 
 if __name__ == "__main__":
-    data_dir = os.path.abspath("../parsed_data")
+    data_dir = os.path.abspath("../parsed_data/full")
     output_dir = os.path.abspath("../baselines")
     bg = BaselineGeneration(data_dir, output_dir)
     bg.run_all()
