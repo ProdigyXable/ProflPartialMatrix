@@ -185,7 +185,21 @@ class PatchRerankerUnifiedDebugging:
 
 
 if __name__ == "__main__":
+    with open("result.txt", 'w') as file:
+        file.write("Partial\n")
+
     data_dir = os.path.abspath("../parsed_data/partial")
+    baseline_dir = os.path.abspath("../baselines")
+    output_dir = os.path.abspath("../eval/unified_debugging")
+    for modified_entity_level in ["package", "class", "method", "signature"]:
+        pr = PatchRerankerUnifiedDebugging(data_dir, baseline_dir, output_dir, modified_entity_level)
+        pr.read_baselines()
+        pr.run_all_tools()
+
+    with open("result.txt", 'a+') as file:
+        file.write("Full\n")
+
+    data_dir = os.path.abspath("../parsed_data/full")
     baseline_dir = os.path.abspath("../baselines")
     output_dir = os.path.abspath("../eval/unified_debugging")
     for modified_entity_level in ["package", "class", "method", "signature"]:
