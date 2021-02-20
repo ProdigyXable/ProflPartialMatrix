@@ -123,11 +123,7 @@ class AvatarParser(ParserBase):
             org_passed_test_list = []
             test_category_map = {}
 
-            for line in file:
-                patch_category = self._purify_line(line, "Patch Category: ")
-                if patch_category:
-                    test_result_dict["patch_category"] = patch_category
-                
+            for line in file:               
                 ff_test = self._purify_line(line, "[Fail->Fail] ")
                 if ff_test:
                     org_failed_test_list.append(ff_test)

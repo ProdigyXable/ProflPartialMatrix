@@ -104,37 +104,28 @@ class ArjaParser(ParserBase):
         }
 
         with open(test_filename) as file:
-            all_test_list = []
             org_failed_test_list = []
             org_passed_test_list = []
             test_category_map = {}
 
-            for line in file:
-                patch_category = self._purify_line(line, "PatchCategory = ")
-                if patch_category:
-                    test_result_dict["patch_category"] = patch_category
-                
+            for line in file:               
                 ff_test = self._purify_line(line, "[Fail->Fail] ")
                 if ff_test:
-                    all_test_list.append(ff_test)
                     org_failed_test_list.append(ff_test)
                     test_category_map[ff_test] = "ff"
 
                 pf_test = self._purify_line(line, "[Pass->Fail] ")
                 if pf_test:
-                    all_test_list.append(pf_test)
                     org_passed_test_list.append(pf_test)
                     test_category_map[pf_test] = "pf"
 
                 fp_test = self._purify_line(line, "[Fail->Pass] ")
                 if fp_test:
-                    all_test_list.append(fp_test)
                     org_failed_test_list.append(fp_test)
                     test_category_map[fp_test] = "fp"
 
                 pp_test = self._purify_line(line, "[Pass->Pass] ")
                 if pp_test:
-                    all_test_list.append(pp_test)
                     org_passed_test_list.append(pp_test)
                     test_category_map[pp_test] = "pp"
 
