@@ -33,7 +33,7 @@ class PatchRerankerUnifiedDebugging:
             "kpar",
             "rsrepair",
             "tbar",
-            "prapr",
+            # "prapr",
         ]
         self._baselines = {}
         self._modified_entity_level = modified_entity_level
@@ -99,7 +99,7 @@ class PatchRerankerUnifiedDebugging:
                 cur_candidate_priority = revised_subject_patch_dict[id]["priority"]
                 selected_candidate_priority = revised_subject_patch_dict[selected_candidate_id]["priority"]
 
-                if cur_candidate_priority > selected_candidate_priority:
+                if PATCH_CATEGORY_PRIORITY_DICT[cur_candidate_priority] > PATCH_CATEGORY_PRIORITY_DICT[selected_candidate_priority]:
                     selected_candidate_id = id
         
         return selected_candidate_id
@@ -115,7 +115,8 @@ class PatchRerankerUnifiedDebugging:
             if patch_data["modified_entity_id"] == selected_modified_entity_id:
                 if patch_data["priority"] == "PatchCategory.NoRecord":
                     patch_data["priority"] = selected_candidate_priority
-                elif selected_candidate_priority > patch_data["priority"]:
+
+                elif PATCH_CATEGORY_PRIORITY_DICT[selected_candidate_priority] > PATCH_CATEGORY_PRIORITY_DICT[patch_data["priority"]]:
                     patch_data["priority"] = selected_candidate_priority
 
 
@@ -184,7 +185,7 @@ class PatchRerankerUnifiedDebugging:
 
 
 if __name__ == "__main__":
-    data_dir = os.path.abspath("../parsed_data")
+    data_dir = os.path.abspath("../parsed_data/partial")
     baseline_dir = os.path.abspath("../baselines")
     output_dir = os.path.abspath("../eval/unified_debugging")
     for modified_entity_level in ["package", "class", "method", "signature"]:
