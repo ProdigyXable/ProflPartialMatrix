@@ -1,5 +1,4 @@
-from p
- import pprint
+from pprint import pprint
 from parser.base import ParserBase
 import os
 import json
