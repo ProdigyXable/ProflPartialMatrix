@@ -18,48 +18,57 @@ PATCH_CATEGORY_QUALITY_DICT ={
 STATS = [
     "prevalence",
     "accuracy",
-    # "recall",
-    # "missRate",
-    # "specificity",
-    # "fallOut",
-    # "precision",
-    # "falseDiscoveryRate",
-    # "negativePredictiveRate",
-    # "falseOmissionRate",
-    # "positiveLikelihood",
-    # "negativeLikelihood",
-    # "diagnosticOdds",
-    # "fScore",
-    # "threatScore",
-    # "Tarantula",
-    # "Ochiai",
-    # "Ochiai2",
-    # "Op2",
-    # "SBI",
-    # "Jaccard",
-    # "Kulczynski",
-    # "Dstar2",
+    "recall",
+    "missRate",
+    "specificity",
+    "fallOut",
+    "precision",
+    "falseDiscoveryRate",
+    "negativePredictiveRate",
+    "falseOmissionRate",
+    "positiveLikelihood",
+    "negativeLikelihood",
+    "diagnosticOdds",
+    "fScore",
+    "threatScore",
+    "Tarantula",
+    "Ochiai",
+    "Ochiai2",
+    "Op2",
+    "SBI",
+    "Jaccard",
+    "Kulczynski",
+    "Dstar2",
 ]
 
 
 class PatchRerankerSamApproach:
-    def __init__(self, data_dir, baseline_dir, output_dir, stats="accuracy", set_diff="asym"):
+    def __init__(
+        self,
+        data_dir,
+        baseline_dir,
+        output_dir,
+        result_statistics_filename,
+        stats="accuracy",
+        set_diff="asym"
+    ):
         self._data_dir = data_dir
         self._baseline_dir = baseline_dir
         self._output_dir = output_dir
+        self._result_statistics_filename = result_statistics_filename
         self._tool_list = [
-            # "arja",
-            # "avatar",
+            "arja",
+            "avatar",
             "cardumen",
-            # "fixminer",
+            "fixminer",
             "genprog",
-            # "jGenProg",
-            # "jKali",
-            # "jmutrepair",
-            # "kali",
-            # "kpar",
-            # "rsrepair",
-            # "tbar",
+            "jGenProg",
+            "jKali",
+            "jmutrepair",
+            "kali",
+            "kpar",
+            "rsrepair",
+            "tbar",
             # "prapr"
         ]
 
@@ -233,32 +242,44 @@ class PatchRerankerSamApproach:
 
             stat_summary[tool] = result_dict
         
+        self.save_result_statistics(stat_summary)
+    
+
+    def save_result_statistics(self, stat_summary):
         gt_list = []
         eval_list = []
+
         for tool, tool_data in stat_summary.items():
             for proj, proj_data in tool_data.items():
                 for version_id, subj_data in proj_data.items():
                     gt_list.append(subj_data["gt"])
                     eval_list.append(subj_data["eval"])
 
-        with open("result.txt", 'a+') as file:
-            file.write("sam_approach - {} - {}\n".format(self._set_diff, self._stats))
-            file.write("{} (eval)\n".format(sum(eval_list) / float(len(eval_list))))
-            file.write("{} (gt)\n".format(sum(gt_list) / float(len(gt_list))))
-            file.write("{} (avg improvement)\n\n".format((sum(eval_list) - sum(gt_list)) / float(len(gt_list))))
+        with open(self._result_statistics_filename, 'a+') as file:
+            approach = "{} - {}".format(self._set_diff, self._stats)
+            avg_eval = sum(eval_list) / float(len(eval_list))
+            avg_gt = sum(gt_list) / float(len(gt_list))
+            avg_improvement = avg_eval - avg_gt
+
+            file.write("{},{},{}\n".format(approach, avg_eval, avg_improvement))
 
 
 if __name__ == "__main__":
     data_dir = os.path.abspath("../parsed_data/partial")
     baseline_dir = os.path.abspath("../baselines")
     output_dir = os.path.abspath("../eval/sam_approach")
+    result_statistics_filename = os.path.abspath("../result_stats/sam_approach.csv")
+
+    with open(result_statistics_filename, 'w') as file:
+        file.write("approach,avg_eval,avg_improvement\n")
+
     start_time = time.time()
     for stat in STATS:
-        pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, stats=stat, set_diff="asym")
+        pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, result_statistics_filename, stats=stat, set_diff="asym")
         pr.read_baselines()
         pr.run_all_tools()
 
-        pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, stats=stat, set_diff="sym")
+        pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, result_statistics_filename, stats=stat, set_diff="sym")
         pr.read_baselines()
         pr.run_all_tools()
     print("--- {} mins ---".format((time.time() - start_time) / 60.0))
