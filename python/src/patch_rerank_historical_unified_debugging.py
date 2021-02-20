@@ -16,7 +16,7 @@ PATCH_CATEGORY_PRIORITY_DICT ={
 
 
 class PatchRerankerHistoricalUnifiedDebugging:
-    def __init__(self, data_dir, baseline_dir, output_dir, modified_entity_level):
+    def __init__(self, data_dir, baseline_dir, output_dir, modified_entity_level, window_size):
         self._data_dir = data_dir
         self._baseline_dir = baseline_dir
         self._output_dir = output_dir
@@ -36,43 +36,11 @@ class PatchRerankerHistoricalUnifiedDebugging:
         ]
         self._baselines = {}
         self._modified_entity_level = modified_entity_level
+        self._history_window_size = window_size
 
         self._output_dir = os.path.join(self._output_dir, modified_entity_level)
         if not os.path.exists(self._output_dir):
             os.makedirs(self._output_dir)
-
-
-    def _load_historical_data(self, project_data, version_id):
-        subject_data = project_data[version_id]
-        revised_subject_patch_dict = self._revise_subject_patch(subject_data)
-        modified_entity_patch_category_dict = {}
-
-        for patch_id, patch_data in revised_subject_patch_dict.items():
-            modified_entity_id = patch_data["modified_entity_id"]
-            patch_category = patch_data["patch_category"]
-
-            if modified_entity_id not in modified_entity_patch_category_dict:
-                modified_entity_patch_category_dict[modified_entity_id] = {}
-            
-            if patch_category not in modified_entity_patch_category_dict[modified_entity_id]:
-                modified_entity_patch_category_dict[modified_entity_id][patch_category] = 0
-            
-            modified_entity_patch_category_dict[modified_entity_id][patch_category] += 1
-        
-        # get majority of patch category
-        result = {}
-        for modified_entity_id, data in modified_entity_patch_category_dict.items():
-            max_cnt = 0
-            major_patch_category = ""
-
-            for patch_category, cnt in data.items():
-                if cnt > max_cnt:
-                    max_cnt = cnt
-                    major_patch_category = patch_category
-
-            result[modified_entity_id] = major_patch_category
-
-        return result
 
 
     def read_baselines(self):
@@ -160,6 +128,59 @@ class PatchRerankerHistoricalUnifiedDebugging:
                     patch_data["priority"] = selected_candidate_priority
                 elif selected_candidate_priority > patch_data["priority"]:
                     patch_data["priority"] = selected_candidate_priority
+    
+
+    def _get_most_recent_n_bug_versions(self, target_version_str, proj_data):
+        most_recent_n_bug_versions = []
+        sorted_bug_versions = sorted([int(i) for i in list(proj_data.keys())])
+        max_bug_version = sorted_bug_versions[-1]
+        cur_bug_version = int(target_version_str) + 1
+
+        while cur_bug_version <= max_bug_version:
+            if cur_bug_version in sorted_bug_versions:
+                most_recent_n_bug_versions.append(str(cur_bug_version))
+            
+            cur_bug_version += 1
+
+            if len(most_recent_n_bug_versions) == self._history_window_size:
+                break
+        
+        return most_recent_n_bug_versions
+
+
+    def _load_historical_data(self, project_data, version_ids):
+        modified_entity_patch_category_dict = {}
+
+        for version_id in version_ids:
+            subject_data = project_data[version_id]
+            revised_subject_patch_dict = self._revise_subject_patch(subject_data)    
+
+            for patch_id, patch_data in revised_subject_patch_dict.items():
+                modified_entity_id = patch_data["modified_entity_id"]
+                patch_category = patch_data["patch_category"]
+
+                if modified_entity_id not in modified_entity_patch_category_dict:
+                    modified_entity_patch_category_dict[modified_entity_id] = {}
+
+                if patch_category not in modified_entity_patch_category_dict[modified_entity_id]:
+                    modified_entity_patch_category_dict[modified_entity_id][patch_category] = 0
+
+                modified_entity_patch_category_dict[modified_entity_id][patch_category] += 1
+
+        # get majority of patch category
+        result = {}
+        for modified_entity_id, data in modified_entity_patch_category_dict.items():
+            max_cnt = 0
+            major_patch_category = ""
+
+            for patch_category, cnt in data.items():
+                if cnt > max_cnt:
+                    max_cnt = cnt
+                    major_patch_category = patch_category
+
+            result[modified_entity_id] = major_patch_category
+
+        return result
 
 
     def jit_patch_rerank(self, tool):
@@ -178,11 +199,8 @@ class PatchRerankerHistoricalUnifiedDebugging:
                     visited_patch_id_list = []
 
                     # load history data
-                    prev_version_id = str(int(version_id) + 1)
-                    if prev_version_id not in proj_data:
-                        historical_data = {}
-                    else:
-                        historical_data = self._load_historical_data(proj_data, prev_version_id)
+                    most_recent_n_bug_versions = self._get_most_recent_n_bug_versions(version_id, proj_data)
+                    historical_data = self._load_historical_data(proj_data, most_recent_n_bug_versions)
 
                     revised_subject_patch_dict = self._revise_subject_patch(subject_data)
                     self._initialize_subject_patch_from_history(revised_subject_patch_dict, historical_data)
@@ -219,7 +237,7 @@ class PatchRerankerHistoricalUnifiedDebugging:
                 json.dump(result_dict, json_file, indent=4)
         
             stat_summary[tool] = result_dict
-
+        
         gt_list = []
         eval_list = []
         for tool, tool_data in stat_summary.items():
@@ -228,23 +246,40 @@ class PatchRerankerHistoricalUnifiedDebugging:
                     gt_list.append(subj_data["gt"])
                     eval_list.append(subj_data["eval"])
         
-        with open("result.txt", 'a+') as file:
-            file.write("historical_unified_debugging - {}\n".format(self._modified_entity_level))
-            file.write("{} (eval)\n".format(sum(eval_list) / float(len(eval_list))))
-            file.write("{} (gt)\n".format(sum(gt_list) / float(len(gt_list))))
-            file.write("{} (avg improvement)\n\n".format((sum(eval_list) - sum(gt_list)) / float(len(gt_list))))
+        avg_eval = sum(eval_list) / float(len(eval_list))
+        avg_improvement = (sum(eval_list) - sum(gt_list)) / float(len(eval_list))
+
+        return avg_eval, avg_improvement
 
 
 if __name__ == "__main__":
-    data_dir = os.path.abspath("../parsed_data")
+    # data_dir = os.path.abspath("../parsed_data/partial")
+    data_dir = os.path.abspath("../parsed_data/full")
     baseline_dir = os.path.abspath("../baselines")
     output_dir = os.path.abspath("../eval/historical_unified_debugging")
+    result_statistics_filename = os.path.abspath("../result_stats/historical_unified_debugging.csv")
+    history_window_sizes = [1, 2, 3, 5, 7, 10]
+    lines = []
+
     for modified_entity_level in ["package", "class", "method", "signature"]:
-        pr = PatchRerankerHistoricalUnifiedDebugging(
-            data_dir,
-            baseline_dir,
-            output_dir,
-            modified_entity_level
-        )
-        pr.read_baselines()
-        pr.run_all_tools()
+        word_list = [modified_entity_level]
+        for window_size in history_window_sizes:
+            pr = PatchRerankerHistoricalUnifiedDebugging(
+                data_dir,
+                baseline_dir,
+                output_dir,
+                modified_entity_level,
+                window_size
+            )
+            pr.read_baselines()
+            avg_eval, avg_improvement = pr.run_all_tools()
+            word_list += [str(avg_eval), str(avg_improvement)]
+
+        line = ",".join(word_list)
+        lines.append(line)
+    
+        with open(result_statistics_filename, 'w') as file:
+            first_list = "approach," + ",".join(["avg_eval-{},avg_imprv-{}".format(i, i) for i in history_window_sizes])
+            file.write(first_list + "\n")
+            for line in lines:
+                file.write(line + "\n")
