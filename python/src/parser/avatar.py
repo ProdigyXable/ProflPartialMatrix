@@ -165,11 +165,10 @@ class AvatarParser(ParserBase):
                 if test_category_map[test_i] in ["ff", "pf"]:
                     break
 
-            if len(test_result_dict["patch_category"]) == 0:
-                ff_len = len(test_result_dict["ff_test"])
-                fp_len = len(test_result_dict["fp_test"])
-                pf_len = len(test_result_dict["pf_test"])
-                test_result_dict["patch_category"] = self._get_patch_category(fp_len, pf_len, ff_len)
+            ff_len = len(test_result_dict["ff_test"])
+            fp_len = len(test_result_dict["fp_test"])
+            pf_len = len(test_result_dict["pf_test"])
+            test_result_dict["patch_category"] = self._get_patch_category(fp_len, pf_len, ff_len)
 
             return test_result_dict
 
