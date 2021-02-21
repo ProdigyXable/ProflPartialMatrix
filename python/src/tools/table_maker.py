@@ -18,6 +18,7 @@ TOOL_LIST = [
     "tbar",
 ]
 
+
 PROJECT_LIST = [
     "Chart",
     "Closure",
@@ -46,6 +47,13 @@ MATRIX_TYPE_LIST = [
 ]
 
 
+MODIFIED_ENTITY_LEVEL_LIST = [
+    "package",
+    "class",
+    "method",
+]
+
+
 class TableMaker:
     def __init__(self, eval_data_dir, output_dir):
         self._eval_data_dir = eval_data_dir
@@ -55,6 +63,19 @@ class TableMaker:
         self._default_set_diff = "asym"
 
         os.makedirs(self._output_dir, exist_ok=True)
+
+
+    def get_overall_imprv_ratio(self, tool_data):
+        overall_rank_eval = 0
+        overall_rank_gt = 0
+
+        for project_i, project_data in tool_data.items():
+            for version_i, version_data in project_data.items():
+                overall_rank_eval += version_data["eval"]
+                overall_rank_gt += version_data["gt"]
+
+        overall_imprv_ratio = (overall_rank_gt - overall_rank_eval) / float(overall_rank_gt)
+        return overall_imprv_ratio
 
 
     def make_table_1(self):
@@ -126,19 +147,6 @@ class TableMaker:
                 file.write(line_str)
 
 
-    def get_overall_imprv_ratio(self, tool_data):
-        overall_rank_eval = 0
-        overall_rank_gt = 0
-
-        for project_i, project_data in tool_data.items():
-            for version_i, version_data in project_data.items():
-                overall_rank_eval += version_data["eval"]
-                overall_rank_gt += version_data["gt"]
-
-        overall_imprv_ratio = (overall_rank_gt - overall_rank_eval) / float(overall_rank_gt)
-        return overall_imprv_ratio
-
-
     def make_table_2(self):
         tool_data_dict = {}
         for tool in TOOL_LIST:
@@ -160,6 +168,36 @@ class TableMaker:
             file.write("," + ",".join(FORMULA_LIST) + "\n")
             for tool in TOOL_LIST:
                 line_str = tool + "," + ",".join(["{:.2f}%".format(tool_data_dict[tool][formula] * 100) for formula in FORMULA_LIST])
+                file.write("{}\n".format(line_str))
+
+
+    def make_table_3(self):
+        modified_entity_level_dict = {}
+        for modified_entity_level in MODIFIED_ENTITY_LEVEL_LIST:
+            modified_entity_level_dict[modified_entity_level] = {}
+
+            for tool in TOOL_LIST:
+                tool_result_filename = os.path.join(
+                    self._eval_data_dir,
+                    "sam_approach",
+                    "{}_{}_{}_{}_{}.json".format(
+                        self._default_set_diff,
+                        self._default_matrix_type,
+                        self._default_sbfl_formula,
+                        modified_entity_level,
+                        tool
+                    )
+                )
+                with open(tool_result_filename) as file:
+                    modified_entity_level_dict[modified_entity_level][tool] = self.get_overall_imprv_ratio(json.load(file))
+
+        output_filename = os.path.join(self._output_dir, "table_3.csv")
+        with open(output_filename, "w") as file:
+            file.write("," + ",".join(TOOL_LIST) + "\n")
+            for modified_entity_level in MODIFIED_ENTITY_LEVEL_LIST:
+                line_str = modified_entity_level + "," + ",".join(
+                    ["{:.2f}%".format(modified_entity_level_dict[modified_entity_level][tool] * 100) for tool in TOOL_LIST]    
+                )
                 file.write("{}\n".format(line_str))
 
 
@@ -194,4 +232,5 @@ if __name__ == "__main__":
     tm = TableMaker(eval_data_dir, output_dir)
     tm.make_table_1()
     tm.make_table_2()
+    tm.make_table_3()
     tm.make_table_4()
