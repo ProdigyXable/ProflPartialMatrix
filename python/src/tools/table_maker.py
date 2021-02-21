@@ -40,6 +40,12 @@ FORMULA_LIST = [
 ]
 
 
+MATRIX_TYPE_LIST = [
+    "partial",
+    "full",
+]
+
+
 class TableMaker:
     def __init__(self, eval_data_dir, output_dir):
         self._eval_data_dir = eval_data_dir
@@ -157,6 +163,30 @@ class TableMaker:
                 file.write("{}\n".format(line_str))
 
 
+    def make_table_4(self):
+        matrix_type_dict = {}
+        for matrix_type in MATRIX_TYPE_LIST:
+            matrix_type_dict[matrix_type] = {}
+
+            for tool in TOOL_LIST:
+                tool_result_filename = os.path.join(
+                    self._eval_data_dir,
+                    "sam_approach",
+                    matrix_type,
+                    self._default_sbfl_formula,
+                    "{}_{}.json".format(self._default_set_diff, tool)
+                )
+                with open(tool_result_filename) as file:
+                    matrix_type_dict[matrix_type][tool] = self.get_overall_imprv_ratio(json.load(file))
+
+        output_filename = os.path.join(self._output_dir, "table_4.csv")
+        with open(output_filename, "w") as file:
+            file.write("," + ",".join(TOOL_LIST) + "\n")
+            for matrix_type in MATRIX_TYPE_LIST:
+                line_str = matrix_type + "," + ",".join(["{:.2f}%".format(matrix_type_dict[matrix_type][tool] * 100) for tool in TOOL_LIST])
+                file.write("{}\n".format(line_str))
+
+
 if __name__ == "__main__":
     eval_data_dir = os.path.abspath("../../eval")
     output_dir = os.path.abspath("../../tables")
@@ -164,3 +194,4 @@ if __name__ == "__main__":
     tm = TableMaker(eval_data_dir, output_dir)
     tm.make_table_1()
     tm.make_table_2()
+    tm.make_table_4()
