@@ -28,6 +28,18 @@ PROJECT_LIST = [
 ]
 
 
+FORMULA_LIST = [
+    "Tarantula",
+    "Ochiai",
+    "Ochiai2",
+    "Op2",
+    "SBI",
+    "Jaccard",
+    "Kulczynski",
+    "Dstar2",
+]
+
+
 class TableMaker:
     def __init__(self, eval_data_dir, output_dir):
         self._eval_data_dir = eval_data_dir
@@ -60,7 +72,7 @@ class TableMaker:
             for tool, tool_data in tool_data_dict.items():
                 project_data = tool_data.get(project, {})
 
-                if len(project_data.keys()):
+                if len(project_data.keys()) > 0:
                     overall_rank_eval = 0
                     overall_rank_gt = 0
 
@@ -108,6 +120,42 @@ class TableMaker:
                 file.write(line_str)
 
 
+    def get_overall_imprv_ratio(self, tool_data):
+        overall_rank_eval = 0
+        overall_rank_gt = 0
+
+        for project_i, project_data in tool_data.items():
+            for version_i, version_data in project_data.items():
+                overall_rank_eval += version_data["eval"]
+                overall_rank_gt += version_data["gt"]
+
+        overall_imprv_ratio = (overall_rank_gt - overall_rank_eval) / float(overall_rank_gt)
+        return overall_imprv_ratio
+
+
+    def make_table_2(self):
+        tool_data_dict = {}
+        for tool in TOOL_LIST:
+            tool_data_dict[tool] = {}
+            for formula in FORMULA_LIST:
+                tool_result_filename = os.path.join(
+                    self._eval_data_dir,
+                    "sam_approach",
+                    self._default_matrix_type,
+                    formula,
+                    "{}_{}.json".format(self._default_set_diff, tool)
+                )
+
+                with open(tool_result_filename) as file:
+                    tool_data_dict[tool][formula] = self.get_overall_imprv_ratio(json.load(file))
+
+        output_filename = os.path.join(self._output_dir, "table_2.csv")
+        with open(output_filename, "w") as file:
+            file.write("," + ",".join(FORMULA_LIST) + "\n")
+            for tool in TOOL_LIST:
+                line_str = tool + "," + ",".join(["{:.2f}%".format(tool_data_dict[tool][formula] * 100) for formula in FORMULA_LIST])
+                file.write("{}\n".format(line_str))
+
 
 if __name__ == "__main__":
     eval_data_dir = os.path.abspath("../../eval")
@@ -115,3 +163,4 @@ if __name__ == "__main__":
 
     tm = TableMaker(eval_data_dir, output_dir)
     tm.make_table_1()
+    tm.make_table_2()
