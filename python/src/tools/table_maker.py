@@ -54,6 +54,9 @@ MODIFIED_ENTITY_LEVEL_LIST = [
 ]
 
 
+HISTORY_WINDOW_SIZE_LIST = [0, 2, 4, 6, 8, 10]
+
+
 class TableMaker:
     def __init__(self, eval_data_dir, output_dir):
         self._eval_data_dir = eval_data_dir
@@ -61,6 +64,7 @@ class TableMaker:
         self._default_matrix_type = "partial"
         self._default_sbfl_formula = "Ochiai"
         self._default_set_diff = "asym"
+        self._default_modified_entity_level = "method"
 
         os.makedirs(self._output_dir, exist_ok=True)
 
@@ -225,6 +229,37 @@ class TableMaker:
                 file.write("{}\n".format(line_str))
 
 
+    def make_table_5(self):
+        history_window_size_dict = {}
+        for window_size in HISTORY_WINDOW_SIZE_LIST:
+            history_window_size_dict[window_size] = {}
+
+            for tool in TOOL_LIST:
+                tool_result_filename = os.path.join(
+                    self._eval_data_dir,
+                    "sam_approach",
+                    "{}_{}_{}_{}_{}_{}.json".format(
+                        self._default_set_diff,
+                        self._default_matrix_type,
+                        self._default_sbfl_formula,
+                        self._default_modified_entity_level,
+                        window_size,
+                        tool,
+                    )
+                )
+                with open(tool_result_filename) as file:
+                    history_window_size_dict[window_size][tool] = self.get_overall_imprv_ratio(json.load(file))
+
+        output_filename = os.path.join(self._output_dir, "table_5.csv")
+        with open(output_filename, "w") as file:
+            file.write("," + ",".join(TOOL_LIST) + "\n")
+            for window_size in HISTORY_WINDOW_SIZE_LIST:
+                line_str = "window-size {}".format(window_size) + "," + ",".join(
+                    ["{:.2f}%".format(history_window_size_dict[window_size][tool] * 100) for tool in TOOL_LIST]
+                )
+                file.write("{}\n".format(line_str))
+
+
 if __name__ == "__main__":
     eval_data_dir = os.path.abspath("../../eval")
     output_dir = os.path.abspath("../../tables")
@@ -234,3 +269,4 @@ if __name__ == "__main__":
     tm.make_table_2()
     tm.make_table_3()
     tm.make_table_4()
+    tm.make_table_5()
