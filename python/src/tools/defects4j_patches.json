@@ -2,7 +2,7 @@
     "Chart": {
         "20": [
             {
-                "modified_file": "source/org/jfree/chart/plot/ValueMarker.java",
+                "modified_file": "org.jfree.chart.plot.ValueMarker",
                 "modified_lines": [
                     92,
                     93,
@@ -17,7 +17,7 @@
         ],
         "6": [
             {
-                "modified_file": "source/org/jfree/chart/util/ShapeList.java",
+                "modified_file": "org.jfree.chart.util.ShapeList",
                 "modified_lines": [
                     108,
                     109,
@@ -39,7 +39,7 @@
         ],
         "3": [
             {
-                "modified_file": "source/org/jfree/data/time/TimeSeries.java",
+                "modified_file": "org.jfree.data.time.TimeSeries",
                 "modified_lines": [
                     1054,
                     1055,
@@ -55,7 +55,7 @@
         ],
         "7": [
             {
-                "modified_file": "source/org/jfree/data/time/TimePeriodValues.java",
+                "modified_file": "org.jfree.data.time.TimePeriodValues",
                 "modified_lines": [
                     297,
                     298,
@@ -72,7 +72,7 @@
         ],
         "19": [
             {
-                "modified_file": "source/org/jfree/chart/plot/CategoryPlot.java",
+                "modified_file": "org.jfree.chart.plot.CategoryPlot",
                 "modified_lines": [
                     695,
                     696,
@@ -98,7 +98,7 @@
         ],
         "15": [
             {
-                "modified_file": "source/org/jfree/chart/plot/PiePlot.java",
+                "modified_file": "org.jfree.chart.plot.PiePlot",
                 "modified_lines": [
                     1375,
                     1376,
@@ -125,7 +125,7 @@
         ],
         "24": [
             {
-                "modified_file": "source/org/jfree/chart/renderer/GrayPaintScale.java",
+                "modified_file": "org.jfree.chart.renderer.GrayPaintScale",
                 "modified_lines": [
                     123,
                     124,
@@ -140,7 +140,7 @@
         ],
         "13": [
             {
-                "modified_file": "source/org/jfree/chart/block/BorderArrangement.java",
+                "modified_file": "org.jfree.chart.block.BorderArrangement",
                 "modified_lines": [
                     452,
                     453,
@@ -155,7 +155,7 @@
         ],
         "9": [
             {
-                "modified_file": "source/org/jfree/data/time/TimeSeries.java",
+                "modified_file": "org.jfree.data.time.TimeSeries",
                 "modified_lines": [
                     941,
                     942,
@@ -170,7 +170,7 @@
         ],
         "5": [
             {
-                "modified_file": "source/org/jfree/data/xy/XYSeries.java",
+                "modified_file": "org.jfree.data.xy.XYSeries",
                 "modified_lines": [
                     541,
                     542,
@@ -193,7 +193,7 @@
         ],
         "8": [
             {
-                "modified_file": "source/org/jfree/data/time/Week.java",
+                "modified_file": "org.jfree.data.time.Week",
                 "modified_lines": [
                     172,
                     173,
@@ -208,7 +208,7 @@
         ],
         "25": [
             {
-                "modified_file": "source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java",
+                "modified_file": "org.jfree.chart.renderer.category.StatisticalBarRenderer",
                 "modified_lines": [
                     256,
                     257,
@@ -266,7 +266,7 @@
         ],
         "4": [
             {
-                "modified_file": "source/org/jfree/chart/plot/XYPlot.java",
+                "modified_file": "org.jfree.chart.plot.XYPlot",
                 "modified_lines": [
                     4490,
                     4491,
@@ -288,7 +288,7 @@
         ],
         "11": [
             {
-                "modified_file": "source/org/jfree/chart/util/ShapeUtilities.java",
+                "modified_file": "org.jfree.chart.util.ShapeUtilities",
                 "modified_lines": [
                     272,
                     273,
@@ -303,7 +303,7 @@
         ],
         "26": [
             {
-                "modified_file": "source/org/jfree/chart/axis/Axis.java",
+                "modified_file": "org.jfree.chart.axis.Axis",
                 "modified_lines": [
                     1189,
                     1190,
@@ -324,7 +324,7 @@
         ],
         "12": [
             {
-                "modified_file": "source/org/jfree/chart/plot/MultiplePiePlot.java",
+                "modified_file": "org.jfree.chart.plot.MultiplePiePlot",
                 "modified_lines": [
                     142,
                     143,
@@ -339,7 +339,7 @@
         ],
         "1": [
             {
-                "modified_file": "source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java",
+                "modified_file": "org.jfree.chart.renderer.category.AbstractCategoryItemRenderer",
                 "modified_lines": [
                     1794,
                     1795,
@@ -356,7 +356,7 @@
     "Closure": {
         "20": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java",
+                "modified_file": "com.google.javascript.jscomp.PeepholeSubstituteAlternateSyntax",
                 "modified_lines": [
                     217,
                     218,
@@ -372,7 +372,7 @@
         ],
         "68": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java",
+                "modified_file": "com.google.javascript.jscomp.parsing.JsDocInfoParser",
                 "modified_lines": [
                     865,
                     866,
@@ -403,7 +403,7 @@
         ],
         "59": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/Compiler.java",
+                "modified_file": "com.google.javascript.jscomp.Compiler",
                 "modified_lines": [
                     252,
                     253,
@@ -419,7 +419,7 @@
         ],
         "84": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/parsing/IRFactory.java",
+                "modified_file": "com.google.javascript.jscomp.parsing.IRFactory",
                 "modified_lines": [
                     338,
                     339,
@@ -472,7 +472,7 @@
         ],
         "74": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/PeepholeFoldConstants.java",
+                "modified_file": "com.google.javascript.jscomp.PeepholeFoldConstants",
                 "modified_lines": [
                     904,
                     905,
@@ -507,7 +507,7 @@
         ],
         "111": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java",
+                "modified_file": "com.google.javascript.jscomp.type.ClosureReverseAbstractInterpreter",
                 "modified_lines": [
                     51,
                     52,
@@ -523,7 +523,7 @@
         ],
         "6": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypeValidator.java",
+                "modified_file": "com.google.javascript.jscomp.TypeValidator",
                 "modified_lines": [
                     363,
                     364,
@@ -550,7 +550,7 @@
         ],
         "57": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ClosureCodingConvention.java",
+                "modified_file": "com.google.javascript.jscomp.ClosureCodingConvention",
                 "modified_lines": [
                     194,
                     195,
@@ -565,7 +565,7 @@
         ],
         "3": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java",
+                "modified_file": "com.google.javascript.jscomp.FlowSensitiveInlineVariables",
                 "modified_lines": [
                     152,
                     153,
@@ -599,7 +599,7 @@
         ],
         "7": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java",
+                "modified_file": "com.google.javascript.jscomp.type.ChainableReverseAbstractInterpreter",
                 "modified_lines": [
                     610,
                     611,
@@ -620,7 +620,7 @@
         ],
         "19": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java",
+                "modified_file": "com.google.javascript.jscomp.type.ChainableReverseAbstractInterpreter",
                 "modified_lines": [
                     169,
                     170,
@@ -637,7 +637,7 @@
         ],
         "55": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/FunctionRewriter.java",
+                "modified_file": "com.google.javascript.jscomp.FunctionRewriter",
                 "modified_lines": [
                     114,
                     115,
@@ -653,7 +653,7 @@
         ],
         "43": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypedScopeCreator.java",
+                "modified_file": "com.google.javascript.jscomp.TypedScopeCreator",
                 "modified_lines": [
                     417,
                     418,
@@ -697,7 +697,7 @@
         ],
         "16": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ScopedAliases.java",
+                "modified_file": "com.google.javascript.jscomp.ScopedAliases",
                 "modified_lines": [
                     167,
                     168,
@@ -735,7 +735,7 @@
         ],
         "31": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/Compiler.java",
+                "modified_file": "com.google.javascript.jscomp.Compiler",
                 "modified_lines": [
                     1282,
                     1283,
@@ -749,7 +749,7 @@
         ],
         "71": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CheckAccessControls.java",
+                "modified_file": "com.google.javascript.jscomp.CheckAccessControls",
                 "modified_lines": [
                     413,
                     414,
@@ -764,7 +764,7 @@
         ],
         "79": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/Normalize.java",
+                "modified_file": "com.google.javascript.jscomp.Normalize",
                 "modified_lines": [
                     119,
                     120,
@@ -777,7 +777,7 @@
                 "text": "diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java\nindex 8bee886..6738b10 100644\n--- a/src/com/google/javascript/jscomp/Normalize.java\n+++ b/src/com/google/javascript/jscomp/Normalize.java\n@@ -119,7 +119,7 @@ class Normalize implements CompilerPass {\n   public void process(Node externs, Node root) {\n     new NodeTraversal(\n         compiler, new NormalizeStatements(compiler, assertOnChange))\n-        .traverseRoots(externs, root);\n+        .traverse(root);\n     if (MAKE_LOCAL_NAMES_UNIQUE) {\n       MakeDeclaredNamesUnique renamer = new MakeDeclaredNamesUnique();\n       NodeTraversal t = new NodeTraversal(compiler, renamer);\n"
             },
             {
-                "modified_file": "src/com/google/javascript/jscomp/VarCheck.java",
+                "modified_file": "com.google.javascript.jscomp.VarCheck",
                 "modified_lines": [
                     218,
                     219,
@@ -792,7 +792,7 @@
         ],
         "131": [
             {
-                "modified_file": "src/com/google/javascript/rhino/TokenStream.java",
+                "modified_file": "com.google.javascript.rhino.TokenStream",
                 "modified_lines": [
                     191,
                     192,
@@ -813,7 +813,7 @@
         ],
         "15": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java",
+                "modified_file": "com.google.javascript.jscomp.FlowSensitiveInlineVariables",
                 "modified_lines": [
                     99,
                     100,
@@ -830,7 +830,7 @@
         ],
         "27": [
             {
-                "modified_file": "src/com/google/javascript/rhino/IR.java",
+                "modified_file": "com.google.javascript.rhino.IR",
                 "modified_lines": [
                     108,
                     109,
@@ -862,7 +862,7 @@
         ],
         "132": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java",
+                "modified_file": "com.google.javascript.jscomp.PeepholeSubstituteAlternateSyntax",
                 "modified_lines": [
                     779,
                     780,
@@ -879,7 +879,7 @@
         ],
         "64": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/Compiler.java",
+                "modified_file": "com.google.javascript.jscomp.Compiler",
                 "modified_lines": [
                     1429,
                     1430,
@@ -913,7 +913,7 @@
         ],
         "45": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/RemoveUnusedVars.java",
+                "modified_file": "com.google.javascript.jscomp.RemoveUnusedVars",
                 "modified_lines": [
                     729,
                     730,
@@ -947,7 +947,7 @@
         ],
         "77": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CodeGenerator.java",
+                "modified_file": "com.google.javascript.jscomp.CodeGenerator",
                 "modified_lines": [
                     963,
                     964,
@@ -962,7 +962,7 @@
         ],
         "24": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ScopedAliases.java",
+                "modified_file": "com.google.javascript.jscomp.ScopedAliases",
                 "modified_lines": [
                     275,
                     276,
@@ -994,7 +994,7 @@
         ],
         "90": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/FunctionTypeBuilder.java",
+                "modified_file": "com.google.javascript.jscomp.FunctionTypeBuilder",
                 "modified_lines": [
                     181,
                     182,
@@ -1007,7 +1007,7 @@
                 "text": "diff --git a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java\nindex 3394fa6..99c9fce 100644\n--- a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java\n+++ b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java\n@@ -181,7 +181,7 @@ final class FunctionTypeBuilder {\n       // create interfaces JSType, ObjectType, FunctionType etc and have\n       // separate implementation instead of the class hierarchy, so that\n       // union types can also be object types, etc.\n-      if (!type.restrictByNotNullOrUndefined().isSubtype(\n+      if (!type.isSubtype(\n               typeRegistry.getNativeType(OBJECT_TYPE))) {\n         reportWarning(THIS_TYPE_NON_OBJECT, type.toString());\n         return false;\n"
             },
             {
-                "modified_file": "src/com/google/javascript/rhino/jstype/FunctionType.java",
+                "modified_file": "com.google.javascript.rhino.jstype.FunctionType",
                 "modified_lines": [
                     877,
                     878,
@@ -1024,7 +1024,7 @@
         ],
         "13": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/PeepholeOptimizationsPass.java",
+                "modified_file": "com.google.javascript.jscomp.PeepholeOptimizationsPass",
                 "modified_lines": [
                     123,
                     124,
@@ -1040,7 +1040,7 @@
         ],
         "72": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/FunctionToBlockMutator.java",
+                "modified_file": "com.google.javascript.jscomp.FunctionToBlockMutator",
                 "modified_lines": [
                     149,
                     150,
@@ -1054,7 +1054,7 @@
                 "text": "diff --git a/src/com/google/javascript/jscomp/FunctionToBlockMutator.java b/src/com/google/javascript/jscomp/FunctionToBlockMutator.java\nindex 3fee1a9..64764c0 100644\n--- a/src/com/google/javascript/jscomp/FunctionToBlockMutator.java\n+++ b/src/com/google/javascript/jscomp/FunctionToBlockMutator.java\n@@ -149,8 +149,6 @@ class FunctionToBlockMutator {\n                 \"inline_\",\n                 isCallInLoop)));\n     // Make label names unique to this instance.\n-    new RenameLabels(compiler, new LabelNameSupplier(idSupplier), false)\n-        .process(null, fnNode);\n   }\n \n   static class LabelNameSupplier implements Supplier<String> {\n"
             },
             {
-                "modified_file": "src/com/google/javascript/jscomp/RenameLabels.java",
+                "modified_file": "com.google.javascript.jscomp.RenameLabels",
                 "modified_lines": [
                     212,
                     213,
@@ -1069,7 +1069,7 @@
         ],
         "86": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/NodeUtil.java",
+                "modified_file": "com.google.javascript.jscomp.NodeUtil",
                 "modified_lines": [
                     2462,
                     2463,
@@ -1084,7 +1084,7 @@
         ],
         "63": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/LightweightMessageFormatter.java",
+                "modified_file": "com.google.javascript.jscomp.LightweightMessageFormatter",
                 "modified_lines": [
                     95,
                     96,
@@ -1099,7 +1099,7 @@
         ],
         "93": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ProcessClosurePrimitives.java",
+                "modified_file": "com.google.javascript.jscomp.ProcessClosurePrimitives",
                 "modified_lines": [
                     786,
                     787,
@@ -1114,7 +1114,7 @@
         ],
         "91": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CheckGlobalThis.java",
+                "modified_file": "com.google.javascript.jscomp.CheckGlobalThis",
                 "modified_lines": [
                     112,
                     113,
@@ -1137,7 +1137,7 @@
         ],
         "66": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypeCheck.java",
+                "modified_file": "com.google.javascript.jscomp.TypeCheck",
                 "modified_lines": [
                     513,
                     514,
@@ -1154,7 +1154,7 @@
         ],
         "62": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/LightweightMessageFormatter.java",
+                "modified_file": "com.google.javascript.jscomp.LightweightMessageFormatter",
                 "modified_lines": [
                     95,
                     96,
@@ -1169,7 +1169,7 @@
         ],
         "126": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/MinimizeExitPoints.java",
+                "modified_file": "com.google.javascript.jscomp.MinimizeExitPoints",
                 "modified_lines": [
                     138,
                     139,
@@ -1183,7 +1183,7 @@
         ],
         "17": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypedScopeCreator.java",
+                "modified_file": "com.google.javascript.jscomp.TypedScopeCreator",
                 "modified_lines": [
                     1288,
                     1289,
@@ -1203,7 +1203,7 @@
         ],
         "85": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/UnreachableCodeElimination.java",
+                "modified_file": "com.google.javascript.jscomp.UnreachableCodeElimination",
                 "modified_lines": [
                     150,
                     151,
@@ -1238,7 +1238,7 @@
         ],
         "51": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CodeConsumer.java",
+                "modified_file": "com.google.javascript.jscomp.CodeConsumer",
                 "modified_lines": [
                     238,
                     239,
@@ -1263,7 +1263,7 @@
         ],
         "2": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypeCheck.java",
+                "modified_file": "com.google.javascript.jscomp.TypeCheck",
                 "modified_lines": [
                     1569,
                     1570,
@@ -1284,7 +1284,7 @@
         ],
         "44": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CodeConsumer.java",
+                "modified_file": "com.google.javascript.jscomp.CodeConsumer",
                 "modified_lines": [
                     191,
                     192,
@@ -1305,7 +1305,7 @@
         ],
         "83": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CommandLineRunner.java",
+                "modified_file": "com.google.javascript.jscomp.CommandLineRunner",
                 "modified_lines": [
                     331,
                     332,
@@ -1323,7 +1323,7 @@
         ],
         "92": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ProcessClosurePrimitives.java",
+                "modified_file": "com.google.javascript.jscomp.ProcessClosurePrimitives",
                 "modified_lines": [
                     786,
                     787,
@@ -1338,7 +1338,7 @@
         ],
         "80": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/NodeUtil.java",
+                "modified_file": "com.google.javascript.jscomp.NodeUtil",
                 "modified_lines": [
                     1259,
                     1260,
@@ -1360,7 +1360,7 @@
         ],
         "89": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CollapseProperties.java",
+                "modified_file": "com.google.javascript.jscomp.CollapseProperties",
                 "modified_lines": [
                     481,
                     482,
@@ -1375,7 +1375,7 @@
                 "text": "diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java\nindex ddccf0d..16d533d 100644\n--- a/src/com/google/javascript/jscomp/CollapseProperties.java\n+++ b/src/com/google/javascript/jscomp/CollapseProperties.java\n@@ -481,9 +481,6 @@ class CollapseProperties implements CompilerPass {\n     Node greatGramps = gramps.getParent();\n     Node greatGreatGramps = greatGramps.getParent();\n \n-    if (rvalue != null && rvalue.getType() == Token.FUNCTION) {\n-      checkForHosedThisReferences(rvalue, refName.docInfo, refName);\n-    }\n \n     // Create the new alias node.\n     Node nameNode = NodeUtil.newName(\n"
             },
             {
-                "modified_file": "src/com/google/javascript/jscomp/GlobalNamespace.java",
+                "modified_file": "com.google.javascript.jscomp.GlobalNamespace",
                 "modified_lines": [
                     917,
                     918,
@@ -1390,7 +1390,7 @@
         ],
         "38": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CodeConsumer.java",
+                "modified_file": "com.google.javascript.jscomp.CodeConsumer",
                 "modified_lines": [
                     242,
                     243,
@@ -1405,7 +1405,7 @@
         ],
         "41": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/FunctionTypeBuilder.java",
+                "modified_file": "com.google.javascript.jscomp.FunctionTypeBuilder",
                 "modified_lines": [
                     289,
                     290,
@@ -1434,7 +1434,7 @@
         ],
         "9": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ProcessCommonJSModules.java",
+                "modified_file": "com.google.javascript.jscomp.ProcessCommonJSModules",
                 "modified_lines": [
                     116,
                     117,
@@ -1456,7 +1456,7 @@
         ],
         "130": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CollapseProperties.java",
+                "modified_file": "com.google.javascript.jscomp.CollapseProperties",
                 "modified_lines": [
                     169,
                     170,
@@ -1471,7 +1471,7 @@
         ],
         "5": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/InlineObjectLiterals.java",
+                "modified_file": "com.google.javascript.jscomp.InlineObjectLiterals",
                 "modified_lines": [
                     173,
                     174,
@@ -1488,7 +1488,7 @@
         ],
         "101": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CommandLineRunner.java",
+                "modified_file": "com.google.javascript.jscomp.CommandLineRunner",
                 "modified_lines": [
                     430,
                     431,
@@ -1504,7 +1504,7 @@
         ],
         "95": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypedScopeCreator.java",
+                "modified_file": "com.google.javascript.jscomp.TypedScopeCreator",
                 "modified_lines": [
                     896,
                     897,
@@ -1528,7 +1528,7 @@
         ],
         "28": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/InlineCostEstimator.java",
+                "modified_file": "com.google.javascript.jscomp.InlineCostEstimator",
                 "modified_lines": [
                     99,
                     100,
@@ -1545,7 +1545,7 @@
         ],
         "76": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/DeadAssignmentsElimination.java",
+                "modified_file": "com.google.javascript.jscomp.DeadAssignmentsElimination",
                 "modified_lines": [
                     297,
                     298,
@@ -1638,7 +1638,7 @@
         ],
         "82": [
             {
-                "modified_file": "src/com/google/javascript/rhino/jstype/JSType.java",
+                "modified_file": "com.google.javascript.rhino.jstype.JSType",
                 "modified_lines": [
                     160,
                     161,
@@ -1655,7 +1655,7 @@
         ],
         "103": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ControlFlowAnalysis.java",
+                "modified_file": "com.google.javascript.jscomp.ControlFlowAnalysis",
                 "modified_lines": [
                     891,
                     892,
@@ -1668,7 +1668,7 @@
                 "text": "diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java\nindex 6ef2548..3b67af3 100644\n--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java\n+++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java\n@@ -891,7 +891,6 @@ final class ControlFlowAnalysis implements Callback, CompilerPass {\n       case Token.ASSIGN:\n       case Token.INC:\n       case Token.DEC:\n-      case Token.INSTANCEOF:\n         return true;\n       case Token.FUNCTION:\n         return false;\n"
             },
             {
-                "modified_file": "src/com/google/javascript/jscomp/DisambiguateProperties.java",
+                "modified_file": "com.google.javascript.jscomp.DisambiguateProperties",
                 "modified_lines": [
                     760,
                     761,
@@ -1692,7 +1692,7 @@
         ],
         "37": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/NodeTraversal.java",
+                "modified_file": "com.google.javascript.jscomp.NodeTraversal",
                 "modified_lines": [
                     538,
                     539,
@@ -1705,7 +1705,7 @@
                 "text": "diff --git a/src/com/google/javascript/jscomp/NodeTraversal.java b/src/com/google/javascript/jscomp/NodeTraversal.java\nindex 435b4a8..8201b41 100644\n--- a/src/com/google/javascript/jscomp/NodeTraversal.java\n+++ b/src/com/google/javascript/jscomp/NodeTraversal.java\n@@ -538,7 +538,7 @@ public class NodeTraversal {\n \n     // Body\n     Preconditions.checkState(body.getNext() == null &&\n-            body.isBlock(), body);\n+            body.isBlock());\n     traverseBranch(body, n);\n \n     popScope();\n"
             },
             {
-                "modified_file": "src/com/google/javascript/jscomp/parsing/IRFactory.java",
+                "modified_file": "com.google.javascript.jscomp.parsing.IRFactory",
                 "modified_lines": [
                     664,
                     665,
@@ -1726,7 +1726,7 @@
         ],
         "123": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CodeGenerator.java",
+                "modified_file": "com.google.javascript.jscomp.CodeGenerator",
                 "modified_lines": [
                     282,
                     283,
@@ -1741,7 +1741,7 @@
         ],
         "120": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ReferenceCollectingCallback.java",
+                "modified_file": "com.google.javascript.jscomp.ReferenceCollectingCallback",
                 "modified_lines": [
                     428,
                     429,
@@ -1758,7 +1758,7 @@
         ],
         "56": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/SourceFile.java",
+                "modified_file": "com.google.javascript.jscomp.SourceFile",
                 "modified_lines": [
                     239,
                     240,
@@ -1777,7 +1777,7 @@
         ],
         "61": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/NodeUtil.java",
+                "modified_file": "com.google.javascript.jscomp.NodeUtil",
                 "modified_lines": [
                     955,
                     956,
@@ -1797,7 +1797,7 @@
         ],
         "33": [
             {
-                "modified_file": "src/com/google/javascript/rhino/jstype/PrototypeObjectType.java",
+                "modified_file": "com.google.javascript.rhino.jstype.PrototypeObjectType",
                 "modified_lines": [
                     554,
                     555,
@@ -1814,7 +1814,7 @@
         ],
         "122": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/parsing/IRFactory.java",
+                "modified_file": "com.google.javascript.jscomp.parsing.IRFactory",
                 "modified_lines": [
                     249,
                     250,
@@ -1830,7 +1830,7 @@
         ],
         "21": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CheckSideEffects.java",
+                "modified_file": "com.google.javascript.jscomp.CheckSideEffects",
                 "modified_lines": [
                     98,
                     99,
@@ -1852,7 +1852,7 @@
         ],
         "48": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypedScopeCreator.java",
+                "modified_file": "com.google.javascript.jscomp.TypedScopeCreator",
                 "modified_lines": [
                     1518,
                     1519,
@@ -1874,7 +1874,7 @@
         ],
         "87": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java",
+                "modified_file": "com.google.javascript.jscomp.PeepholeSubstituteAlternateSyntax",
                 "modified_lines": [
                     520,
                     521,
@@ -1911,7 +1911,7 @@
         ],
         "49": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java",
+                "modified_file": "com.google.javascript.jscomp.MakeDeclaredNamesUnique",
                 "modified_lines": [
                     88,
                     89,
@@ -1963,7 +1963,7 @@
         ],
         "97": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/PeepholeFoldConstants.java",
+                "modified_file": "com.google.javascript.jscomp.PeepholeFoldConstants",
                 "modified_lines": [
                     695,
                     696,
@@ -1979,7 +1979,7 @@
         ],
         "100": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CheckGlobalThis.java",
+                "modified_file": "com.google.javascript.jscomp.CheckGlobalThis",
                 "modified_lines": [
                     96,
                     97,
@@ -2007,7 +2007,7 @@
         ],
         "47": [
             {
-                "modified_file": "src/com/google/debugging/sourcemap/SourceMapConsumerV3.java",
+                "modified_file": "com.google.debugging.sourcemap.SourceMapConsumerV3",
                 "modified_lines": [
                     486,
                     487,
@@ -2021,7 +2021,7 @@
                 "text": "diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java\nindex 5ee9108..d67dc10 100644\n--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java\n+++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java\n@@ -486,8 +486,8 @@ public class SourceMapConsumerV3 implements SourceMapConsumer,\n       // Adjust the line/column here to be start at 1.\n       Builder x = OriginalMapping.newBuilder()\n         .setOriginalFile(sources[entry.getSourceFileId()])\n-        .setLineNumber(entry.getSourceLine() + 1)\n-        .setColumnPosition(entry.getSourceColumn() + 1);\n+        .setLineNumber(entry.getSourceLine())\n+        .setColumnPosition(entry.getSourceColumn());\n       if (entry.getNameId() != UNMAPPED) {\n         x.setIdentifier(names[entry.getNameId()]);\n       }\n"
             },
             {
-                "modified_file": "src/com/google/javascript/jscomp/SourceMap.java",
+                "modified_file": "com.google.javascript.jscomp.SourceMap",
                 "modified_lines": [
                     135,
                     136,
@@ -2044,7 +2044,7 @@
         ],
         "70": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypedScopeCreator.java",
+                "modified_file": "com.google.javascript.jscomp.TypedScopeCreator",
                 "modified_lines": [
                     1742,
                     1743,
@@ -2059,7 +2059,7 @@
         ],
         "110": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ScopedAliases.java",
+                "modified_file": "com.google.javascript.jscomp.ScopedAliases",
                 "modified_lines": [
                     355,
                     356,
@@ -2124,7 +2124,7 @@
                 "text": "diff --git a/src/com/google/javascript/jscomp/ScopedAliases.java b/src/com/google/javascript/jscomp/ScopedAliases.java\nindex fbd46d3..7e9c8b8 100644\n--- a/src/com/google/javascript/jscomp/ScopedAliases.java\n+++ b/src/com/google/javascript/jscomp/ScopedAliases.java\n@@ -355,7 +355,6 @@ class ScopedAliases implements HotSwapCompilerPass {\n         Node n = v.getNode();\n         Node parent = n.getParent();\n         boolean isVar = parent.isVar();\n-        boolean isFunctionDecl = NodeUtil.isFunctionDeclaration(parent);\n         if (isVar && n.getFirstChild() != null && n.getFirstChild().isQualifiedName()) {\n           recordAlias(v);\n         } else if (v.isBleedingFunction()) {\n@@ -364,13 +363,12 @@ class ScopedAliases implements HotSwapCompilerPass {\n         } else if (parent.getType() == Token.LP) {\n           // Parameters of the scope function also get a BAD_PARAMETERS\n           // error.\n-        } else if (isVar || isFunctionDecl) {\n-          boolean isHoisted = NodeUtil.isHoistedFunctionDeclaration(parent);\n+        } else if (isVar) {\n           Node grandparent = parent.getParent();\n-          Node value = v.getInitialValue() != null ?\n-              v.getInitialValue() :\n+          Node value = n.hasChildren() ?\n+              v.getInitialValue().detachFromParent() :\n               null;\n-          Node varNode = null;\n+          Node varNode = parent;\n \n           String name = n.getString();\n           int nameCount = scopedAliasNames.count(name);\n@@ -382,9 +380,7 @@ class ScopedAliases implements HotSwapCompilerPass {\n \n           // First, we need to free up the function expression (EXPR)\n           // to be used in another expression.\n-          if (isFunctionDecl) {\n             // Replace \"function NAME() { ... }\" with \"var NAME;\".\n-            Node existingName = v.getNameNode();\n \n             // We can't keep the local name on the function expression,\n             // because IE is buggy and will leak the name into the global\n@@ -393,19 +389,9 @@ class ScopedAliases implements HotSwapCompilerPass {\n             //\n             // This will only cause problems if this is a hoisted, recursive\n             // function, and the programmer is using the hoisting.\n-            Node newName = IR.name(\"\").useSourceInfoFrom(existingName);\n-            value.replaceChild(existingName, newName);\n \n-            varNode = IR.var(existingName).useSourceInfoFrom(existingName);\n-            grandparent.replaceChild(parent, varNode);\n-          } else {\n-            if (value != null) {\n               // If this is a VAR, we can just detach the expression and\n               // the tree will still be valid.\n-              value.detachFromParent();\n-            }\n-            varNode = parent;\n-          }\n \n           // Add $jscomp.scope.name = EXPR;\n           // Make sure we copy over all the jsdoc and debug info.\n@@ -419,11 +405,7 @@ class ScopedAliases implements HotSwapCompilerPass {\n             NodeUtil.setDebugInformation(\n                 newDecl.getFirstChild().getFirstChild(), n, name);\n \n-            if (isHoisted) {\n-              grandparent.addChildToFront(newDecl);\n-            } else {\n               grandparent.addChildBefore(newDecl, varNode);\n-            }\n           }\n \n           // Rewrite \"var name = EXPR;\" to \"var name = $jscomp.scope.name;\"\n"
             },
             {
-                "modified_file": "src/com/google/javascript/rhino/Node.java",
+                "modified_file": "com.google.javascript.rhino.Node",
                 "modified_lines": [
                     551,
                     552,
@@ -2141,7 +2141,7 @@
         ],
         "58": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/LiveVariablesAnalysis.java",
+                "modified_file": "com.google.javascript.jscomp.LiveVariablesAnalysis",
                 "modified_lines": [
                     203,
                     204,
@@ -2161,7 +2161,7 @@
         ],
         "30": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java",
+                "modified_file": "com.google.javascript.jscomp.FlowSensitiveInlineVariables",
                 "modified_lines": [
                     154,
                     155,
@@ -2174,7 +2174,7 @@
                 "text": "diff --git a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java\nindex 3f39c07..d53a8f8 100644\n--- a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java\n+++ b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java\n@@ -154,7 +154,7 @@ class FlowSensitiveInlineVariables extends AbstractPostOrderCallback\n \n   @Override\n   public void process(Node externs, Node root) {\n-    (new NodeTraversal(compiler, this)).traverseRoots(externs, root);\n+    (new NodeTraversal(compiler, this)).traverse(root);\n   }\n \n   @Override\n"
             },
             {
-                "modified_file": "src/com/google/javascript/jscomp/MustBeReachingVariableDef.java",
+                "modified_file": "com.google.javascript.jscomp.MustBeReachingVariableDef",
                 "modified_lines": [
                     68,
                     69,
@@ -2211,7 +2211,7 @@
         ],
         "94": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/NodeUtil.java",
+                "modified_file": "com.google.javascript.jscomp.NodeUtil",
                 "modified_lines": [
                     326,
                     327,
@@ -2252,7 +2252,7 @@
         ],
         "99": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CheckGlobalThis.java",
+                "modified_file": "com.google.javascript.jscomp.CheckGlobalThis",
                 "modified_lines": [
                     89,
                     90,
@@ -2284,7 +2284,7 @@
         ],
         "88": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/DeadAssignmentsElimination.java",
+                "modified_file": "com.google.javascript.jscomp.DeadAssignmentsElimination",
                 "modified_lines": [
                     324,
                     325,
@@ -2307,7 +2307,7 @@
         ],
         "34": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CodeGenerator.java",
+                "modified_file": "com.google.javascript.jscomp.CodeGenerator",
                 "modified_lines": [
                     119,
                     120,
@@ -2327,7 +2327,7 @@
                 "text": "diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java\nindex d50320a..f28378c 100644\n--- a/src/com/google/javascript/jscomp/CodeGenerator.java\n+++ b/src/com/google/javascript/jscomp/CodeGenerator.java\n@@ -119,7 +119,9 @@ class CodeGenerator {\n         cc.addOp(opstr, true);\n         addExpr(last, p, rhsContext);\n       } else {\n-        unrollBinaryOperator(n, type, opstr, context, rhsContext, p, p + 1);\n+        addExpr(first, p, context);\n+        cc.addOp(opstr, true);\n+        addExpr(last, p + 1, rhsContext);\n       }\n       return;\n     }\n@@ -749,7 +751,7 @@ class CodeGenerator {\n     Node current = firstNonOperator;\n     do {\n       current = current.getParent();\n-      cc.addOp(opStr, true);\n+      cc.listSeparator();\n       addExpr(current.getFirstChild().getNext(), rightPrecedence, rhsContext);\n     } while (current != n);\n   }\n"
             },
             {
-                "modified_file": "src/com/google/javascript/jscomp/CodePrinter.java",
+                "modified_file": "com.google.javascript.jscomp.CodePrinter",
                 "modified_lines": [
                     331,
                     332,
@@ -2342,7 +2342,7 @@
         ],
         "106": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/GlobalNamespace.java",
+                "modified_file": "com.google.javascript.jscomp.GlobalNamespace",
                 "modified_lines": [
                     904,
                     905,
@@ -2358,7 +2358,7 @@
                 "text": "diff --git a/src/com/google/javascript/jscomp/GlobalNamespace.java b/src/com/google/javascript/jscomp/GlobalNamespace.java\nindex 47ea27a..d7e85df 100644\n--- a/src/com/google/javascript/jscomp/GlobalNamespace.java\n+++ b/src/com/google/javascript/jscomp/GlobalNamespace.java\n@@ -904,10 +904,6 @@ class GlobalNamespace {\n       // Don't try to collapse if the one global set is a twin reference.\n       // We could theoretically handle this case in CollapseProperties, but\n       // it's probably not worth the effort.\n-      Preconditions.checkNotNull(declaration);\n-      if (declaration.getTwin() != null) {\n-        return false;\n-      }\n \n       if (isClassOrEnum) {\n         return true;\n"
             },
             {
-                "modified_file": "src/com/google/javascript/rhino/JSDocInfoBuilder.java",
+                "modified_file": "com.google.javascript.rhino.JSDocInfoBuilder",
                 "modified_lines": [
                     186,
                     187,
@@ -2373,7 +2373,7 @@
         ],
         "73": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CodeGenerator.java",
+                "modified_file": "com.google.javascript.jscomp.CodeGenerator",
                 "modified_lines": [
                     1042,
                     1043,
@@ -2388,7 +2388,7 @@
         ],
         "102": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/Normalize.java",
+                "modified_file": "com.google.javascript.jscomp.Normalize",
                 "modified_lines": [
                     86,
                     87,
@@ -2408,7 +2408,7 @@
         ],
         "42": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/parsing/IRFactory.java",
+                "modified_file": "com.google.javascript.jscomp.parsing.IRFactory",
                 "modified_lines": [
                     565,
                     566,
@@ -2431,7 +2431,7 @@
         ],
         "39": [
             {
-                "modified_file": "src/com/google/javascript/rhino/jstype/PrototypeObjectType.java",
+                "modified_file": "com.google.javascript.rhino.jstype.PrototypeObjectType",
                 "modified_lines": [
                     377,
                     378,
@@ -2456,7 +2456,7 @@
         ],
         "98": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ReferenceCollectingCallback.java",
+                "modified_file": "com.google.javascript.jscomp.ReferenceCollectingCallback",
                 "modified_lines": [
                     358,
                     359,
@@ -2506,7 +2506,7 @@
         ],
         "22": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CheckSideEffects.java",
+                "modified_file": "com.google.javascript.jscomp.CheckSideEffects",
                 "modified_lines": [
                     98,
                     99,
@@ -2534,7 +2534,7 @@
         ],
         "69": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypeCheck.java",
+                "modified_file": "com.google.javascript.jscomp.TypeCheck",
                 "modified_lines": [
                     1577,
                     1578,
@@ -2555,7 +2555,7 @@
         ],
         "54": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypedScopeCreator.java",
+                "modified_file": "com.google.javascript.jscomp.TypedScopeCreator",
                 "modified_lines": [
                     1410,
                     1411,
@@ -2574,7 +2574,7 @@
                 "text": "diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java\nindex 5bccc06..8654ae6 100644\n--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java\n+++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java\n@@ -1410,13 +1410,7 @@ final class TypedScopeCreator implements ScopeCreator {\n           // then they are responsible for making sure that the object literal's\n           // implicit prototype is set up appropriately. We just obey\n           // the @extends tag.\n-          ObjectType qVarType = ObjectType.cast(qVar.getType());\n-          if (qVarType != null &&\n-              rhsValue != null &&\n-              rhsValue.getType() == Token.OBJECTLIT) {\n-            typeRegistry.resetImplicitPrototype(\n-                rhsValue.getJSType(), qVarType.getImplicitPrototype());\n-          } else if (!qVar.isTypeInferred()) {\n+          if (!qVar.isTypeInferred()) {\n             // If the programmer has declared that F inherits from Super,\n             // and they assign F.prototype to some arbitrary expression,\n             // there's not much we can do. We just ignore the expression,\n"
             },
             {
-                "modified_file": "src/com/google/javascript/rhino/jstype/FunctionType.java",
+                "modified_file": "com.google.javascript.rhino.jstype.FunctionType",
                 "modified_lines": [
                     338,
                     339,
@@ -2606,7 +2606,7 @@
         ],
         "23": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/PeepholeFoldConstants.java",
+                "modified_file": "com.google.javascript.jscomp.PeepholeFoldConstants",
                 "modified_lines": [
                     1448,
                     1449,
@@ -2628,7 +2628,7 @@
         ],
         "81": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/parsing/IRFactory.java",
+                "modified_file": "com.google.javascript.jscomp.parsing.IRFactory",
                 "modified_lines": [
                     514,
                     515,
@@ -2649,7 +2649,7 @@
         ],
         "35": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypeInference.java",
+                "modified_file": "com.google.javascript.jscomp.TypeInference",
                 "modified_lines": [
                     1118,
                     1119,
@@ -2665,7 +2665,7 @@
         ],
         "8": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CollapseVariableDeclarations.java",
+                "modified_file": "com.google.javascript.jscomp.CollapseVariableDeclarations",
                 "modified_lines": [
                     201,
                     202,
@@ -2687,7 +2687,7 @@
         ],
         "18": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/Compiler.java",
+                "modified_file": "com.google.javascript.jscomp.Compiler",
                 "modified_lines": [
                     1285,
                     1286,
@@ -2702,7 +2702,7 @@
         ],
         "96": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypeCheck.java",
+                "modified_file": "com.google.javascript.jscomp.TypeCheck",
                 "modified_lines": [
                     1406,
                     1407,
@@ -2723,7 +2723,7 @@
         ],
         "50": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java",
+                "modified_file": "com.google.javascript.jscomp.PeepholeReplaceKnownMethods",
                 "modified_lines": [
                     373,
                     374,
@@ -2750,7 +2750,7 @@
         ],
         "25": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypeInference.java",
+                "modified_file": "com.google.javascript.jscomp.TypeInference",
                 "modified_lines": [
                     1033,
                     1034,
@@ -2778,7 +2778,7 @@
         ],
         "4": [
             {
-                "modified_file": "src/com/google/javascript/rhino/jstype/NamedType.java",
+                "modified_file": "com.google.javascript.rhino.jstype.NamedType",
                 "modified_lines": [
                     187,
                     188,
@@ -2800,7 +2800,7 @@
         ],
         "52": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CodeGenerator.java",
+                "modified_file": "com.google.javascript.jscomp.CodeGenerator",
                 "modified_lines": [
                     742,
                     743,
@@ -2815,7 +2815,7 @@
         ],
         "11": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypeCheck.java",
+                "modified_file": "com.google.javascript.jscomp.TypeCheck",
                 "modified_lines": [
                     1311,
                     1312,
@@ -2829,7 +2829,7 @@
         ],
         "26": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ProcessCommonJSModules.java",
+                "modified_file": "com.google.javascript.jscomp.ProcessCommonJSModules",
                 "modified_lines": [
                     125,
                     126,
@@ -2860,7 +2860,7 @@
         ],
         "53": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/InlineObjectLiterals.java",
+                "modified_file": "com.google.javascript.jscomp.InlineObjectLiterals",
                 "modified_lines": [
                     328,
                     329,
@@ -2884,7 +2884,7 @@
         ],
         "29": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/InlineObjectLiterals.java",
+                "modified_file": "com.google.javascript.jscomp.InlineObjectLiterals",
                 "modified_lines": [
                     154,
                     155,
@@ -2920,7 +2920,7 @@
         ],
         "125": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypeCheck.java",
+                "modified_file": "com.google.javascript.jscomp.TypeCheck",
                 "modified_lines": [
                     1658,
                     1659,
@@ -2935,7 +2935,7 @@
         ],
         "36": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/InlineVariables.java",
+                "modified_file": "com.google.javascript.jscomp.InlineVariables",
                 "modified_lines": [
                     572,
                     573,
@@ -2952,7 +2952,7 @@
         ],
         "119": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/GlobalNamespace.java",
+                "modified_file": "com.google.javascript.jscomp.GlobalNamespace",
                 "modified_lines": [
                     363,
                     364,
@@ -2967,7 +2967,7 @@
         ],
         "118": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/DisambiguateProperties.java",
+                "modified_file": "com.google.javascript.jscomp.DisambiguateProperties",
                 "modified_lines": [
                     492,
                     493,
@@ -2984,7 +2984,7 @@
         ],
         "128": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CodeGenerator.java",
+                "modified_file": "com.google.javascript.jscomp.CodeGenerator",
                 "modified_lines": [
                     782,
                     783,
@@ -3008,7 +3008,7 @@
         ],
         "112": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypeInference.java",
+                "modified_file": "com.google.javascript.jscomp.TypeInference",
                 "modified_lines": [
                     1189,
                     1190,
@@ -3031,7 +3031,7 @@
         ],
         "67": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java",
+                "modified_file": "com.google.javascript.jscomp.AnalyzePrototypeProperties",
                 "modified_lines": [
                     315,
                     316,
@@ -3046,7 +3046,7 @@
         ],
         "12": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/MaybeReachingVariableUse.java",
+                "modified_file": "com.google.javascript.jscomp.MaybeReachingVariableUse",
                 "modified_lines": [
                     157,
                     158,
@@ -3066,7 +3066,7 @@
         ],
         "117": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/TypeValidator.java",
+                "modified_file": "com.google.javascript.jscomp.TypeValidator",
                 "modified_lines": [
                     722,
                     723,
@@ -3100,7 +3100,7 @@
         ],
         "129": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/PrepareAst.java",
+                "modified_file": "com.google.javascript.jscomp.PrepareAst",
                 "modified_lines": [
                     163,
                     164,
@@ -3117,7 +3117,7 @@
         ],
         "65": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/CodeGenerator.java",
+                "modified_file": "com.google.javascript.jscomp.CodeGenerator",
                 "modified_lines": [
                     1012,
                     1013,
@@ -3132,7 +3132,7 @@
         ],
         "105": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/FoldConstants.java",
+                "modified_file": "com.google.javascript.jscomp.FoldConstants",
                 "modified_lines": [
                     1474,
                     1475,
@@ -3171,7 +3171,7 @@
         ],
         "109": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java",
+                "modified_file": "com.google.javascript.jscomp.parsing.JsDocInfoParser",
                 "modified_lines": [
                     1905,
                     1906,
@@ -3190,7 +3190,7 @@
         ],
         "10": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/NodeUtil.java",
+                "modified_file": "com.google.javascript.jscomp.NodeUtil",
                 "modified_lines": [
                     1414,
                     1415,
@@ -3205,7 +3205,7 @@
         ],
         "124": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ExploitAssigns.java",
+                "modified_file": "com.google.javascript.jscomp.ExploitAssigns",
                 "modified_lines": [
                     210,
                     211,
@@ -3222,7 +3222,7 @@
         ],
         "40": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/NameAnalyzer.java",
+                "modified_file": "com.google.javascript.jscomp.NameAnalyzer",
                 "modified_lines": [
                     632,
                     633,
@@ -3239,7 +3239,7 @@
         ],
         "32": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java",
+                "modified_file": "com.google.javascript.jscomp.parsing.JsDocInfoParser",
                 "modified_lines": [
                     1355,
                     1356,
@@ -3293,7 +3293,7 @@
         ],
         "14": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/ControlFlowAnalysis.java",
+                "modified_file": "com.google.javascript.jscomp.ControlFlowAnalysis",
                 "modified_lines": [
                     764,
                     765,
@@ -3308,7 +3308,7 @@
         ],
         "60": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/NodeUtil.java",
+                "modified_file": "com.google.javascript.jscomp.NodeUtil",
                 "modified_lines": [
                     105,
                     106,
@@ -3334,7 +3334,7 @@
         ],
         "121": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/InlineVariables.java",
+                "modified_file": "com.google.javascript.jscomp.InlineVariables",
                 "modified_lines": [
                     301,
                     302,
@@ -3354,7 +3354,7 @@
         ],
         "127": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/UnreachableCodeElimination.java",
+                "modified_file": "com.google.javascript.jscomp.UnreachableCodeElimination",
                 "modified_lines": [
                     167,
                     168,
@@ -3384,7 +3384,7 @@
         ],
         "104": [
             {
-                "modified_file": "src/com/google/javascript/rhino/jstype/UnionType.java",
+                "modified_file": "com.google.javascript.rhino.jstype.UnionType",
                 "modified_lines": [
                     288,
                     289,
@@ -3399,7 +3399,7 @@
         ],
         "1": [
             {
-                "modified_file": "src/com/google/javascript/jscomp/RemoveUnusedVars.java",
+                "modified_file": "com.google.javascript.jscomp.RemoveUnusedVars",
                 "modified_lines": [
                     376,
                     377,
@@ -3416,7 +3416,7 @@
         ],
         "46": [
             {
-                "modified_file": "src/com/google/javascript/rhino/jstype/RecordType.java",
+                "modified_file": "com.google.javascript.rhino.jstype.RecordType",
                 "modified_lines": [
                     137,
                     138,
@@ -3432,7 +3432,7 @@
     "Lang": {
         "20": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/StringUtils.java",
+                "modified_file": "org.apache.commons.lang3.StringUtils",
                 "modified_lines": [
                     3295,
                     3296,
@@ -3454,7 +3454,7 @@
         ],
         "59": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/text/StrBuilder.java",
+                "modified_file": "org.apache.commons.lang.text.StrBuilder",
                 "modified_lines": [
                     881,
                     882,
@@ -3469,7 +3469,7 @@
         ],
         "6": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java",
+                "modified_file": "org.apache.commons.lang3.text.translate.CharSequenceTranslator",
                 "modified_lines": [
                     92,
                     93,
@@ -3484,7 +3484,7 @@
         ],
         "57": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/LocaleUtils.java",
+                "modified_file": "org.apache.commons.lang.LocaleUtils",
                 "modified_lines": [
                     220,
                     221,
@@ -3499,7 +3499,7 @@
         ],
         "3": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+                "modified_file": "org.apache.commons.lang3.math.NumberUtils",
                 "modified_lines": [
                     590,
                     591,
@@ -3529,7 +3529,7 @@
         ],
         "7": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+                "modified_file": "org.apache.commons.lang3.math.NumberUtils",
                 "modified_lines": [
                     449,
                     450,
@@ -3556,7 +3556,7 @@
         ],
         "19": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaper.java",
+                "modified_file": "org.apache.commons.lang3.text.translate.NumericEntityUnescaper",
                 "modified_lines": [
                     37,
                     38,
@@ -3596,7 +3596,7 @@
         ],
         "55": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/time/StopWatch.java",
+                "modified_file": "org.apache.commons.lang.time.StopWatch",
                 "modified_lines": [
                     115,
                     116,
@@ -3613,7 +3613,7 @@
         ],
         "43": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/text/ExtendedMessageFormat.java",
+                "modified_file": "org.apache.commons.lang.text.ExtendedMessageFormat",
                 "modified_lines": [
                     419,
                     420,
@@ -3628,7 +3628,7 @@
         ],
         "16": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+                "modified_file": "org.apache.commons.lang3.math.NumberUtils",
                 "modified_lines": [
                     455,
                     456,
@@ -3643,7 +3643,7 @@
         ],
         "31": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/StringUtils.java",
+                "modified_file": "org.apache.commons.lang3.StringUtils",
                 "modified_lines": [
                     1443,
                     1444,
@@ -3672,7 +3672,7 @@
         ],
         "15": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/reflect/TypeUtils.java",
+                "modified_file": "org.apache.commons.lang3.reflect.TypeUtils",
                 "modified_lines": [
                     216,
                     217,
@@ -3696,7 +3696,7 @@
         ],
         "27": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+                "modified_file": "org.apache.commons.lang3.math.NumberUtils",
                 "modified_lines": [
                     476,
                     477,
@@ -3720,7 +3720,7 @@
         ],
         "64": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/enums/ValuedEnum.java",
+                "modified_file": "org.apache.commons.lang.enums.ValuedEnum",
                 "modified_lines": [
                     180,
                     181,
@@ -3764,7 +3764,7 @@
         ],
         "45": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/WordUtils.java",
+                "modified_file": "org.apache.commons.lang.WordUtils",
                 "modified_lines": [
                     613,
                     614,
@@ -3781,7 +3781,7 @@
         ],
         "24": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+                "modified_file": "org.apache.commons.lang3.math.NumberUtils",
                 "modified_lines": [
                     1410,
                     1411,
@@ -3796,7 +3796,7 @@
         ],
         "13": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/SerializationUtils.java",
+                "modified_file": "org.apache.commons.lang3.SerializationUtils",
                 "modified_lines": [
                     236,
                     237,
@@ -3842,7 +3842,7 @@
         ],
         "63": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/time/DurationFormatUtils.java",
+                "modified_file": "org.apache.commons.lang.time.DurationFormatUtils",
                 "modified_lines": [
                     303,
                     304,
@@ -3876,7 +3876,7 @@
         ],
         "62": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/Entities.java",
+                "modified_file": "org.apache.commons.lang.Entities",
                 "modified_lines": [
                     847,
                     848,
@@ -3910,7 +3910,7 @@
         ],
         "17": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java",
+                "modified_file": "org.apache.commons.lang3.text.translate.CharSequenceTranslator",
                 "modified_lines": [
                     80,
                     81,
@@ -3938,7 +3938,7 @@
         ],
         "51": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/BooleanUtils.java",
+                "modified_file": "org.apache.commons.lang.BooleanUtils",
                 "modified_lines": [
                     679,
                     680,
@@ -3953,7 +3953,7 @@
         ],
         "2": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/LocaleUtils.java",
+                "modified_file": "org.apache.commons.lang3.LocaleUtils",
                 "modified_lines": [
                     89,
                     90,
@@ -3970,7 +3970,7 @@
         ],
         "44": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/NumberUtils.java",
+                "modified_file": "org.apache.commons.lang.NumberUtils",
                 "modified_lines": [
                     142,
                     143,
@@ -3987,7 +3987,7 @@
         ],
         "38": [
             {
-                "modified_file": "src/java/org/apache/commons/lang3/time/FastDateFormat.java",
+                "modified_file": "org.apache.commons.lang3.time.FastDateFormat",
                 "modified_lines": [
                     869,
                     870,
@@ -4002,7 +4002,7 @@
         ],
         "9": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/time/FastDateParser.java",
+                "modified_file": "org.apache.commons.lang3.time.FastDateParser",
                 "modified_lines": [
                     141,
                     142,
@@ -4019,7 +4019,7 @@
         ],
         "5": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/LocaleUtils.java",
+                "modified_file": "org.apache.commons.lang3.LocaleUtils",
                 "modified_lines": [
                     94,
                     95,
@@ -4060,7 +4060,7 @@
         ],
         "28": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaper.java",
+                "modified_file": "org.apache.commons.lang3.text.translate.NumericEntityUnescaper",
                 "modified_lines": [
                     60,
                     61,
@@ -4081,7 +4081,7 @@
         ],
         "37": [
             {
-                "modified_file": "src/java/org/apache/commons/lang3/ArrayUtils.java",
+                "modified_file": "org.apache.commons.lang3.ArrayUtils",
                 "modified_lines": [
                     2959,
                     2960,
@@ -4105,7 +4105,7 @@
         ],
         "56": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+                "modified_file": "org.apache.commons.lang.time.FastDateFormat",
                 "modified_lines": [
                     137,
                     138,
@@ -4134,7 +4134,7 @@
         ],
         "61": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/text/StrBuilder.java",
+                "modified_file": "org.apache.commons.lang.text.StrBuilder",
                 "modified_lines": [
                     1773,
                     1774,
@@ -4149,7 +4149,7 @@
         ],
         "33": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/ClassUtils.java",
+                "modified_file": "org.apache.commons.lang3.ClassUtils",
                 "modified_lines": [
                     907,
                     908,
@@ -4164,7 +4164,7 @@
         ],
         "49": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/math/Fraction.java",
+                "modified_file": "org.apache.commons.lang.math.Fraction",
                 "modified_lines": [
                     463,
                     464,
@@ -4181,7 +4181,7 @@
         ],
         "58": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/math/NumberUtils.java",
+                "modified_file": "org.apache.commons.lang.math.NumberUtils",
                 "modified_lines": [
                     451,
                     452,
@@ -4196,7 +4196,7 @@
         ],
         "30": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/StringUtils.java",
+                "modified_file": "org.apache.commons.lang3.StringUtils",
                 "modified_lines": [
                     1373,
                     1374,
@@ -4313,7 +4313,7 @@
         ],
         "34": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/builder/ToStringStyle.java",
+                "modified_file": "org.apache.commons.lang3.builder.ToStringStyle",
                 "modified_lines": [
                     145,
                     146,
@@ -4335,7 +4335,7 @@
         ],
         "42": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/Entities.java",
+                "modified_file": "org.apache.commons.lang.Entities",
                 "modified_lines": [
                     825,
                     826,
@@ -4358,7 +4358,7 @@
         ],
         "22": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/math/Fraction.java",
+                "modified_file": "org.apache.commons.lang3.math.Fraction",
                 "modified_lines": [
                     580,
                     581,
@@ -4380,7 +4380,7 @@
         ],
         "23": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java",
+                "modified_file": "org.apache.commons.lang3.text.ExtendedMessageFormat",
                 "modified_lines": [
                     70,
                     71,
@@ -4437,7 +4437,7 @@
         ],
         "35": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/ArrayUtils.java",
+                "modified_file": "org.apache.commons.lang3.ArrayUtils",
                 "modified_lines": [
                     3292,
                     3293,
@@ -4459,7 +4459,7 @@
         ],
         "8": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java",
+                "modified_file": "org.apache.commons.lang3.time.FastDatePrinter",
                 "modified_lines": [
                     1095,
                     1096,
@@ -4486,7 +4486,7 @@
         ],
         "18": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+                "modified_file": "org.apache.commons.lang3.time.FastDateFormat",
                 "modified_lines": [
                     492,
                     493,
@@ -4504,7 +4504,7 @@
         ],
         "25": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/text/translate/EntityArrays.java",
+                "modified_file": "org.apache.commons.lang3.text.translate.EntityArrays",
                 "modified_lines": [
                     71,
                     72,
@@ -4545,7 +4545,7 @@
         ],
         "4": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/text/translate/LookupTranslator.java",
+                "modified_file": "org.apache.commons.lang3.text.translate.LookupTranslator",
                 "modified_lines": [
                     28,
                     29,
@@ -4579,7 +4579,7 @@
         ],
         "11": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/RandomStringUtils.java",
+                "modified_file": "org.apache.commons.lang3.RandomStringUtils",
                 "modified_lines": [
                     242,
                     243,
@@ -4597,7 +4597,7 @@
         ],
         "26": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+                "modified_file": "org.apache.commons.lang3.time.FastDateFormat",
                 "modified_lines": [
                     817,
                     818,
@@ -4612,7 +4612,7 @@
         ],
         "53": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/time/DateUtils.java",
+                "modified_file": "org.apache.commons.lang.time.DateUtils",
                 "modified_lines": [
                     640,
                     641,
@@ -4638,7 +4638,7 @@
         ],
         "29": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/SystemUtils.java",
+                "modified_file": "org.apache.commons.lang3.SystemUtils",
                 "modified_lines": [
                     1669,
                     1670,
@@ -4653,7 +4653,7 @@
         ],
         "12": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/RandomStringUtils.java",
+                "modified_file": "org.apache.commons.lang3.RandomStringUtils",
                 "modified_lines": [
                     227,
                     228,
@@ -4682,7 +4682,7 @@
         ],
         "65": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/time/DateUtils.java",
+                "modified_file": "org.apache.commons.lang.time.DateUtils",
                 "modified_lines": [
                     621,
                     622,
@@ -4747,7 +4747,7 @@
         ],
         "10": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/time/FastDateParser.java",
+                "modified_file": "org.apache.commons.lang3.time.FastDateParser",
                 "modified_lines": [
                     301,
                     302,
@@ -4763,7 +4763,7 @@
         ],
         "40": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/StringUtils.java",
+                "modified_file": "org.apache.commons.lang.StringUtils",
                 "modified_lines": [
                     1045,
                     1046,
@@ -4785,7 +4785,7 @@
         ],
         "32": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/builder/HashCodeBuilder.java",
+                "modified_file": "org.apache.commons.lang3.builder.HashCodeBuilder",
                 "modified_lines": [
                     101,
                     102,
@@ -4834,7 +4834,7 @@
         ],
         "14": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/StringUtils.java",
+                "modified_file": "org.apache.commons.lang3.StringUtils",
                 "modified_lines": [
                     785,
                     786,
@@ -4852,7 +4852,7 @@
         ],
         "1": [
             {
-                "modified_file": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+                "modified_file": "org.apache.commons.lang3.math.NumberUtils",
                 "modified_lines": [
                     464,
                     465,
@@ -4880,7 +4880,7 @@
         ],
         "46": [
             {
-                "modified_file": "src/java/org/apache/commons/lang/StringEscapeUtils.java",
+                "modified_file": "org.apache.commons.lang.StringEscapeUtils",
                 "modified_lines": [
                     83,
                     84,
@@ -4948,7 +4948,7 @@
     "Math": {
         "20": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optimization.direct.CMAESOptimizer",
                 "modified_lines": [
                     918,
                     919,
@@ -4964,7 +4964,7 @@
         ],
         "68": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/optimization/general/LevenbergMarquardtOptimizer.java",
+                "modified_file": "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer",
                 "modified_lines": [
                     163,
                     164,
@@ -5026,7 +5026,7 @@
         ],
         "59": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/util/FastMath.java",
+                "modified_file": "org.apache.commons.math.util.FastMath",
                 "modified_lines": [
                     3479,
                     3480,
@@ -5041,7 +5041,7 @@
         ],
         "84": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/optimization/direct/MultiDirectional.java",
+                "modified_file": "org.apache.commons.math.optimization.direct.MultiDirectional",
                 "modified_lines": [
                     61,
                     62,
@@ -5072,7 +5072,7 @@
         ],
         "74": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java",
+                "modified_file": "org.apache.commons.math.ode.nonstiff.EmbeddedRungeKuttaIntegrator",
                 "modified_lines": [
                     242,
                     243,
@@ -5095,7 +5095,7 @@
         ],
         "6": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optim/BaseOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optim.BaseOptimizer",
                 "modified_lines": [
                     48,
                     49,
@@ -5108,7 +5108,7 @@
                 "text": "diff --git a/src/main/java/org/apache/commons/math3/optim/BaseOptimizer.java b/src/main/java/org/apache/commons/math3/optim/BaseOptimizer.java\nindex 927e17f..75c9757 100644\n--- a/src/main/java/org/apache/commons/math3/optim/BaseOptimizer.java\n+++ b/src/main/java/org/apache/commons/math3/optim/BaseOptimizer.java\n@@ -48,7 +48,7 @@ public abstract class BaseOptimizer<PAIR> {\n         this.checker = checker;\n \n         evaluations = new Incrementor(0, new MaxEvalCallback());\n-        iterations = new Incrementor(Integer.MAX_VALUE, new MaxIterCallback());\n+        iterations = new Incrementor(0, new MaxIterCallback());\n     }\n \n     /**\n"
             },
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optim.nonlinear.scalar.gradient.NonLinearConjugateGradientOptimizer",
                 "modified_lines": [
                     211,
                     212,
@@ -5136,7 +5136,7 @@
                 "text": "diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java\nindex bd12b54..e010781 100644\n--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java\n+++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java\n@@ -211,15 +211,16 @@ public class NonLinearConjugateGradientOptimizer\n         }\n \n         PointValuePair current = null;\n+        int iter = 0;\n         int maxEval = getMaxEvaluations();\n         while (true) {\n-            incrementIterationCount();\n+            ++iter;\n \n             final double objective = computeObjectiveValue(point);\n             PointValuePair previous = current;\n             current = new PointValuePair(point, objective);\n             if (previous != null) {\n-                if (checker.converged(getIterations(), previous, current)) {\n+                if (checker.converged(iter, previous, current)) {\n                     // We have found an optimum.\n                     return current;\n                 }\n@@ -273,7 +274,7 @@ public class NonLinearConjugateGradientOptimizer\n             steepestDescent = newSteepestDescent;\n \n             // Compute conjugate search direction.\n-            if (getIterations() % n == 0 ||\n+            if (iter % n == 0 ||\n                 beta < 0) {\n                 // Break conjugation: reset search direction.\n                 searchDirection = steepestDescent.clone();\n"
             },
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optim.nonlinear.scalar.noderiv.CMAESOptimizer",
                 "modified_lines": [
                     385,
                     386,
@@ -5149,7 +5149,7 @@
                 "text": "diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java\nindex fed67b1..0303041 100644\n--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java\n+++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java\n@@ -385,7 +385,6 @@ public class CMAESOptimizer\n \n         generationLoop:\n         for (iterations = 1; iterations <= maxIterations; iterations++) {\n-            incrementIterationCount();\n \n             // Generate and evaluate lambda offspring\n             final RealMatrix arz = randn1(dimension, lambda);\n"
             },
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/PowellOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optim.nonlinear.scalar.noderiv.PowellOptimizer",
                 "modified_lines": [
                     188,
                     189,
@@ -5170,7 +5170,7 @@
                 "text": "diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/PowellOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/PowellOptimizer.java\nindex afe8d2f..9572820 100644\n--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/PowellOptimizer.java\n+++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/PowellOptimizer.java\n@@ -188,8 +188,9 @@ public class PowellOptimizer\n         double[] x = guess;\n         double fVal = computeObjectiveValue(x);\n         double[] x1 = x.clone();\n+        int iter = 0;\n         while (true) {\n-            incrementIterationCount();\n+            ++iter;\n \n             double fX = fVal;\n             double fX2 = 0;\n@@ -223,7 +224,7 @@ public class PowellOptimizer\n             final PointValuePair current = new PointValuePair(x, fVal);\n             if (!stop) { // User-defined stopping criteria.\n                 if (checker != null) {\n-                    stop = checker.converged(getIterations(), previous, current);\n+                    stop = checker.converged(iter, previous, current);\n                 }\n             }\n             if (stop) {\n"
             },
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/SimplexOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optim.nonlinear.scalar.noderiv.SimplexOptimizer",
                 "modified_lines": [
                     155,
                     156,
@@ -5190,7 +5190,7 @@
                 "text": "diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/SimplexOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/SimplexOptimizer.java\nindex 0dd644e..9ea2324 100644\n--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/SimplexOptimizer.java\n+++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/SimplexOptimizer.java\n@@ -155,7 +155,7 @@ public class SimplexOptimizer extends MultivariateOptimizer {\n         int iteration = 0;\n         final ConvergenceChecker<PointValuePair> checker = getConvergenceChecker();\n         while (true) {\n-            if (getIterations() > 0) {\n+            if (iteration > 0) {\n                 boolean converged = true;\n                 for (int i = 0; i < simplex.getSize(); i++) {\n                     PointValuePair prev = previous[i];\n@@ -172,7 +172,7 @@ public class SimplexOptimizer extends MultivariateOptimizer {\n             previous = simplex.getPoints();\n             simplex.iterate(evalFunc, comparator);\n \n-            incrementIterationCount();\n+\t\t\t++iteration;\n         }\n     }\n \n"
             },
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/GaussNewtonOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optim.nonlinear.vector.jacobian.GaussNewtonOptimizer",
                 "modified_lines": [
                     103,
                     104,
@@ -5211,7 +5211,7 @@
                 "text": "diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/GaussNewtonOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/GaussNewtonOptimizer.java\nindex 844ed22..a2834f2 100644\n--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/GaussNewtonOptimizer.java\n+++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/GaussNewtonOptimizer.java\n@@ -103,8 +103,9 @@ public class GaussNewtonOptimizer extends AbstractLeastSquaresOptimizer {\n \n         // iterate until convergence is reached\n         PointVectorValuePair current = null;\n+        int iter = 0;\n         for (boolean converged = false; !converged;) {\n-            incrementIterationCount();\n+            ++iter;\n \n             // evaluate the objective function and its jacobian\n             PointVectorValuePair previous = current;\n@@ -156,7 +157,7 @@ public class GaussNewtonOptimizer extends AbstractLeastSquaresOptimizer {\n \n             // Check convergence.\n             if (previous != null) {\n-                converged = checker.converged(getIterations(), previous, current);\n+                converged = checker.converged(iter, previous, current);\n                 if (converged) {\n                     setCost(computeCost(currentResiduals));\n                     return current;\n"
             },
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optim.nonlinear.vector.jacobian.LevenbergMarquardtOptimizer",
                 "modified_lines": [
                     319,
                     320,
@@ -5236,7 +5236,7 @@
         ],
         "57": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/stat/clustering/KMeansPlusPlusClusterer.java",
+                "modified_file": "org.apache.commons.math.stat.clustering.KMeansPlusPlusClusterer",
                 "modified_lines": [
                     172,
                     173,
@@ -5251,7 +5251,7 @@
         ],
         "3": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/util/MathArrays.java",
+                "modified_file": "org.apache.commons.math3.util.MathArrays",
                 "modified_lines": [
                     818,
                     819,
@@ -5269,7 +5269,7 @@
         ],
         "7": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java",
+                "modified_file": "org.apache.commons.math3.ode.AbstractIntegrator",
                 "modified_lines": [
                     343,
                     344,
@@ -5306,7 +5306,7 @@
         ],
         "19": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optimization.direct.CMAESOptimizer",
                 "modified_lines": [
                     537,
                     538,
@@ -5333,7 +5333,7 @@
         ],
         "16": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/util/FastMath.java",
+                "modified_file": "org.apache.commons.math3.util.FastMath",
                 "modified_lines": [
                     79,
                     80,
@@ -5390,7 +5390,7 @@
         ],
         "31": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/util/ContinuedFraction.java",
+                "modified_file": "org.apache.commons.math3.util.ContinuedFraction",
                 "modified_lines": [
                     131,
                     132,
@@ -5431,7 +5431,7 @@
         ],
         "71": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java",
+                "modified_file": "org.apache.commons.math.ode.nonstiff.EmbeddedRungeKuttaIntegrator",
                 "modified_lines": [
                     297,
                     298,
@@ -5447,7 +5447,7 @@
                 "text": "diff --git a/src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java b/src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java\nindex e03be9e..0840ac1 100644\n--- a/src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java\n+++ b/src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java\n@@ -297,10 +297,6 @@ public abstract class EmbeddedRungeKuttaIntegrator\n                   // it is so small (much probably exactly 0 due to limited accuracy)\n                   // that the code above would fail handling it.\n                   // So we set up an artificial 0 size step by copying states\n-                  interpolator.storeTime(stepStart);\n-                  System.arraycopy(y, 0, yTmp, 0, y0.length);\n-                  hNew     = 0;\n-                  stepSize = 0;\n                   loop     = false;\n               } else {\n                   // reject the step to match exactly the next switch time\n"
             },
             {
-                "modified_file": "src/main/java/org/apache/commons/math/ode/nonstiff/RungeKuttaIntegrator.java",
+                "modified_file": "org.apache.commons.math.ode.nonstiff.RungeKuttaIntegrator",
                 "modified_lines": [
                     177,
                     178,
@@ -5464,7 +5464,7 @@
         ],
         "79": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/util/MathUtils.java",
+                "modified_file": "org.apache.commons.math.util.MathUtils",
                 "modified_lines": [
                     1621,
                     1622,
@@ -5481,7 +5481,7 @@
         ],
         "15": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/util/FastMath.java",
+                "modified_file": "org.apache.commons.math3.util.FastMath",
                 "modified_lines": [
                     310,
                     311,
@@ -5503,7 +5503,7 @@
         ],
         "64": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/optimization/general/LevenbergMarquardtOptimizer.java",
+                "modified_file": "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer",
                 "modified_lines": [
                     255,
                     256,
@@ -5598,7 +5598,7 @@
         ],
         "75": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/stat/Frequency.java",
+                "modified_file": "org.apache.commons.math.stat.Frequency",
                 "modified_lines": [
                     300,
                     301,
@@ -5613,7 +5613,7 @@
         ],
         "45": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/linear/OpenMapRealMatrix.java",
+                "modified_file": "org.apache.commons.math.linear.OpenMapRealMatrix",
                 "modified_lines": [
                     47,
                     48,
@@ -5632,7 +5632,7 @@
         ],
         "24": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optimization.univariate.BrentOptimizer",
                 "modified_lines": [
                     227,
                     228,
@@ -5654,7 +5654,7 @@
         ],
         "13": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optimization.general.AbstractLeastSquaresOptimizer",
                 "modified_lines": [
                     559,
                     560,
@@ -5678,7 +5678,7 @@
         ],
         "63": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/util/MathUtils.java",
+                "modified_file": "org.apache.commons.math.util.MathUtils",
                 "modified_lines": [
                     414,
                     415,
@@ -5693,7 +5693,7 @@
         ],
         "66": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+                "modified_file": "org.apache.commons.math.optimization.univariate.BrentOptimizer",
                 "modified_lines": [
                     41,
                     42,
@@ -5759,7 +5759,7 @@
         ],
         "62": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/optimization/univariate/MultiStartUnivariateRealOptimizer.java",
+                "modified_file": "org.apache.commons.math.optimization.univariate.MultiStartUnivariateRealOptimizer",
                 "modified_lines": [
                     143,
                     144,
@@ -5782,7 +5782,7 @@
         ],
         "17": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/dfp/Dfp.java",
+                "modified_file": "org.apache.commons.math3.dfp.Dfp",
                 "modified_lines": [
                     1600,
                     1601,
@@ -5801,7 +5801,7 @@
         ],
         "85": [
             {
-                "modified_file": "src/java/org/apache/commons/math/analysis/solvers/UnivariateRealSolverUtils.java",
+                "modified_file": "org.apache.commons.math.analysis.solvers.UnivariateRealSolverUtils",
                 "modified_lines": [
                     195,
                     196,
@@ -5816,7 +5816,7 @@
         ],
         "51": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java",
+                "modified_file": "org.apache.commons.math.analysis.solvers.BaseSecantSolver",
                 "modified_lines": [
                     182,
                     183,
@@ -5843,7 +5843,7 @@
         ],
         "2": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/distribution/HypergeometricDistribution.java",
+                "modified_file": "org.apache.commons.math3.distribution.HypergeometricDistribution",
                 "modified_lines": [
                     265,
                     266,
@@ -5858,7 +5858,7 @@
         ],
         "44": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/ode/AbstractIntegrator.java",
+                "modified_file": "org.apache.commons.math.ode.AbstractIntegrator",
                 "modified_lines": [
                     277,
                     278,
@@ -5890,7 +5890,7 @@
         ],
         "83": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java",
+                "modified_file": "org.apache.commons.math.optimization.linear.SimplexTableau",
                 "modified_lines": [
                     289,
                     290,
@@ -5916,7 +5916,7 @@
         ],
         "80": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/linear/EigenDecompositionImpl.java",
+                "modified_file": "org.apache.commons.math.linear.EigenDecompositionImpl",
                 "modified_lines": [
                     1132,
                     1133,
@@ -5931,7 +5931,7 @@
         ],
         "89": [
             {
-                "modified_file": "src/java/org/apache/commons/math/stat/Frequency.java",
+                "modified_file": "org.apache.commons.math.stat.Frequency",
                 "modified_lines": [
                     107,
                     108,
@@ -5950,7 +5950,7 @@
         ],
         "9": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java",
+                "modified_file": "org.apache.commons.math3.geometry.euclidean.threed.Line",
                 "modified_lines": [
                     84,
                     85,
@@ -5966,7 +5966,7 @@
         ],
         "5": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/complex/Complex.java",
+                "modified_file": "org.apache.commons.math3.complex.Complex",
                 "modified_lines": [
                     302,
                     303,
@@ -5981,7 +5981,7 @@
         ],
         "101": [
             {
-                "modified_file": "src/java/org/apache/commons/math/complex/ComplexFormat.java",
+                "modified_file": "org.apache.commons.math.complex.ComplexFormat",
                 "modified_lines": [
                     374,
                     375,
@@ -5997,7 +5997,7 @@
         ],
         "78": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/ode/events/EventState.java",
+                "modified_file": "org.apache.commons.math.ode.events.EventState",
                 "modified_lines": [
                     188,
                     189,
@@ -6029,7 +6029,7 @@
         ],
         "95": [
             {
-                "modified_file": "src/java/org/apache/commons/math/distribution/FDistributionImpl.java",
+                "modified_file": "org.apache.commons.math.distribution.FDistributionImpl",
                 "modified_lines": [
                     141,
                     142,
@@ -6049,7 +6049,7 @@
         ],
         "28": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java",
+                "modified_file": "org.apache.commons.math3.optimization.linear.SimplexSolver",
                 "modified_lines": [
                     116,
                     117,
@@ -6085,7 +6085,7 @@
         ],
         "82": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/optimization/linear/SimplexSolver.java",
+                "modified_file": "org.apache.commons.math.optimization.linear.SimplexSolver",
                 "modified_lines": [
                     79,
                     80,
@@ -6100,7 +6100,7 @@
         ],
         "103": [
             {
-                "modified_file": "src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java",
+                "modified_file": "org.apache.commons.math.distribution.NormalDistributionImpl",
                 "modified_lines": [
                     106,
                     107,
@@ -6126,7 +6126,7 @@
         ],
         "61": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/distribution/PoissonDistributionImpl.java",
+                "modified_file": "org.apache.commons.math.distribution.PoissonDistributionImpl",
                 "modified_lines": [
                     19,
                     20,
@@ -6148,7 +6148,7 @@
         ],
         "21": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java",
+                "modified_file": "org.apache.commons.math3.linear.RectangularCholeskyDecomposition",
                 "modified_lines": [
                     66,
                     67,
@@ -6198,7 +6198,7 @@
         ],
         "48": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java",
+                "modified_file": "org.apache.commons.math.analysis.solvers.BaseSecantSolver",
                 "modified_lines": [
                     186,
                     187,
@@ -6215,7 +6215,7 @@
         ],
         "87": [
             {
-                "modified_file": "src/java/org/apache/commons/math/optimization/linear/SimplexTableau.java",
+                "modified_file": "org.apache.commons.math.optimization.linear.SimplexTableau",
                 "modified_lines": [
                     272,
                     273,
@@ -6233,7 +6233,7 @@
         ],
         "49": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java",
+                "modified_file": "org.apache.commons.math.linear.OpenMapRealVector",
                 "modified_lines": [
                     342,
                     343,
@@ -6269,7 +6269,7 @@
         ],
         "97": [
             {
-                "modified_file": "src/java/org/apache/commons/math/analysis/BrentSolver.java",
+                "modified_file": "org.apache.commons.math.analysis.BrentSolver",
                 "modified_lines": [
                     135,
                     136,
@@ -6308,7 +6308,7 @@
         ],
         "100": [
             {
-                "modified_file": "src/java/org/apache/commons/math/estimation/AbstractEstimator.java",
+                "modified_file": "org.apache.commons.math.estimation.AbstractEstimator",
                 "modified_lines": [
                     163,
                     164,
@@ -6335,7 +6335,7 @@
         ],
         "70": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/analysis/solvers/BisectionSolver.java",
+                "modified_file": "org.apache.commons.math.analysis.solvers.BisectionSolver",
                 "modified_lines": [
                     69,
                     70,
@@ -6350,7 +6350,7 @@
         ],
         "58": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/optimization/fitting/GaussianFitter.java",
+                "modified_file": "org.apache.commons.math.optimization.fitting.GaussianFitter",
                 "modified_lines": [
                     118,
                     119,
@@ -6365,7 +6365,7 @@
         ],
         "30": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/stat/inference/MannWhitneyUTest.java",
+                "modified_file": "org.apache.commons.math3.stat.inference.MannWhitneyUTest",
                 "modified_lines": [
                     170,
                     171,
@@ -6380,7 +6380,7 @@
         ],
         "94": [
             {
-                "modified_file": "src/java/org/apache/commons/math/util/MathUtils.java",
+                "modified_file": "org.apache.commons.math.util.MathUtils",
                 "modified_lines": [
                     409,
                     410,
@@ -6395,7 +6395,7 @@
         ],
         "99": [
             {
-                "modified_file": "src/java/org/apache/commons/math/util/MathUtils.java",
+                "modified_file": "org.apache.commons.math.util.MathUtils",
                 "modified_lines": [
                     540,
                     541,
@@ -6423,7 +6423,7 @@
         ],
         "88": [
             {
-                "modified_file": "src/java/org/apache/commons/math/optimization/linear/SimplexTableau.java",
+                "modified_file": "org.apache.commons.math.optimization.linear.SimplexTableau",
                 "modified_lines": [
                     326,
                     327,
@@ -6449,7 +6449,7 @@
         ],
         "34": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/genetics/ListPopulation.java",
+                "modified_file": "org.apache.commons.math3.genetics.ListPopulation",
                 "modified_lines": [
                     206,
                     207,
@@ -6463,7 +6463,7 @@
         ],
         "106": [
             {
-                "modified_file": "src/java/org/apache/commons/math/fraction/ProperFractionFormat.java",
+                "modified_file": "org.apache.commons.math.fraction.ProperFractionFormat",
                 "modified_lines": [
                     162,
                     163,
@@ -6493,7 +6493,7 @@
         ],
         "73": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/analysis/solvers/BrentSolver.java",
+                "modified_file": "org.apache.commons.math.analysis.solvers.BrentSolver",
                 "modified_lines": [
                     133,
                     134,
@@ -6511,7 +6511,7 @@
         ],
         "102": [
             {
-                "modified_file": "src/java/org/apache/commons/math/stat/inference/ChiSquareTestImpl.java",
+                "modified_file": "org.apache.commons.math.stat.inference.ChiSquareTestImpl",
                 "modified_lines": [
                     71,
                     72,
@@ -6547,7 +6547,7 @@
         ],
         "39": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java",
+                "modified_file": "org.apache.commons.math.ode.nonstiff.EmbeddedRungeKuttaIntegrator",
                 "modified_lines": [
                     247,
                     248,
@@ -6570,7 +6570,7 @@
         ],
         "54": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/dfp/Dfp.java",
+                "modified_file": "org.apache.commons.math.dfp.Dfp",
                 "modified_lines": [
                     270,
                     271,
@@ -6597,7 +6597,7 @@
         ],
         "81": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/linear/EigenDecompositionImpl.java",
+                "modified_file": "org.apache.commons.math.linear.EigenDecompositionImpl",
                 "modified_lines": [
                     600,
                     601,
@@ -6627,7 +6627,7 @@
         ],
         "8": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/distribution/DiscreteDistribution.java",
+                "modified_file": "org.apache.commons.math3.distribution.DiscreteDistribution",
                 "modified_lines": [
                     178,
                     179,
@@ -6648,7 +6648,7 @@
         ],
         "18": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optimization.direct.CMAESOptimizer",
                 "modified_lines": [
                     929,
                     930,
@@ -6684,7 +6684,7 @@
         ],
         "96": [
             {
-                "modified_file": "src/java/org/apache/commons/math/complex/Complex.java",
+                "modified_file": "org.apache.commons.math.complex.Complex",
                 "modified_lines": [
                     255,
                     256,
@@ -6699,7 +6699,7 @@
         ],
         "50": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java",
+                "modified_file": "org.apache.commons.math.analysis.solvers.BaseSecantSolver",
                 "modified_lines": [
                     184,
                     185,
@@ -6713,7 +6713,7 @@
         ],
         "4": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java",
+                "modified_file": "org.apache.commons.math3.geometry.euclidean.threed.SubLine",
                 "modified_lines": [
                     111,
                     112,
@@ -6728,7 +6728,7 @@
                 "text": "diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java\nindex aad7b65..a146cb6 100644\n--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java\n+++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java\n@@ -111,9 +111,6 @@ public class SubLine {\n \n         // compute the intersection on infinite line\n         Vector3D v1D = line.intersection(subLine.line);\n-        if (v1D == null) {\n-            return null;\n-        }\n \n         // check location of point with respect to first sub-line\n         Location loc1 = remainingRegion.checkPoint(line.toSubSpace(v1D));\n"
             },
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java",
+                "modified_file": "org.apache.commons.math3.geometry.euclidean.twod.SubLine",
                 "modified_lines": [
                     115,
                     116,
@@ -6745,7 +6745,7 @@
         ],
         "11": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java",
+                "modified_file": "org.apache.commons.math3.distribution.MultivariateNormalDistribution",
                 "modified_lines": [
                     180,
                     181,
@@ -6760,7 +6760,7 @@
         ],
         "26": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/fraction/Fraction.java",
+                "modified_file": "org.apache.commons.math3.fraction.Fraction",
                 "modified_lines": [
                     178,
                     179,
@@ -6782,7 +6782,7 @@
         ],
         "29": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java",
+                "modified_file": "org.apache.commons.math3.linear.OpenMapRealVector",
                 "modified_lines": [
                     346,
                     347,
@@ -6817,7 +6817,7 @@
         ],
         "36": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/fraction/BigFraction.java",
+                "modified_file": "org.apache.commons.math.fraction.BigFraction",
                 "modified_lines": [
                     683,
                     684,
@@ -6853,7 +6853,7 @@
         ],
         "67": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java",
+                "modified_file": "org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizer",
                 "modified_lines": [
                     89,
                     90,
@@ -6873,7 +6873,7 @@
         ],
         "12": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/random/BitsStreamGenerator.java",
+                "modified_file": "org.apache.commons.math3.random.BitsStreamGenerator",
                 "modified_lines": [
                     16,
                     17,
@@ -6898,7 +6898,7 @@
         ],
         "65": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/optimization/general/AbstractLeastSquaresOptimizer.java",
+                "modified_file": "org.apache.commons.math.optimization.general.AbstractLeastSquaresOptimizer",
                 "modified_lines": [
                     237,
                     238,
@@ -6920,7 +6920,7 @@
         ],
         "10": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java",
+                "modified_file": "org.apache.commons.math3.analysis.differentiation.DSCompiler",
                 "modified_lines": [
                     1416,
                     1417,
@@ -6935,7 +6935,7 @@
         ],
         "40": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math/analysis/solvers/BracketingNthOrderBrentSolver.java",
+                "modified_file": "org.apache.commons.math.analysis.solvers.BracketingNthOrderBrentSolver",
                 "modified_lines": [
                     232,
                     233,
@@ -6959,7 +6959,7 @@
         ],
         "32": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java",
+                "modified_file": "org.apache.commons.math3.geometry.euclidean.twod.PolygonsSet",
                 "modified_lines": [
                     133,
                     134,
@@ -6974,7 +6974,7 @@
         ],
         "14": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optim/nonlinear/vector/Weight.java",
+                "modified_file": "org.apache.commons.math3.optim.nonlinear.vector.Weight",
                 "modified_lines": [
                     40,
                     41,
@@ -6987,7 +6987,7 @@
                 "text": "diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/Weight.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/Weight.java\nindex aa3299a..b8225ad 100644\n--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/Weight.java\n+++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/Weight.java\n@@ -40,7 +40,10 @@ public class Weight implements OptimizationData {\n      */\n     public Weight(double[] weight) {\n         final int dim = weight.length;\n-        weightMatrix = new DiagonalMatrix(weight);\n+        weightMatrix = org.apache.commons.math3.linear.MatrixUtils.createRealMatrix(dim, dim);\n+        for (int i = 0; i < dim; i++) {\n+            weightMatrix.setEntry(i, i, weight[i]);\n+        }\n     }\n \n     /**\n"
             },
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/AbstractLeastSquaresOptimizer.java",
+                "modified_file": "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer",
                 "modified_lines": [
                     264,
                     265,
@@ -7011,7 +7011,7 @@
         ],
         "104": [
             {
-                "modified_file": "src/java/org/apache/commons/math/special/Gamma.java",
+                "modified_file": "org.apache.commons.math.special.Gamma",
                 "modified_lines": [
                     34,
                     35,
@@ -7026,7 +7026,7 @@
         ],
         "1": [
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/fraction/BigFraction.java",
+                "modified_file": "org.apache.commons.math3.fraction.BigFraction",
                 "modified_lines": [
                     303,
                     304,
@@ -7041,7 +7041,7 @@
                 "text": "diff --git a/src/main/java/org/apache/commons/math3/fraction/BigFraction.java b/src/main/java/org/apache/commons/math3/fraction/BigFraction.java\nindex 4ca33eb..ed4108d 100644\n--- a/src/main/java/org/apache/commons/math3/fraction/BigFraction.java\n+++ b/src/main/java/org/apache/commons/math3/fraction/BigFraction.java\n@@ -303,9 +303,6 @@ public class BigFraction\n             if ((p2 > overflow) || (q2 > overflow)) {\n                 // in maxDenominator mode, if the last fraction was very close to the actual value\n                 // q2 may overflow in the next iteration; in this case return the last one.\n-                if (epsilon == 0.0 && FastMath.abs(q1) < maxDenominator) {\n-                    break;\n-                }\n                 throw new FractionConversionException(value, p2, q2);\n             }\n \n"
             },
             {
-                "modified_file": "src/main/java/org/apache/commons/math3/fraction/Fraction.java",
+                "modified_file": "org.apache.commons.math3.fraction.Fraction",
                 "modified_lines": [
                     212,
                     213,
@@ -7060,7 +7060,7 @@
     "Time": {
         "20": [
             {
-                "modified_file": "src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java",
+                "modified_file": "org.joda.time.format.DateTimeFormatterBuilder",
                 "modified_lines": [
                     2539,
                     2540,
@@ -7086,7 +7086,7 @@
         ],
         "6": [
             {
-                "modified_file": "src/main/java/org/joda/time/chrono/GJChronology.java",
+                "modified_file": "org.joda.time.chrono.GJChronology",
                 "modified_lines": [
                     193,
                     194,
@@ -7138,7 +7138,7 @@
         ],
         "3": [
             {
-                "modified_file": "src/main/java/org/joda/time/MutableDateTime.java",
+                "modified_file": "org.joda.time.MutableDateTime",
                 "modified_lines": [
                     636,
                     637,
@@ -7236,7 +7236,7 @@
         ],
         "7": [
             {
-                "modified_file": "src/main/java/org/joda/time/format/DateTimeFormatter.java",
+                "modified_file": "org.joda.time.format.DateTimeFormatter",
                 "modified_lines": [
                     705,
                     706,
@@ -7253,7 +7253,7 @@
         ],
         "19": [
             {
-                "modified_file": "src/main/java/org/joda/time/DateTimeZone.java",
+                "modified_file": "org.joda.time.DateTimeZone",
                 "modified_lines": [
                     897,
                     898,
@@ -7268,7 +7268,7 @@
         ],
         "16": [
             {
-                "modified_file": "src/main/java/org/joda/time/format/DateTimeFormatter.java",
+                "modified_file": "org.joda.time.format.DateTimeFormatter",
                 "modified_lines": [
                     706,
                     707,
@@ -7283,7 +7283,7 @@
         ],
         "15": [
             {
-                "modified_file": "src/main/java/org/joda/time/field/FieldUtils.java",
+                "modified_file": "org.joda.time.field.FieldUtils",
                 "modified_lines": [
                     135,
                     136,
@@ -7300,7 +7300,7 @@
         ],
         "27": [
             {
-                "modified_file": "src/main/java/org/joda/time/format/PeriodFormatterBuilder.java",
+                "modified_file": "org.joda.time.format.PeriodFormatterBuilder",
                 "modified_lines": [
                     798,
                     799,
@@ -7319,7 +7319,7 @@
         ],
         "24": [
             {
-                "modified_file": "src/main/java/org/joda/time/format/DateTimeParserBucket.java",
+                "modified_file": "org.joda.time.format.DateTimeParserBucket",
                 "modified_lines": [
                     352,
                     353,
@@ -7338,7 +7338,7 @@
         ],
         "13": [
             {
-                "modified_file": "src/main/java/org/joda/time/format/PeriodFormatterBuilder.java",
+                "modified_file": "org.joda.time.format.PeriodFormatterBuilder",
                 "modified_lines": [
                     1095,
                     1096,
@@ -7369,7 +7369,7 @@
         ],
         "17": [
             {
-                "modified_file": "src/main/java/org/joda/time/DateTimeZone.java",
+                "modified_file": "org.joda.time.DateTimeZone",
                 "modified_lines": [
                     1164,
                     1165,
@@ -7409,7 +7409,7 @@
         ],
         "2": [
             {
-                "modified_file": "src/main/java/org/joda/time/Partial.java",
+                "modified_file": "org.joda.time.Partial",
                 "modified_lines": [
                     215,
                     216,
@@ -7431,7 +7431,7 @@
                 "text": "diff --git a/src/main/java/org/joda/time/Partial.java b/src/main/java/org/joda/time/Partial.java\nindex 3b84fdc..b9ec964 100644\n--- a/src/main/java/org/joda/time/Partial.java\n+++ b/src/main/java/org/joda/time/Partial.java\n@@ -215,7 +215,7 @@ public final class Partial\n             DurationField loopUnitField = loopType.getDurationType().getField(iChronology);\n             if (i > 0) {\n                 int compare = lastUnitField.compareTo(loopUnitField);\n-                if (compare < 0) {\n+                if (compare < 0 || (compare != 0 && loopUnitField.isSupported() == false)) {\n                     throw new IllegalArgumentException(\"Types array must be in order largest-smallest: \" +\n                             types[i - 1].getName() + \" < \" + loopType.getName());\n                 } else if (compare == 0) {\n@@ -446,9 +446,6 @@ public final class Partial\n                         if (compare > 0) {\n                             break;\n                         } else if (compare == 0) {\n-                            if (fieldType.getRangeDurationType() == null) {\n-                                break;\n-                            }\n                             DurationField rangeField = fieldType.getRangeDurationType().getField(iChronology);\n                             DurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);\n                             if (rangeField.compareTo(loopRangeField) > 0) {\n"
             },
             {
-                "modified_file": "src/main/java/org/joda/time/field/UnsupportedDurationField.java",
+                "modified_file": "org.joda.time.field.UnsupportedDurationField",
                 "modified_lines": [
                     224,
                     225,
@@ -7448,7 +7448,7 @@
         ],
         "9": [
             {
-                "modified_file": "src/main/java/org/joda/time/DateTimeZone.java",
+                "modified_file": "org.joda.time.DateTimeZone",
                 "modified_lines": [
                     93,
                     94,
@@ -7491,7 +7491,7 @@
         ],
         "22": [
             {
-                "modified_file": "src/main/java/org/joda/time/base/BasePeriod.java",
+                "modified_file": "org.joda.time.base.BasePeriod",
                 "modified_lines": [
                     219,
                     220,
@@ -7512,7 +7512,7 @@
         ],
         "23": [
             {
-                "modified_file": "src/main/java/org/joda/time/DateTimeZone.java",
+                "modified_file": "org.joda.time.DateTimeZone",
                 "modified_lines": [
                     561,
                     562,
@@ -7550,7 +7550,7 @@
         ],
         "8": [
             {
-                "modified_file": "src/main/java/org/joda/time/DateTimeZone.java",
+                "modified_file": "org.joda.time.DateTimeZone",
                 "modified_lines": [
                     276,
                     277,
@@ -7575,7 +7575,7 @@
         ],
         "18": [
             {
-                "modified_file": "src/main/java/org/joda/time/chrono/GJChronology.java",
+                "modified_file": "org.joda.time.chrono.GJChronology",
                 "modified_lines": [
                     361,
                     362,
@@ -7604,7 +7604,7 @@
         ],
         "25": [
             {
-                "modified_file": "src/main/java/org/joda/time/DateTimeZone.java",
+                "modified_file": "org.joda.time.DateTimeZone",
                 "modified_lines": [
                     896,
                     897,
@@ -7627,7 +7627,7 @@
         ],
         "4": [
             {
-                "modified_file": "src/main/java/org/joda/time/Partial.java",
+                "modified_file": "org.joda.time.Partial",
                 "modified_lines": [
                     461,
                     462,
@@ -7642,7 +7642,7 @@
         ],
         "11": [
             {
-                "modified_file": "src/main/java/org/joda/time/tz/ZoneInfoCompiler.java",
+                "modified_file": "org.joda.time.tz.ZoneInfoCompiler",
                 "modified_lines": [
                     65,
                     66,
@@ -7661,7 +7661,7 @@
         ],
         "26": [
             {
-                "modified_file": "src/main/java/org/joda/time/DateTimeZone.java",
+                "modified_file": "org.joda.time.DateTimeZone",
                 "modified_lines": [
                     933,
                     934,
@@ -7682,7 +7682,7 @@
                 "text": "diff --git a/src/main/java/org/joda/time/DateTimeZone.java b/src/main/java/org/joda/time/DateTimeZone.java\nindex 23f70a5c..9edb1888 100644\n--- a/src/main/java/org/joda/time/DateTimeZone.java\n+++ b/src/main/java/org/joda/time/DateTimeZone.java\n@@ -933,15 +933,6 @@ public abstract class DateTimeZone implements Serializable {\n      * @throws IllegalArgumentException if the zone has no equivalent local time\n      * @since 2.0\n      */\n-    public long convertLocalToUTC(long instantLocal, boolean strict, long originalInstantUTC) {\n-        int offsetOriginal = getOffset(originalInstantUTC);\n-        long instantUTC = instantLocal - offsetOriginal;\n-        int offsetLocalFromOriginal = getOffset(instantUTC);\n-        if (offsetLocalFromOriginal == offsetOriginal) {\n-            return instantUTC;\n-        }\n-        return convertLocalToUTC(instantLocal, strict);\n-    }\n \n     /**\n      * Converts a local instant to a standard UTC instant with the same\n"
             },
             {
-                "modified_file": "src/main/java/org/joda/time/chrono/ZonedChronology.java",
+                "modified_file": "org.joda.time.chrono.ZonedChronology",
                 "modified_lines": [
                     433,
                     434,
@@ -7737,7 +7737,7 @@
                 "text": "diff --git a/src/main/java/org/joda/time/chrono/ZonedChronology.java b/src/main/java/org/joda/time/chrono/ZonedChronology.java\nindex 819f64e..f165f3d 100644\n--- a/src/main/java/org/joda/time/chrono/ZonedChronology.java\n+++ b/src/main/java/org/joda/time/chrono/ZonedChronology.java\n@@ -433,7 +433,7 @@ public final class ZonedChronology extends AssembledChronology {\n             } else {\n                long localInstant = iZone.convertUTCToLocal(instant);\n                localInstant = iField.add(localInstant, value);\n-               return iZone.convertLocalToUTC(localInstant, false, instant);\n+               return iZone.convertLocalToUTC(localInstant, false);\n             }\n         }\n \n@@ -445,7 +445,7 @@ public final class ZonedChronology extends AssembledChronology {\n             } else {\n                long localInstant = iZone.convertUTCToLocal(instant);\n                localInstant = iField.add(localInstant, value);\n-               return iZone.convertLocalToUTC(localInstant, false, instant);\n+               return iZone.convertLocalToUTC(localInstant, false);\n             }\n         }\n \n@@ -457,14 +457,14 @@ public final class ZonedChronology extends AssembledChronology {\n             } else {\n                 long localInstant = iZone.convertUTCToLocal(instant);\n                 localInstant = iField.addWrapField(localInstant, value);\n-                return iZone.convertLocalToUTC(localInstant, false, instant);\n+                return iZone.convertLocalToUTC(localInstant, false);\n             }\n         }\n \n         public long set(long instant, int value) {\n             long localInstant = iZone.convertUTCToLocal(instant);\n             localInstant = iField.set(localInstant, value);\n-            long result = iZone.convertLocalToUTC(localInstant, false, instant);\n+            long result = iZone.convertLocalToUTC(localInstant, false);\n             if (get(result) != value) {\n                 throw new IllegalFieldValueException(iField.getType(), new Integer(value),\n                     \"Illegal instant due to time zone offset transition: \" +\n@@ -478,7 +478,7 @@ public final class ZonedChronology extends AssembledChronology {\n             // cannot verify that new value stuck because set may be lenient\n             long localInstant = iZone.convertUTCToLocal(instant);\n             localInstant = iField.set(localInstant, text, locale);\n-            return iZone.convertLocalToUTC(localInstant, false, instant);\n+            return iZone.convertLocalToUTC(localInstant, false);\n         }\n \n         public int getDifference(long minuendInstant, long subtrahendInstant) {\n@@ -525,7 +525,7 @@ public final class ZonedChronology extends AssembledChronology {\n             } else {\n                 long localInstant = iZone.convertUTCToLocal(instant);\n                 localInstant = iField.roundFloor(localInstant);\n-                return iZone.convertLocalToUTC(localInstant, false, instant);\n+                return iZone.convertLocalToUTC(localInstant, false);\n             }\n         }\n \n@@ -537,7 +537,7 @@ public final class ZonedChronology extends AssembledChronology {\n             } else {\n                 long localInstant = iZone.convertUTCToLocal(instant);\n                 localInstant = iField.roundCeiling(localInstant);\n-                return iZone.convertLocalToUTC(localInstant, false, instant);\n+                return iZone.convertLocalToUTC(localInstant, false);\n             }\n         }\n \n"
             },
             {
-                "modified_file": "src/main/java/org/joda/time/field/LenientDateTimeField.java",
+                "modified_file": "org.joda.time.field.LenientDateTimeField",
                 "modified_lines": [
                     72,
                     73,
@@ -7751,7 +7751,7 @@
         ],
         "12": [
             {
-                "modified_file": "src/main/java/org/joda/time/LocalDate.java",
+                "modified_file": "org.joda.time.LocalDate",
                 "modified_lines": [
                     207,
                     208,
@@ -7779,7 +7779,7 @@
                 "text": "diff --git a/src/main/java/org/joda/time/LocalDate.java b/src/main/java/org/joda/time/LocalDate.java\nindex c86b9d7..3868531 100644\n--- a/src/main/java/org/joda/time/LocalDate.java\n+++ b/src/main/java/org/joda/time/LocalDate.java\n@@ -207,10 +207,9 @@ public final class LocalDate\n         if (calendar == null) {\n             throw new IllegalArgumentException(\"The calendar must not be null\");\n         }\n-        int era = calendar.get(Calendar.ERA);\n         int yearOfEra = calendar.get(Calendar.YEAR);\n         return new LocalDate(\n-            (era == GregorianCalendar.AD ? yearOfEra : 1 - yearOfEra),\n+            yearOfEra,\n             calendar.get(Calendar.MONTH) + 1,\n             calendar.get(Calendar.DAY_OF_MONTH)\n         );\n@@ -241,12 +240,7 @@ public final class LocalDate\n         if (date == null) {\n             throw new IllegalArgumentException(\"The date must not be null\");\n         }\n-        if (date.getTime() < 0) {\n             // handle years in era BC\n-            GregorianCalendar cal = new GregorianCalendar();\n-            cal.setTime(date);\n-            return fromCalendarFields(cal);\n-        }\n         return new LocalDate(\n             date.getYear() + 1900,\n             date.getMonth() + 1,\n"
             },
             {
-                "modified_file": "src/main/java/org/joda/time/LocalDateTime.java",
+                "modified_file": "org.joda.time.LocalDateTime",
                 "modified_lines": [
                     196,
                     197,
@@ -7809,7 +7809,7 @@
         ],
         "10": [
             {
-                "modified_file": "src/main/java/org/joda/time/base/BaseSingleFieldPeriod.java",
+                "modified_file": "org.joda.time.base.BaseSingleFieldPeriod",
                 "modified_lines": [
                     49,
                     50,
@@ -7831,7 +7831,7 @@
         ],
         "14": [
             {
-                "modified_file": "src/main/java/org/joda/time/chrono/BasicMonthOfYearDateTimeField.java",
+                "modified_file": "org.joda.time.chrono.BasicMonthOfYearDateTimeField",
                 "modified_lines": [
                     206,
                     207,
@@ -7851,7 +7851,7 @@
         ],
         "1": [
             {
-                "modified_file": "src/main/java/org/joda/time/Partial.java",
+                "modified_file": "org.joda.time.Partial",
                 "modified_lines": [
                     214,
                     215,
@@ -7877,7 +7877,7 @@
                 "text": "diff --git a/src/main/java/org/joda/time/Partial.java b/src/main/java/org/joda/time/Partial.java\nindex 6ff2771..3b84fdc 100644\n--- a/src/main/java/org/joda/time/Partial.java\n+++ b/src/main/java/org/joda/time/Partial.java\n@@ -214,20 +214,11 @@ public final class Partial\n             DateTimeFieldType loopType = types[i];\n             DurationField loopUnitField = loopType.getDurationType().getField(iChronology);\n             if (i > 0) {\n-                if (loopUnitField.isSupported() == false) {\n-                    if (lastUnitField.isSupported()) {\n-                        throw new IllegalArgumentException(\"Types array must be in order largest-smallest: \" +\n-                                        types[i - 1].getName() + \" < \" + loopType.getName());\n-                    } else {\n-                        throw new IllegalArgumentException(\"Types array must not contain duplicate unsupported: \" +\n-                                        types[i - 1].getName() + \" and \" + loopType.getName());\n-                    }\n-                }\n                 int compare = lastUnitField.compareTo(loopUnitField);\n                 if (compare < 0) {\n                     throw new IllegalArgumentException(\"Types array must be in order largest-smallest: \" +\n                             types[i - 1].getName() + \" < \" + loopType.getName());\n-                } else if (compare == 0 && lastUnitField.equals(loopUnitField)) {\n+                } else if (compare == 0) {\n                     if (types[i - 1].getRangeDurationType() == null) {\n                         if (loopType.getRangeDurationType() == null) {\n                             throw new IllegalArgumentException(\"Types array must not contain duplicate: \" +\n"
             },
             {
-                "modified_file": "src/main/java/org/joda/time/field/UnsupportedDurationField.java",
+                "modified_file": "org.joda.time.field.UnsupportedDurationField",
                 "modified_lines": [
                     224,
                     225,
@@ -7893,7 +7893,7 @@
     "Mockito": {
         "7": [
             {
-                "modified_file": "src/org/mockito/internal/util/reflection/GenericMetadataSupport.java",
+                "modified_file": "org.mockito.internal.util.reflection.GenericMetadataSupport",
                 "modified_lines": [
                     376,
                     377,
@@ -7908,7 +7908,7 @@
         ],
         "31": [
             {
-                "modified_file": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsSmartNulls.java",
+                "modified_file": "org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNulls",
                 "modified_lines": [
                     6,
                     7,
@@ -7931,7 +7931,7 @@
         ],
         "15": [
             {
-                "modified_file": "src/org/mockito/internal/configuration/injection/FinalMockCandidateFilter.java",
+                "modified_file": "org.mockito.internal.configuration.injection.FinalMockCandidateFilter",
                 "modified_lines": [
                     1,
                     2,
@@ -7955,7 +7955,7 @@
         ],
         "27": [
             {
-                "modified_file": "src/org/mockito/internal/util/MockUtil.java",
+                "modified_file": "org.mockito.internal.util.MockUtil",
                 "modified_lines": [
                     61,
                     62,
@@ -7970,7 +7970,7 @@
         ],
         "24": [
             {
-                "modified_file": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsEmptyValues.java",
+                "modified_file": "org.mockito.internal.stubbing.defaultanswers.ReturnsEmptyValues",
                 "modified_lines": [
                     73,
                     74,
@@ -7985,7 +7985,7 @@
         ],
         "13": [
             {
-                "modified_file": "src/org/mockito/internal/MockHandler.java",
+                "modified_file": "org.mockito.internal.MockHandler",
                 "modified_lines": [
                     74,
                     75,
@@ -8007,7 +8007,7 @@
         ],
         "17": [
             {
-                "modified_file": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+                "modified_file": "org.mockito.internal.creation.MockSettingsImpl",
                 "modified_lines": [
                     17,
                     18,
@@ -8031,7 +8031,7 @@
                 "text": "diff --git a/src/org/mockito/internal/creation/MockSettingsImpl.java b/src/org/mockito/internal/creation/MockSettingsImpl.java\nindex 5285d90..bf2cf3b 100644\n--- a/src/org/mockito/internal/creation/MockSettingsImpl.java\n+++ b/src/org/mockito/internal/creation/MockSettingsImpl.java\n@@ -17,11 +17,9 @@ public class MockSettingsImpl implements MockSettings {\n     private Object spiedInstance;\n     private Answer<Object> defaultAnswer;\n     private MockName mockName;\n-    private boolean serializable;\n \n     public MockSettings serializable() {\n-        this.serializable = true;\n-        return this;\n+        return this.extraInterfaces(java.io.Serializable.class);\n     }\n \n     public MockSettings extraInterfaces(Class<?>... extraInterfaces) {\n@@ -73,7 +71,7 @@ public class MockSettingsImpl implements MockSettings {\n     }\n \n     public boolean isSerializable() {\n-        return serializable;\n+        return extraInterfaces != null && java.util.Arrays.asList(extraInterfaces).contains(java.io.Serializable.class);\n     }\n \n     public void initiateMockName(Class classToMock) {\n"
             },
             {
-                "modified_file": "src/org/mockito/internal/util/MockUtil.java",
+                "modified_file": "org.mockito.internal.util.MockUtil",
                 "modified_lines": [
                     16,
                     17,
@@ -8057,7 +8057,7 @@
         ],
         "2": [
             {
-                "modified_file": "src/org/mockito/internal/util/Timer.java",
+                "modified_file": "org.mockito.internal.util.Timer",
                 "modified_lines": [
                     1,
                     2,
@@ -8087,7 +8087,7 @@
         ],
         "38": [
             {
-                "modified_file": "src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java",
+                "modified_file": "org.mockito.internal.verification.argumentmatching.ArgumentMatchingTool",
                 "modified_lines": [
                     45,
                     46,
@@ -8101,7 +8101,7 @@
         ],
         "28": [
             {
-                "modified_file": "src/org/mockito/internal/configuration/DefaultInjectionEngine.java",
+                "modified_file": "org.mockito.internal.configuration.DefaultInjectionEngine",
                 "modified_lines": [
                     90,
                     91,
@@ -8117,7 +8117,7 @@
         ],
         "37": [
             {
-                "modified_file": "src/org/mockito/internal/stubbing/answers/AnswersValidator.java",
+                "modified_file": "org.mockito.internal.stubbing.answers.AnswersValidator",
                 "modified_lines": [
                     25,
                     26,
@@ -8141,7 +8141,7 @@
         ],
         "33": [
             {
-                "modified_file": "src/org/mockito/internal/invocation/InvocationMatcher.java",
+                "modified_file": "org.mockito.internal.invocation.InvocationMatcher",
                 "modified_lines": [
                     95,
                     96,
@@ -8168,7 +8168,7 @@
         ],
         "30": [
             {
-                "modified_file": "src/org/mockito/exceptions/Reporter.java",
+                "modified_file": "org.mockito.exceptions.Reporter",
                 "modified_lines": [
                     435,
                     436,
@@ -8185,7 +8185,7 @@
                 "text": "diff --git a/src/org/mockito/exceptions/Reporter.java b/src/org/mockito/exceptions/Reporter.java\nindex 5900574..5e46a2b 100644\n--- a/src/org/mockito/exceptions/Reporter.java\n+++ b/src/org/mockito/exceptions/Reporter.java\n@@ -435,11 +435,10 @@ public class Reporter {\n                 ));\n     }\n \n-    public void smartNullPointerException(Object obj, Location location) {\n+    public void smartNullPointerException(Location location) {\n         throw new SmartNullPointerException(join(\n                 \"You have a NullPointerException here:\",\n                 new Location(),\n-                obj,\n                 \"Because this method was *not* stubbed correctly:\",\n                 location,\n                 \"\"\n"
             },
             {
-                "modified_file": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsSmartNulls.java",
+                "modified_file": "org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNulls",
                 "modified_lines": [
                     53,
                     54,
@@ -8200,7 +8200,7 @@
         ],
         "34": [
             {
-                "modified_file": "src/org/mockito/internal/invocation/InvocationMatcher.java",
+                "modified_file": "org.mockito.internal.invocation.InvocationMatcher",
                 "modified_lines": [
                     103,
                     104,
@@ -8215,7 +8215,7 @@
         ],
         "22": [
             {
-                "modified_file": "src/org/mockito/internal/matchers/Equality.java",
+                "modified_file": "org.mockito.internal.matchers.Equality",
                 "modified_lines": [
                     10,
                     11,
@@ -8232,7 +8232,7 @@
         ],
         "23": [
             {
-                "modified_file": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+                "modified_file": "org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs",
                 "modified_lines": [
                     41,
                     42,
@@ -8296,7 +8296,7 @@
         ],
         "8": [
             {
-                "modified_file": "src/org/mockito/internal/util/reflection/GenericMetadataSupport.java",
+                "modified_file": "org.mockito.internal.util.reflection.GenericMetadataSupport",
                 "modified_lines": [
                     76,
                     77,
@@ -8311,7 +8311,7 @@
         ],
         "4": [
             {
-                "modified_file": "src/org/mockito/exceptions/Reporter.java",
+                "modified_file": "org.mockito.exceptions.Reporter",
                 "modified_lines": [
                     421,
                     422,
@@ -8342,7 +8342,7 @@
         ],
         "26": [
             {
-                "modified_file": "src/org/mockito/internal/util/Primitives.java",
+                "modified_file": "org.mockito.internal.util.Primitives",
                 "modified_lines": [
                     63,
                     64,
@@ -8356,7 +8356,7 @@
         ],
         "29": [
             {
-                "modified_file": "src/org/mockito/internal/matchers/Same.java",
+                "modified_file": "org.mockito.internal.matchers.Same",
                 "modified_lines": [
                     26,
                     27,
@@ -8371,7 +8371,7 @@
         ],
         "36": [
             {
-                "modified_file": "src/org/mockito/internal/invocation/Invocation.java",
+                "modified_file": "org.mockito.internal.invocation.Invocation",
                 "modified_lines": [
                     8,
                     9,
@@ -8395,7 +8395,7 @@
         ],
         "12": [
             {
-                "modified_file": "src/org/mockito/internal/util/reflection/GenericMaster.java",
+                "modified_file": "org.mockito.internal.util.reflection.GenericMaster",
                 "modified_lines": [
                     17,
                     18,
@@ -8415,7 +8415,7 @@
         ],
         "10": [
             {
-                "modified_file": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+                "modified_file": "org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs",
                 "modified_lines": [
                     14,
                     15,
@@ -8463,7 +8463,7 @@
         ],
         "14": [
             {
-                "modified_file": "src/org/mockito/internal/MockHandler.java",
+                "modified_file": "org.mockito.internal.MockHandler",
                 "modified_lines": [
                     17,
                     18,
@@ -8487,7 +8487,7 @@
                 "text": "diff --git a/src/org/mockito/internal/MockHandler.java b/src/org/mockito/internal/MockHandler.java\nindex b6c1b78..bc18218 100644\n--- a/src/org/mockito/internal/MockHandler.java\n+++ b/src/org/mockito/internal/MockHandler.java\n@@ -17,7 +17,6 @@ import org.mockito.internal.stubbing.InvocationContainerImpl;\n import org.mockito.internal.stubbing.OngoingStubbingImpl;\n import org.mockito.internal.stubbing.StubbedInvocationMatcher;\n import org.mockito.internal.stubbing.VoidMethodStubbableImpl;\n-import org.mockito.internal.verification.MockAwareVerificationMode;\n import org.mockito.internal.verification.VerificationDataImpl;\n import org.mockito.stubbing.Answer;\n import org.mockito.stubbing.VoidMethodStubbable;\n@@ -74,11 +73,9 @@ public class MockHandler<T> implements MockitoInvocationHandler, MockHandlerInte\n         if (verificationMode != null) {\n             //We need to check if verification was started on the correct mock \n             // - see VerifyingWithAnExtraCallToADifferentMockTest\n-            if (verificationMode instanceof MockAwareVerificationMode && ((MockAwareVerificationMode) verificationMode).getMock() == invocation.getMock()) {\n                 VerificationDataImpl data = new VerificationDataImpl(invocationContainerImpl.getInvocations(), invocationMatcher);            \n                 verificationMode.verify(data);\n                 return null;\n-            }\n         }\n         \n         invocationContainerImpl.setInvocationForPotentialStubbing(invocationMatcher);\n"
             },
             {
-                "modified_file": "src/org/mockito/internal/MockitoCore.java",
+                "modified_file": "org.mockito.internal.MockitoCore",
                 "modified_lines": [
                     20,
                     21,
