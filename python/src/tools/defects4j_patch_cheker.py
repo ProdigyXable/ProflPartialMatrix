@@ -21,9 +21,10 @@ TOOL_LIST = [
 
 
 class Defects4jPatchChecker:
-    def __init__(self, defects4j_patch_root, APR_patch_root):
+    def __init__(self, defects4j_patch_root, APR_patch_root, parsed_data_root=""):
         self._defects4j_patch_root = defects4j_patch_root
         self._APR_patch_root = APR_patch_root
+        self._parsed_data_root = parsed_data_root
         self.projects = [
             "Chart",
             "Closure",
@@ -34,6 +35,20 @@ class Defects4jPatchChecker:
         ]
 
         self._clean_fixes = {}
+
+
+    def _change_modified_java_file2class(self, java_filename):
+        for prefix in [
+            "src/main/java/",
+            "src/java/",
+            "source/",
+            "src/",
+        ]:
+            if java_filename.startswith(prefix):
+                clazz = java_filename.replace(prefix, "").replace(".java", "").replace("/", ".")
+                return clazz
+        
+        return java_filename
 
 
     def get_clean_fix_version_for_tool(self, tool):
@@ -72,7 +87,7 @@ class Defects4jPatchChecker:
                     modified_lines.append(change.old)
             
             return {
-                "modified_file": diff.header.old_path,
+                "modified_file": self._change_modified_java_file2class(diff.header.old_path),
                 "modified_lines": sorted(modified_lines),
                 "text": diff.text
             }
