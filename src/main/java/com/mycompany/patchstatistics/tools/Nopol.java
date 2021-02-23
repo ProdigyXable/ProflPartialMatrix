@@ -6,10 +6,11 @@
 package com.mycompany.patchstatistics.tools;
 
 import com.mycompany.patchstatistics.PatchCharacteristic;
-import java.io.File;
+import com.mycompany.patchstatistics.UnifiedPatchFile;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 /**
@@ -18,15 +19,15 @@ import java.util.regex.Pattern;
  */
 public class Nopol extends Tool {
 
-    public Nopol(String dirString) {
-        super(dirString);
+    public Nopol(String dirString, String g) {
+        super(dirString, g);
         this.delimiterMethod = "Modified method:";
         this.delimiterPatch = "PatchCategory: ";
     }
 
     @Override
-    public Collection<String> getAttemptModifiedElements(File testFile, File patchFile) throws IOException {
-        LinkedList<String> fileTestData = this.readFileData(testFile);
+    public Collection<String> getAttemptModifiedElements(UnifiedPatchFile upf) throws IOException {
+        Collection<String> fileTestData = this.readFileData(upf.getTest());
         Collection<String> result = new LinkedList();
 
         boolean stop = false;
@@ -44,18 +45,28 @@ public class Nopol extends Tool {
     }
 
     @Override
-    public PatchCharacteristic getAttemptPatchCharacteristics(File testFile, File patchFile) throws Exception {
-        LinkedList<String> fileTestData = this.readFileData(testFile);
+    public PatchCharacteristic getAttemptPatchCharacteristics(UnifiedPatchFile upf) throws Exception {
+        Collection<String> fileTestData = this.readFileData(upf.getTest());
         PatchCharacteristic result = new PatchCharacteristic();
 
         for (String s : fileTestData) {
             if (s.contains(this.delimiterPatch)) {
-                result.setCharacteristic(Tool.PATCH_CAT_KEY, this.processPatchCategory(s));
-
+                result.pc = this.processPatchCategory(s);
             }
         }
 
         return result;
+    }
+    
+        @Override
+    void validateUPF() {
+        TreeSet<UnifiedPatchFile> buffer = new TreeSet(this.unifiedPatchFiles);
+
+        for (UnifiedPatchFile upf : buffer) {
+            if (upf.getTest() == null) {
+                this.unifiedPatchFiles.remove(upf);
+            }
+        }
     }
 
 }

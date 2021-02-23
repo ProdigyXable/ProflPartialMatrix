@@ -6,7 +6,7 @@
 package com.mycompany.patchstatistics.tools;
 
 import com.mycompany.patchstatistics.PatchCharacteristic;
-import java.io.File;
+import com.mycompany.patchstatistics.UnifiedPatchFile;
 import java.io.IOException;
 import java.util.Collection;
 
@@ -16,7 +16,7 @@ import java.util.Collection;
  */
 public interface ToolInterface {
 
-    Collection<String> getAttemptModifiedElements(File testFile, File patchFile) throws IOException;
+    Collection<String> getAttemptModifiedElements(UnifiedPatchFile upf) throws IOException;
 
-    PatchCharacteristic getAttemptPatchCharacteristics(File testFile, File patchFile) throws Exception;
+    PatchCharacteristic getAttemptPatchCharacteristics(UnifiedPatchFile upf) throws Exception;
 }

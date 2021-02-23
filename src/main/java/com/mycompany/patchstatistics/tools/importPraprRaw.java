@@ -3,21 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package old.ase.data;
+package com.mycompany.patchstatistics.tools;
 
 import com.mycompany.patchstatistics.Patch;
 import com.mycompany.patchstatistics.PatchCharacteristic;
-import com.mycompany.patchstatistics.tools.Prapr;
-import com.mycompany.patchstatistics.tools.Tool;
+import com.mycompany.patchstatistics.tools.Tool.GRANULARITY;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.regex.Pattern;
 import utdallas.edu.profl.replicate.patchcategory.DefaultPatchCategories;
 import utdallas.edu.profl.replicate.patchcategory.PatchCategory;
@@ -36,12 +35,13 @@ public class importPraprRaw {
         List<String> data = Files.readAllLines((new File(praprDataPath)).toPath());
         LinkedList<String> queue = new LinkedList();
         List<String> ft = Files.readAllLines(new File(args[0]).toPath());
+        Tool.setGran(args[5]);
         // --------------------------------------- //
         for (String d : data) {
             if (d.startsWith("MutationDetails")) {
 
                 if (!queue.isEmpty()) {
-                    Patch p = process(queue, ft, list.size(), args[4]);
+                    Patch p = processFiles(queue, ft, list.size(), args[4]);
                     list.add(p);
                 }
 
@@ -55,7 +55,7 @@ public class importPraprRaw {
         }
 
         if (!queue.isEmpty()) {
-            Patch p = process(queue, ft, list.size(), args[4]);
+            Patch p = processFiles(queue, ft, list.size(), args[4]);
             list.add(p);
         }
 
@@ -64,56 +64,72 @@ public class importPraprRaw {
         newArgs[0] = args[2];
         newArgs[1] = args[1];
         newArgs[2] = "prapr";
-
         Prapr prapr = new Prapr(list, newArgs[0]);
+        prapr.projectID = args[5];
 
         for (Patch patch : list) {
-            prapr.setMetricIncorrect(patch.modifiedElements, patch.pChar, patch.id);
-            prapr.setMetricPINC(patch.modifiedElements, patch.pChar, patch.id);
+            prapr.setMetricIncorrect(patch.pChar, patch.id);
+            prapr.setMetricPINC(patch.pChar, patch.id);
             prapr.setMetricPlausible(patch.pChar, patch.id);
             prapr.setMetricLowQuality(patch.pChar, patch.id);
             prapr.setMetricHighQuality(patch.pChar, patch.id);
-
         }
 
         prapr.process(args[3]);
     }
 
-    private static Patch process(LinkedList<String> queue, Collection<String> failingTests, int i, String metric) throws Exception {
-        String[] keys = new String[]{"clazz", "method", "methodDesc", "mutator", "lineNumber", "description", "isInFinallyBlock", "poison", "susp"};
-        //String[] keys = new String[]{"clazz", "method", "methodDesc", "mutator", "lineNumber", "isInFinallyBlock", "susp"};
+    private static Patch processFiles(LinkedList<String> queue, Collection<String> failingTests, int i, String metric) throws Exception {
+        String[] characteristicKeys = new String[]{"clazz", "method", "methodDesc", "mutator", "lineNumber", "description", "isInFinallyBlock", "poison", "susp"};
 
         String patchDetails = queue.pop();
         PatchCharacteristic pc = new PatchCharacteristic();
         Map<String, String> patchData = new HashMap();
+
         for (String s : patchDetails.split(Pattern.quote(","))) {
-            for (String k : keys) {
+            for (String k : characteristicKeys) {
                 if (s.contains(String.format("%s=", k))) {
                     patchData.put(k, s.split("=")[1].replace("]", ""));
-                    if (!keys.equals("lineNumber")) {
-                        pc.defineCharacteristic(k, s.split("=")[1].replace("]", ""));
+                    if (!characteristicKeys.equals("lineNumber")) {
+                        // pc.defineCharacteristic(k, s.split("=")[1].replace("]", "")); // USE ALL FEATURES
                     }
                 }
             }
         }
 
-        String methodSig = String.format("%s:%s%s", patchData.get("clazz"), patchData.get("method"), patchData.get("methodDesc"));
-//        pc.setCharacteristic("fullMethodSig", methodSig);
-//        pc.setCharacteristic("method", patchData.get("method"));
-//        pc.setCharacteristic("clazz", patchData.get("clazz"));
-//        pc.setCharacteristic("mutator", patchData.get("mutator"));
+        //pc.setCharacteristic("mutator", patchData.get("mutator"));
+        
+        GRANULARITY toolGran = Tool.techniqueGranularity;
+        Collection<String> modifiedMethods = new HashSet();
 
-        Map<String, Collection<Integer>> modifiedMethod = new TreeMap();
-        LinkedList<Integer> l = new LinkedList();
-        l.add(Integer.valueOf((String) patchData.get("lineNumber")));
+        
+        if (toolGran.equals(Tool.GRANULARITY.STATEMENT)) {
+            
+            String methodSig = String.format("%s:%s%s#%s", patchData.get("clazz"), patchData.get("method"), patchData.get("methodDesc"), patchData.get("lineNumber"));
+            modifiedMethods.add(methodSig);
+            
+        } else if (toolGran.equals(Tool.GRANULARITY.METHOD)) {
+            
+            String methodSig = String.format("%s:%s%s", patchData.get("clazz"), patchData.get("method"), patchData.get("methodDesc"));
+            modifiedMethods.add(methodSig);
+            
+        } else if (toolGran.equals(Tool.GRANULARITY.CLASS)) {
+            
+            String methodSig = String.format("%s", patchData.get("clazz"));
+            modifiedMethods.add(methodSig);
+            
+        } else if (toolGran.equals(Tool.GRANULARITY.PACKAGE)) {
+            
+            String methodSig = String.format("%s", patchData.get("clazz"));
+            modifiedMethods.add(methodSig.substring(0, methodSig.lastIndexOf(".")));
+            
+        }
 
-        modifiedMethod.put(methodSig, l);
-
-        Patch result = new Patch(modifiedMethod.keySet(), pc, ++i, metric);
         PatchCategory patCat = processCat(failingTests, queue);
-        // System.out.println(patCat.getCategoryName());
-        pc.setCharacteristic(Tool.PATCH_CAT_KEY, patCat);
-        // System.out.println(String.format("Patch #%d processed", i));
+        pc.pc = patCat;
+
+        Patch result = new Patch(pc, ++i, metric);
+        result.pChar.defineCharacteristic(Tool.MODIFIED_GRANULARITY, new HashSet());
+        result.pChar.addElementToCharacteristic(Tool.MODIFIED_GRANULARITY, modifiedMethods);
         return result;
     }
 

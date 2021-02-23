@@ -6,10 +6,10 @@
 package com.mycompany.patchstatistics;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import utdallas.edu.profl.replicate.patchcategory.PatchCategory;
 
 /**
  *
@@ -17,6 +17,7 @@ import java.util.TreeMap;
  */
 public class PatchCharacteristic {
 
+    public PatchCategory pc;
     Map<String, Object> characteristics;
 
     public PatchCharacteristic() {
@@ -36,9 +37,16 @@ public class PatchCharacteristic {
 
     public void addElementToCharacteristic(String key, Object element) throws Exception {
         this.keySanityCheck(key);
+
         Object o = this.characteristics.get(key);
         if (o instanceof Collection) {
-            ((List) o).add(element);
+            if (element instanceof Collection) {
+                for (Object obj : (Collection) element) {
+                    ((Collection) o).add(obj.hashCode());
+                }
+            } else {
+                ((Collection) o).add(element.hashCode());
+            }
         }
     }
 

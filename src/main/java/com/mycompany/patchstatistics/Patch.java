@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 import utdallas.edu.profl.replicate.patchcategory.DefaultPatchCategories;
 import utdallas.edu.profl.replicate.patchcategory.PatchCategory;
 
@@ -18,15 +20,22 @@ import utdallas.edu.profl.replicate.patchcategory.PatchCategory;
  */
 public class Patch implements Comparable {
 
+    final private Stats statistics;
+    
     int matchCount = 0;
     int differCount = 0;
+  
+    public int id = 0;
+    int orderingID = 0;
+    double priority = 0;
+
+    public PatchCharacteristic pChar;
 
     static HashSet<PatchCategory> GOOD_PATCHES = new HashSet(Arrays.asList(
-            DefaultPatchCategories.CLEAN_FIX_FULL
-    //            DefaultPatchCategories.CLEAN_FIX_FULL,
-    //            DefaultPatchCategories.CLEAN_FIX_PARTIAL,
-    //            DefaultPatchCategories.NOISY_FIX_FULL,
-    //            DefaultPatchCategories.NOISY_FIX_PARTIAL
+            DefaultPatchCategories.CLEAN_FIX_FULL,
+            DefaultPatchCategories.CLEAN_FIX_PARTIAL,
+            DefaultPatchCategories.NOISY_FIX_FULL,
+            DefaultPatchCategories.NOISY_FIX_PARTIAL
     ));
 
     static HashSet<PatchCategory> BAD_PATCHES = new HashSet(Arrays.asList(
@@ -34,27 +43,19 @@ public class Patch implements Comparable {
             DefaultPatchCategories.NEG_FIX
     ));
 
-    final private Stats statistics;
-
-    public double priority = 0;
-    public int id = 0;
-
-    public Collection<String> modifiedElements;
-    public PatchCharacteristic pChar;
-
-    public Patch(Collection<String> elements, PatchCharacteristic pchar, int id, String m) {
+    public Patch(PatchCharacteristic pchar, int id, String m) {
         this.statistics = new Stats(m);
-        this.modifiedElements = elements;
 
         this.pChar = pchar;
         this.id = id;
+        this.orderingID = id;
     }
 
     public Patch(Patch p) {
         this.statistics = new Stats(p.statistics);
-        this.modifiedElements = p.modifiedElements;
         this.pChar = p.pChar;
         this.id = p.id;
+        this.orderingID = p.getOrderingID();
     }
 
     @Override
@@ -62,10 +63,9 @@ public class Patch implements Comparable {
         Patch po = (Patch) o;
 
         if (this.priority == po.priority) {
-            return Integer.compare(this.id, po.id);
+            return Integer.compare(this.orderingID, po.orderingID);
         } else {
             return Double.compare(po.priority, this.priority);
-
         }
     }
 
@@ -86,9 +86,9 @@ public class Patch implements Comparable {
             }
         } else {
             if (GOOD_PATCHES.contains(comparisonPatch)) { // differs from high-quality patch characteristic
-                statistics.addFalseNegative();
-            } else if (BAD_PATCHES.contains(comparisonPatch)) { // differs from low-quality patch characteristic
                 statistics.addFalsePositive();
+            } else if (BAD_PATCHES.contains(comparisonPatch)) { // differs from low-quality patch characteristic
+                statistics.addFalseNegative();
             }
         }
 
@@ -97,8 +97,16 @@ public class Patch implements Comparable {
         this.priority = statistics.getPrimaryValue();
     }
 
+    public void setOrderingID(int newOrder) {
+        this.orderingID = newOrder;
+    }
+
+    public int getOrderingID() {
+        return orderingID;
+    }
+
     public enum ComparisonOperator {
-        EQ, NEQ, LT, LTE, GT, GTE, CONTAIN_COLLECTION, NOT_CONTAIN_COLLECTION, CONTAIN_ELEMENT, NOT_CONTAIN_ELEMENT
+        EQ, NEQ, LT, LTE, GT, GTE, CONTAIN_COLLECTION, NOT_CONTAIN_COLLECTION, CONTAIN_ELEMENT, NOT_CONTAIN_ELEMENT, ELEMENT_COMPARISON
     }
 
     public void prioritizePatch(PatchCategory pc, String key, Object value, ComparisonOperator co) throws Exception {
@@ -106,20 +114,43 @@ public class Patch implements Comparable {
         Object data = this.pChar.characteristics.get(key);
 
         if (data instanceof Collection) {
+            Collection colData = (Collection) data;
             if (co.equals(ComparisonOperator.CONTAIN_COLLECTION)) {
                 if (data instanceof Collection) {
-                    Collection colData = (Collection) data;
-                    adjustStats((colData.contains(data)));
+
+                    adjustStats((colData.contains(value)));
                 }
             } else if (co.equals(ComparisonOperator.NOT_CONTAIN_COLLECTION)) {
                 if (data instanceof Collection) {
-                    Collection colData = (Collection) data;
-                    adjustStats(!colData.contains(data));
+
+                    adjustStats(!colData.contains(value));
                 }
             } else if (co.equals(ComparisonOperator.CONTAIN_ELEMENT)) {
-                adjustStats(!Collections.disjoint((Collection) value, (Collection) data));
+                adjustStats(!Collections.disjoint((Collection) value, colData));
             } else if (co.equals(ComparisonOperator.NOT_CONTAIN_ELEMENT)) {
-                adjustStats(Collections.disjoint((Collection) value, (Collection) data));
+                adjustStats(Collections.disjoint((Collection) value, colData));
+            } else if (co.equals(ComparisonOperator.ELEMENT_COMPARISON)) {
+                Set intersection = new TreeSet();
+                Set difference = new TreeSet();
+
+                Set dataSet = new TreeSet(colData);
+                Set valueSet = new TreeSet((Collection) value);
+
+                intersection.addAll(colData);
+                intersection.retainAll(valueSet);
+
+                for (Object o : intersection) {
+                    adjustStats(true);
+                }
+
+                difference.addAll(dataSet);
+                difference.addAll(valueSet);
+                difference.removeAll(intersection);
+
+                for (Object o : difference) {
+                    adjustStats(false);
+                }
+
             }
         } else if (data instanceof Comparable) {
             Comparable comData = (Comparable) data;

@@ -32,17 +32,22 @@ public class GenerateComparisonStatistics {
 
         Tool t;
         String toolFamilyName = args[2].trim().toLowerCase();
-
+        String g = "method";
+        
+        if(args.length >= 5){
+            g = args[4];
+        }
+        
         if (toolFamilyName.equals("arja")) {
-            t = new Arja(toolDirectory);
+            t = new Arja(toolDirectory, g);
         } else if (toolFamilyName.equals("astor")) {
-            t = new Astor(toolDirectory);
+            t = new Astor(toolDirectory, g);
         } else if (toolFamilyName.equals("nopol")) {
-            t = new Nopol(toolDirectory);
+            t = new Nopol(toolDirectory, g);
         } else if (toolFamilyName.equals("simfix")) {
-            t = new Simfix(toolDirectory);
+            t = new Simfix(toolDirectory, g);
         } else if (toolFamilyName.equals("tbar")) {
-            t = new Tbar(toolDirectory);
+            t = new Tbar(toolDirectory, g);
         } else {
             System.out.println("Failed to detect correct tool name");
             return;
