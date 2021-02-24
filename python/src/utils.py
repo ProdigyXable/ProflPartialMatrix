@@ -8,6 +8,8 @@ def compute_score(tP, fP, tN, fN, stats):
     tN = float(tN)
     fN = float(fN)
 
+    epsilon = 0.00001
+
     predicted_positive = tP + fP
     predicted_negative = tN + fN
 
@@ -70,25 +72,25 @@ def compute_score(tP, fP, tN, fN, stats):
         return tP / (tP + fN + fP)
 
     elif stats == "Tarantula":
-        return (ef / (ef + nf)) / ((ef / (ef + nf)) + (ep / (ep + np)))
+        return (ef / (ef + nf + epsilon)) / ((ef / (ef + nf + epsilon)) + (ep / (ep + np + epsilon)) + epsilon)
 
     elif stats == "Ochiai":
-        return ef / math.sqrt((ef + ep) * (ef + nf))
+        return ef / (math.sqrt((ef + ep) * (ef + nf)) + epsilon)
 
     elif stats == "Ochiai2":
-        return ef * np / math.sqrt((ef + ep) * (nf + np) * (ef + np) * (nf + ep))
+        return ef * np / (math.sqrt((ef + ep) * (nf + np) * (ef + np) * (nf + ep)) + epsilon)
 
     elif stats == "Op2":
         return ef - ep / (ep + np + 1)
 
     elif stats == "SBI":
-        return 1 - ep / (ep + ef)
+        return 1 - ep / (ep + ef + epsilon)
 
     elif stats == "Jaccard":
-        return ef / (ef + ep + nf)
+        return ef / (ef + ep + nf + epsilon)
 
     elif stats == "Kulczynski":
-        return ef / (nf + ep)
+        return ef / (nf + ep + epsilon)
 
     elif stats == "Dstar2":
-        return ef * ef / (ep + nf)
+        return ef * ef / (ep + nf + epsilon)

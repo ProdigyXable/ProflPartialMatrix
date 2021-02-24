@@ -1,6 +1,7 @@
 import os
 import json
 from pprint import pprint
+from utils import compute_score
 import math
 
 
@@ -15,131 +16,15 @@ PATCH_CATEGORY_QUALITY_DICT ={
 
 
 STATS = [
-    # "prevalence",
-    # "accuracy",
-    # "recall",
-    # "missRate",
-    # "specificity",
-    # "fallOut",
-    # "precision",
-    # "falseDiscoveryRate",
-    # "negativePredictiveRate",
-    # "falseOmissionRate",
-    # "positiveLikelihood",
-    # "negativeLikelihood",
-    # "diagnosticOdds",
-    # "fScore",
-    # "threatScore",
-    # "Tarantula",
+    "Tarantula",
     "Ochiai",
-    # "Ochiai2",
-    # "Op2",
-    # "SBI",
-    # "Jaccard",
-    # "Kulczynski",
-    # "Dstar2",
+    "Ochiai2",
+    "Op2",
+    "SBI",
+    "Jaccard",
+    "Kulczynski",
+    "Dstar2",
 ]
-
-
-def compute_score(tP, fP, tN, fN, stats):
-    # this is moved from ProflPartialMatrix/src/main/java/com/mycompany/patchstatistics/Stats.java
-    tP = float(tP)
-    fP = float(fP)
-    tN = float(tN)
-    fN = float(fN)
-
-    predicted_positive = tP + fP
-    predicted_negative = tN + fN
-
-    actual_positive = tP + fN
-    actual_negative = fP + tN
-
-    total = tP + tN + fP + fN
-
-    prevalence = (actual_positive) / (total)
-    accuracy = (tP + tN) / (total)
-
-    recall = (tP) / (actual_positive)
-    missRate = (fN) / (actual_positive)
-
-    specificity = (tN) / (actual_negative)
-    fallOut = (fP) / (actual_negative)
-
-    precision = (tP) / (predicted_positive)
-    falseDiscoveryRate = (fP) / (predicted_positive)
-
-    negativePredictiveRate = (tN) / (predicted_negative)
-    falseOmissionRate = (fN) / (predicted_negative)
-
-    positiveLikelihood = recall / fallOut
-    negativeLikelihood = missRate / specificity
-
-    diagnosticOdds = positiveLikelihood / negativeLikelihood
-    fScore = (2 * (precision * recall)) / (precision + recall)
-
-    threatScore = (tP) / (tP + fN + fP)
-
-    # SBFL
-    ef = tP
-    ep = tN
-    nf = fP
-    np = fN
-
-    Tarantula = (ef / (ef + nf)) / ((ef / (ef + nf)) + (ep / (ep + np)))
-    Ochiai = ef / math.sqrt((ef + ep) * (ef + nf))
-    Ochiai2 = ef * np / math.sqrt((ef + ep) * (nf + np) * (ef + np) * (nf + ep))
-    Op2 = ef - ep / (ep + np + 1)
-    SBI = 1 - ep / (ep + ef)
-    Jaccard = ef / (ef + ep + nf)
-    Kulczynski = ef / (nf + ep)
-    Dstar2 = ef * ef / (ep + nf)
-
-    if stats == "prevalence":
-        return prevalence
-    elif stats == "accuracy":
-        return accuracy
-    elif stats == "recall":
-        return recall
-    elif stats == "missRate":
-        return missRate
-    elif stats == "specificity":
-        return specificity
-    elif stats == "fallOut":
-        return fallOut
-    elif stats == "precision":
-        return precision
-    elif stats == "falseDiscoveryRate":
-        return falseDiscoveryRate
-    elif stats == "negativePredictiveRate":
-        return negativePredictiveRate
-    elif stats == "falseOmissionRate":
-        return falseOmissionRate
-    elif stats == "positiveLikelihood":
-        return positiveLikelihood
-    elif stats == "negativeLikelihood":
-        return negativeLikelihood
-    elif stats == "diagnosticOdds":
-        return diagnosticOdds
-    elif stats == "fScore":
-        return fScore
-    elif stats == "threatScore":
-        return threatScore
-    elif stats == "Tarantula":
-        return Tarantula
-    elif stats == "Ochiai":
-        return Ochiai
-    elif stats == "Ochiai2":
-        return Ochiai2
-    elif stats == "Op2":
-        return Op2
-    elif stats == "SBI":
-        return SBI
-    elif stats == "Jaccard":
-        return Jaccard
-    elif stats == "Kulczynski":
-        return Kulczynski
-    elif stats == "Dstar2":
-        return Dstar2
 
 
 class PatchRerankerSamApproach:
