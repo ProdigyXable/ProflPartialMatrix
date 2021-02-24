@@ -289,7 +289,7 @@ class PatchRerankerSamApproach:
                     result_dict[project][version_id] = {
                         "gt": baseline_data[project][version_id]["plausible_patch_rank"],
                         "eval": num_trials,
-                        # "patch_exec_order": patch_exec_order,
+                        "patch_exec_order": visited_patch_id_list,
                     }
 
         return result_dict
