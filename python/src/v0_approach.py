@@ -212,7 +212,8 @@ if __name__ == "__main__":
     output_dir = os.path.abspath("../eval/sam_approach_for_paper")
     stat = "Ochiai"
 
-    for data_type in ["partial", "full"]:
-        pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, stats=stat, set_diff="asym", data_type=data_type)
-        pr.read_baselines()
-        pr.run_all_tools()
+    for stat in STATS:
+        for data_type in ["partial", "full"]:
+            pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, stats=stat, set_diff="asym", data_type=data_type)
+            pr.read_baselines()
+            pr.run_all_tools()
