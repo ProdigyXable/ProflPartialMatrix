@@ -269,13 +269,13 @@ if __name__ == "__main__":
     default_entity_level = "method"
     NUM_THREADS = 8
 
-    CLEANDATA_dir = os.path.abspath("/filesystem/patch_ranking/ProflPartialMatrix/python/data/prapr/yiling_cleaned_data/output")
-    ALLDATA_dir = os.path.abspath("/filesystem/patch_ranking/ProflPartialMatrix/python/data/prapr/yiling_data/output")
+    CLEANDATA_dir = os.path.abspath("/filesystem/patch_ranking/ProflPartialMatrix/python/data/prapr/yiling_cleaned_data_v1/output")
+    ALLDATA_dir = os.path.abspath("/filesystem/patch_ranking/ProflPartialMatrix/python/data/prapr/yiling_data_v1/output")
 
     # A. PART-1 CLEAN DATA
     # 1. multi formulas
     for formula in FORMULAS:
-        output_dir = os.path.abspath("eval/CLEANDATA_{}_{}_{}".format(default_data_type, default_entity_level, formula))
+        output_dir = os.path.abspath("eval_rerun/CLEANDATA_{}_{}_{}".format(default_data_type, default_entity_level, formula))
         pr = PatchRerankerSamApproach(
             CLEANDATA_dir,
             output_dir,
@@ -288,7 +288,7 @@ if __name__ == "__main__":
 
     # 2. multi entity_levels
     for modified_entity_level_i in ["class", "package", "method", "statement"]:
-        output_dir = os.path.abspath("eval/CLEANDATA_{}_{}_{}".format(default_data_type, modified_entity_level_i, default_formula))
+        output_dir = os.path.abspath("eval_rerun/CLEANDATA_{}_{}_{}".format(default_data_type, modified_entity_level_i, default_formula))
         pr = PatchRerankerSamApproach(
             CLEANDATA_dir,
             output_dir,
@@ -301,7 +301,7 @@ if __name__ == "__main__":
 
     # 3. multi entity_levels
     data_type_need_to_test = "full" if default_data_type == "partial" else "partial"
-    output_dir = os.path.abspath("eval/CLEANDATA_{}_{}_{}".format(data_type_need_to_test, default_entity_level, default_formula))
+    output_dir = os.path.abspath("eval_rerun/CLEANDATA_{}_{}_{}".format(data_type_need_to_test, default_entity_level, default_formula))
     pr = PatchRerankerSamApproach(
         CLEANDATA_dir,
         output_dir,
@@ -313,42 +313,42 @@ if __name__ == "__main__":
     pr.run_all()
 
 
-    # B. PART-1 ALL DATA
-    # 1. multi formulas
-    for formula in FORMULAS:
-        output_dir = os.path.abspath("eval/ALLDATA_{}_{}_{}".format(default_data_type, default_entity_level, formula))
-        pr = PatchRerankerSamApproach(
-            ALLDATA_dir,
-            output_dir,
-            formula=formula,
-            matrix_type=default_data_type,
-            modified_entity_level=default_entity_level,
-            num_threads=NUM_THREADS,
-        )
-        pr.run_all()
+    # # B. PART-1 ALL DATA
+    # # 1. multi formulas
+    # for formula in FORMULAS:
+    #     output_dir = os.path.abspath("eval/ALLDATA_{}_{}_{}".format(default_data_type, default_entity_level, formula))
+    #     pr = PatchRerankerSamApproach(
+    #         ALLDATA_dir,
+    #         output_dir,
+    #         formula=formula,
+    #         matrix_type=default_data_type,
+    #         modified_entity_level=default_entity_level,
+    #         num_threads=NUM_THREADS,
+    #     )
+    #     pr.run_all()
 
-    # 2. multi entity_levels
-    for modified_entity_level_i in ["class", "package", "method", "statement"]:
-        output_dir = os.path.abspath("eval/ALLDATA_{}_{}_{}".format(default_data_type, modified_entity_level_i, default_formula))
-        pr = PatchRerankerSamApproach(
-            ALLDATA_dir,
-            output_dir,
-            formula=default_formula,
-            matrix_type=default_data_type,
-            modified_entity_level=modified_entity_level_i,
-            num_threads=NUM_THREADS,
-        )
-        pr.run_all()
+    # # 2. multi entity_levels
+    # for modified_entity_level_i in ["class", "package", "method", "statement"]:
+    #     output_dir = os.path.abspath("eval/ALLDATA_{}_{}_{}".format(default_data_type, modified_entity_level_i, default_formula))
+    #     pr = PatchRerankerSamApproach(
+    #         ALLDATA_dir,
+    #         output_dir,
+    #         formula=default_formula,
+    #         matrix_type=default_data_type,
+    #         modified_entity_level=modified_entity_level_i,
+    #         num_threads=NUM_THREADS,
+    #     )
+    #     pr.run_all()
 
-    # 3. multi entity_levels
-    data_type_need_to_test = "full" if default_data_type == "partial" else "partial"
-    output_dir = os.path.abspath("eval/ALLDATA_{}_{}_{}".format(data_type_need_to_test, default_entity_level, default_formula))
-    pr = PatchRerankerSamApproach(
-        ALLDATA_dir,
-        output_dir,
-        formula=default_formula,
-        matrix_type=data_type_need_to_test,
-        modified_entity_level=default_entity_level,
-        num_threads=NUM_THREADS,
-    )
-    pr.run_all()
+    # # 3. multi entity_levels
+    # data_type_need_to_test = "full" if default_data_type == "partial" else "partial"
+    # output_dir = os.path.abspath("eval/ALLDATA_{}_{}_{}".format(data_type_need_to_test, default_entity_level, default_formula))
+    # pr = PatchRerankerSamApproach(
+    #     ALLDATA_dir,
+    #     output_dir,
+    #     formula=default_formula,
+    #     matrix_type=data_type_need_to_test,
+    #     modified_entity_level=default_entity_level,
+    #     num_threads=NUM_THREADS,
+    # )
+    # pr.run_all()
