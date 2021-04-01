@@ -64,6 +64,11 @@ class BaselineGeneration:
 
 if __name__ == "__main__":
     data_dir = os.path.abspath("../parsed_data/full")
-    output_dir = os.path.abspath("../baselines")
+    output_dir = os.path.abspath("../baselines/full")
+    bg = BaselineGeneration(data_dir, output_dir)
+    bg.run_all()
+
+    data_dir = os.path.abspath("../parsed_data/partial")
+    output_dir = os.path.abspath("../baselines/partial")
     bg = BaselineGeneration(data_dir, output_dir)
     bg.run_all()
