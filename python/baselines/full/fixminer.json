@@ -1,0 +1,102 @@
+{
+    "Chart": {
+        "13": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 278
+        },
+        "26": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 483
+        },
+        "24": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 6
+        },
+        "4": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 386
+        },
+        "11": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 128
+        },
+        "15": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 14
+        }
+    },
+    "Lang": {
+        "63": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 3
+        },
+        "59": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 1
+        },
+        "61": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 82
+        },
+        "49": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 67
+        },
+        "57": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 4
+        },
+        "44": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 23
+        },
+        "58": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 47
+        },
+        "22": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 77
+        },
+        "43": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 25
+        }
+    },
+    "Closure": {},
+    "Time": {
+        "11": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 16
+        },
+        "14": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 100
+        },
+        "16": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 5
+        },
+        "23": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 39
+        },
+        "24": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 60
+        },
+        "22": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 39
+        },
+        "26": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 39
+        },
+        "25": {
+            "plausible_patch_found": true,
+            "plausible_patch_rank": 39
+        }
+    },
+    "Mockito": {}
+}
