@@ -6,6 +6,7 @@
 package com.mycompany.patchstatistics;
 
 import java.io.File;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -17,6 +18,12 @@ public class UnifiedPatchFile implements Comparable<UnifiedPatchFile> {
     final File test;
     int itemID;
     int sortingID;
+
+    JSONObject jsonString;
+
+    public JSONObject getJSON() {
+        return jsonString;
+    }
 
     public File getPatch() {
         return patch;
@@ -32,6 +39,15 @@ public class UnifiedPatchFile implements Comparable<UnifiedPatchFile> {
 
     public File getTest() {
         return test;
+    }
+
+    public UnifiedPatchFile(JSONObject jsonString, String name) {
+        this.patch = null;
+        this.test = null;
+        this.jsonString = jsonString;
+
+        itemID = Integer.valueOf(name);
+        sortingID = itemID;
     }
 
     public UnifiedPatchFile(File patch, File test, String name) {

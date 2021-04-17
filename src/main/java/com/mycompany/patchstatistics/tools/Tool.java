@@ -28,36 +28,12 @@ import utdallas.edu.profl.replicate.patchcategory.PatchCategory;
  */
 public abstract class Tool implements ToolInterface {
 
-    abstract void validateUPF();
+    private final String CONSTANT_ff = "[Fail->Fail]";
+    private final String CONSTANT_fp = "[Fail->Pass]";
+    private final String CONSTANT_pf = "[Pass->Fail]";
+    private final String CONSTANT_pp = "[Pass->Pass]";
 
-    static void setGran(String gran) {
-        if (gran.equals("package")) {
-            techniqueGranularity = GRANULARITY.PACKAGE;
-        } else if (gran.equals("class")) {
-            techniqueGranularity = GRANULARITY.CLASS;
-        } else if (gran.equals("statement")) {
-            techniqueGranularity = GRANULARITY.STATEMENT;
-        } else {
-            techniqueGranularity = GRANULARITY.METHOD;
-        }
-    }
-
-    public enum METRICS {
-        PLAUSIBLE, P_INC, INCORRECT, LOW_QUALITY, HIGH_QUALITY
-    }
-
-    public enum GRANULARITY {
-        PACKAGE, CLASS, METHOD, STATEMENT
-    }
-
-    // Determines which 
-    public Set<METRICS> ACTIVE_METRICS = new TreeSet(Arrays.asList(
-//            METRICS.P_INC,
-//            METRICS.INCORRECT,
-//            METRICS.HIGH_QUALITY,
-//            METRICS.LOW_QUALITY,
-            METRICS.PLAUSIBLE
-    ));
+    final boolean useFullMatrixDetection = !false;
 
     final int DEFAULT_BASELINE = -1000;
     int originalBaseline = DEFAULT_BASELINE;
@@ -69,7 +45,25 @@ public abstract class Tool implements ToolInterface {
     static public String MODIFIED_GRANULARITY = "ModifiedElementGranularity";
 
     TreeMap<METRICS, TreeMap<Integer, LinkedList<Integer>>> potentialQueriedPatches = new TreeMap();
-    LinkedList<Integer> queriedPatches = new LinkedList();
+
+    abstract void validateUPF();
+
+    public enum METRICS {
+        PLAUSIBLE, P_INC, INCORRECT, LOW_QUALITY, HIGH_QUALITY
+    }
+
+    public enum GRANULARITY {
+        PACKAGE, CLASS, METHOD, STATEMENT
+    }
+
+    // Determines which 
+    public Set<METRICS> ACTIVE_METRICS = new TreeSet(Arrays.asList(
+            //            METRICS.P_INC,
+            //            METRICS.INCORRECT,
+            //            METRICS.HIGH_QUALITY,
+            //            METRICS.LOW_QUALITY,
+            METRICS.PLAUSIBLE
+    ));
 
     Collection<String> incorrectMethods;
 
@@ -104,10 +98,10 @@ public abstract class Tool implements ToolInterface {
         for (File f : dir.listFiles()) {
             if (f.getName().equals("patches")) {
                 // Load patch folder
-                toolPatchFiles = new TreeSet(Arrays.asList(f.listFiles()));
+                toolPatchFiles = new TreeSet(Arrays.asList(f.listFiles((file) -> !file.getName().contains(".swp"))));
             } else if (f.getName().equals("tests")) {
                 // Load test folder
-                toolTestFiles = new TreeSet(Arrays.asList(f.listFiles()));
+                toolTestFiles = new TreeSet(Arrays.asList(f.listFiles((file) -> !file.getName().contains(".swp"))));
             }
         }
 
@@ -117,17 +111,29 @@ public abstract class Tool implements ToolInterface {
         return;
     }
 
-    protected double displacement(int oldBaseline, int newBaseline){
+    static void setGran(String gran) {
+        if (gran.equals("package")) {
+            techniqueGranularity = GRANULARITY.PACKAGE;
+        } else if (gran.equals("class")) {
+            techniqueGranularity = GRANULARITY.CLASS;
+        } else if (gran.equals("statement")) {
+            techniqueGranularity = GRANULARITY.STATEMENT;
+        } else {
+            techniqueGranularity = GRANULARITY.METHOD;
+        }
+    }
+
+    protected double displacement(int oldBaseline, int newBaseline) {
         return (0.0 + oldBaseline - newBaseline) / (oldBaseline);
     }
-    
+
     /**
      * Returns the a file's name without the extension
      *
      * @param file
      * @return
      */
-    private String getJustName(File file) {
+    String getJustName(File file) {
         if (file.getName().contains(".")) {
             return file.getName().substring(0, file.getName().indexOf("."));
         } else {
@@ -218,8 +224,7 @@ public abstract class Tool implements ToolInterface {
             pc = new PatchCategory(DefaultPatchCategories.NOISY_FIX_PARTIAL.getCategoryPriority() - 1, "NoisyFix");
         } else {
             pc = null;
-            System.out.println("Could not properly process patch category");
-            System.out.println(s);
+            System.out.println(String.format("Could not properly process patch category - %s", s));
         }
 
         return pc;
@@ -231,11 +236,15 @@ public abstract class Tool implements ToolInterface {
 
         // Iteration through each metric in the ACTIVE_METRICS set
         for (METRICS m : this.ACTIVE_METRICS) {
+            LinkedList<Integer> queriedPatches = new LinkedList();
 
             if (!this.potentialQueriedPatches.get(m).isEmpty()) {
                 Integer lastKey = this.potentialQueriedPatches.get(m).lastKey();
-                this.queriedPatches = this.potentialQueriedPatches.get(m).get(lastKey);
-            } else {
+                queriedPatches = this.potentialQueriedPatches.get(m).get(lastKey);
+            }
+
+            if (queriedPatches.isEmpty()) {
+                continue; // shortcut
             }
 
             // Manipulate patches; promoting high-quality and/or demoting lower-quality
@@ -245,14 +254,14 @@ public abstract class Tool implements ToolInterface {
 
             // Establish original baseline
             for (int i = 0; i < this.patchSetOrderingOld.size(); i++) {
-                if (this.originalBaseline == this.DEFAULT_BASELINE && this.queriedPatches.contains(this.patchSetOrderingOld.get(i).id)) {
+                if (this.originalBaseline == this.DEFAULT_BASELINE && queriedPatches.contains(this.patchSetOrderingOld.get(i).id)) {
                     this.originalBaseline = 1 + i;
                 }
             }
 
             // Establish new baseline
             for (int i = 0; i < this.patchSetOrderingNew.size(); i++) {
-                for (Integer pid : this.queriedPatches) {
+                for (Integer pid : queriedPatches) {
                     if (this.patchSetOrderingNew.get(i).id == pid && this.newBaseline == DEFAULT_BASELINE) {
                         this.newBaseline = 1 + i;
                         patchCategory = this.patchSetOrderingNew.get(i).pChar.pc;
@@ -268,7 +277,14 @@ public abstract class Tool implements ToolInterface {
             }
 
             if (!patchCategoryString.equals("N/A") && this.originalBaseline != DEFAULT_BASELINE) {
-                System.out.println(String.format("%d, %d, %d, %f, %s, %s, METRIC-%s", this.originalBaseline, this.newBaseline, (this.newBaseline - this.originalBaseline), this.displacement(originalBaseline, newBaseline), patchCategoryString, this.projectID, m.name()));
+                System.out.println(String.format("%d, %d, %d, %f, %s, %s, METRIC-%s",
+                        this.originalBaseline,
+                        this.newBaseline,
+                        this.newBaseline - this.originalBaseline,
+                        this.displacement(originalBaseline, newBaseline),
+                        patchCategoryString,
+                        this.projectID, m.name()
+                ));
             }
 
             this.reset();
@@ -282,6 +298,8 @@ public abstract class Tool implements ToolInterface {
     }
 
     void loadPatches(String metric) throws Exception {
+
+        boolean earlyQuit = true;
         this.statMetric = metric;
         TreeMap<Integer, Patch> sortedMap = new TreeMap();
 
@@ -289,11 +307,20 @@ public abstract class Tool implements ToolInterface {
 
             UnifiedPatchFile upf = this.unifiedPatchFiles.get(i);
 
-            Collection<String> modifiedMethods = this.getAttemptModifiedElements(upf);
+            Collection<String> modifiedStatements = this.getAttemptModifiedElements(upf);
+
+            Collection<String> modifiedMethods = new TreeSet();
 
             Collection<String> modifiedClasses = new TreeSet();
+
+            for (String m : modifiedStatements) {
+                String buffer = m.substring(0, m.lastIndexOf("#"));
+                modifiedMethods.add(buffer);
+            }
+
             for (String m : modifiedMethods) {
                 String buffer = m.substring(0, m.lastIndexOf("."));
+
                 modifiedClasses.add(buffer);
             }
 
@@ -304,8 +331,16 @@ public abstract class Tool implements ToolInterface {
             }
 
             PatchCharacteristic pChar = this.getAttemptPatchCharacteristics(upf);
+            PatchCategory pc = pChar.pc;
+
+            if (pc == null) {
+                continue;
+            }
+
             pChar.defineCharacteristic(Tool.MODIFIED_GRANULARITY, new HashSet());
-            if (this.techniqueGranularity.equals(GRANULARITY.METHOD)) {
+            if (this.techniqueGranularity.equals(GRANULARITY.STATEMENT)) {
+                pChar.addElementToCharacteristic(Tool.MODIFIED_GRANULARITY, modifiedStatements); // Set modified methods / code elements per patch
+            } else if (this.techniqueGranularity.equals(GRANULARITY.METHOD)) {
                 pChar.addElementToCharacteristic(Tool.MODIFIED_GRANULARITY, modifiedMethods); // Set modified methods / code elements per patch
             } else if (this.techniqueGranularity.equals(GRANULARITY.CLASS)) {
                 pChar.addElementToCharacteristic(Tool.MODIFIED_GRANULARITY, modifiedClasses); // Set modified methods / code elements per patch
@@ -313,13 +348,12 @@ public abstract class Tool implements ToolInterface {
                 pChar.addElementToCharacteristic(Tool.MODIFIED_GRANULARITY, modifiedPackages); // Set modified methods / code elements per patch
             }
 
-            PatchCategory pc = pChar.pc;
             Integer id = upf.getItemID();
 
             Patch patch = new Patch(pChar, id, metric);
             sortedMap.put(patch.getOrderingID(), patch);
 
-            if (pc != null) {
+            if (true || pc != null) {
                 for (METRICS m : this.ACTIVE_METRICS) {
                     if (m.equals(METRICS.INCORRECT)) {
                         for (String modifiedMethod : modifiedMethods) {
@@ -360,8 +394,16 @@ public abstract class Tool implements ToolInterface {
                             }
                         }
                     }
+
+                    if (!this.potentialQueriedPatches.get(m).isEmpty()) {
+                        earlyQuit = false;
+                    }
                 }
             }
+        }
+
+        if (earlyQuit) {
+            System.exit(-10);
         }
 
         for (Integer key : sortedMap.keySet()) {
@@ -385,9 +427,9 @@ public abstract class Tool implements ToolInterface {
         for (int i = 0; i < originalSize; i++) {
             // Pop lowest priority patch
             Patch poppedPatch = patchSetDuplicate.pop();
-
             // Save + maintain order of popped patches
             poppedPatch.setOrderingID(i);
+            // System.out.println(String.format("\t%d, %s, %s", poppedPatch.id, poppedPatch.pChar.pc.getCategoryName(), poppedPatch.getStatisticsString())); // DEBUG
 
             this.patchSetOrderingNew.add(poppedPatch);
             LinkedList<Integer> data = new LinkedList();
@@ -395,7 +437,6 @@ public abstract class Tool implements ToolInterface {
             if (!this.potentialQueriedPatches.get(m).isEmpty()) {
                 Integer lastKey = this.potentialQueriedPatches.get(m).lastKey();
                 data = this.potentialQueriedPatches.get(m).get(lastKey);
-
             }
 
             if (data.contains(poppedPatch.id)) {
@@ -415,9 +456,9 @@ public abstract class Tool implements ToolInterface {
                         } else {
                             p.prioritizePatch(pc, key, poppedPatch.pChar.getCharacteristic(key), Patch.ComparisonOperator.EQ);
                         }
-
-                        p.finalizeStatAdjustments(pc);
                     }
+
+                    // System.out.println(String.format("\t%d, [%s], %s", p.id, pc.getCategoryName(), p.getStatisticsString()));
                 }
             }
 
@@ -434,9 +475,75 @@ public abstract class Tool implements ToolInterface {
             for (int order = 0; order < collection.size(); order++) {
                 collection.get(order).setOrderingID(order);
             }
+
+            // Sorts according to orderingID
+            Collections.sort(collection);
+        }
+    }
+
+    PatchCategory getPatchCat(Collection<String> fileTestData, boolean usePartialMatrix) {
+
+        Collection<String> failing = new TreeSet();
+        Collection<String> passing = new TreeSet();
+        PatchCategory result;
+
+        int ff = 0;
+        int fp = 0;
+        int pf = 0;
+        int pp = 0;
+
+        boolean stop = false;
+
+        for (String item : fileTestData) {
+            if (item.contains("Fail->")) {
+                failing.add(String.format("%s %s", item.split(" ")[1], item.split(" ")[0]));
+            } else if (item.contains("Pass->")) {
+                passing.add(String.format("%s %s", item.split(" ")[1], item.split(" ")[0]));
+            }
         }
 
-        // Sorts according to sortingID
-        Collections.sort(collection);
+        for (String s : failing) {
+            if (!stop) {
+                if (s.contains(this.CONSTANT_ff)) {
+                    ff += 1;
+                    stop = usePartialMatrix;
+                } else if (s.contains(this.CONSTANT_fp)) {
+                    fp += 1;
+                }
+            }
+        }
+
+        for (String s : passing) {
+            if (!stop) {
+                if (s.contains(this.CONSTANT_pf)) {
+                    pf += 1;
+                    stop = usePartialMatrix;
+                } else if (s.contains(this.CONSTANT_pp)) {
+                    pp += 1;
+                }
+            }
+        }
+
+        if (fp > 0 && pf == 0) {
+            if (ff == 0) {
+                result = DefaultPatchCategories.CLEAN_FIX_FULL;
+            } else {
+                result = DefaultPatchCategories.CLEAN_FIX_PARTIAL;
+            }
+        } else if (fp > 0 && pf > 0) {
+            if (ff == 0) {
+                result = DefaultPatchCategories.NOISY_FIX_FULL;
+            } else {
+                result = DefaultPatchCategories.NOISY_FIX_PARTIAL;
+            }
+        } else if (fp == 0 && pf == 0) {
+            result = DefaultPatchCategories.NONE_FIX;
+        } else {
+            result = DefaultPatchCategories.NEG_FIX;
+        }
+
+        // System.out.println(String.format("%s %d, %d, %d, %d", result.getCategoryName(), ff, fp, pf, pp));
+        return result;
     }
+
 }

@@ -35,9 +35,11 @@ public class Arja extends Tool {
         for (String s : fileTestData) {
             if (stop == false) {
                 if (s.contains(this.delimiterMethod)) {
-                    result.add(s.split(Pattern.quote(this.delimiterMethod))[1].split(" at ")[0].trim());
+                    String[] data = s.split(Pattern.quote(this.delimiterMethod))[1].split(" at ");
+                    String buffer = String.format("%s#%s", data[0], data[1].split("=")[1]);
+                    result.add(buffer);
                 } else if (s.contains(this.delimiterStop)) {
-                    stop = true;
+                    // stop = true;
                 }
             }
         }
@@ -48,12 +50,8 @@ public class Arja extends Tool {
     public PatchCharacteristic getAttemptPatchCharacteristics(UnifiedPatchFile upf) throws Exception {
         Collection<String> fileTestData = this.readFileData(upf.getTest());
         PatchCharacteristic result = new PatchCharacteristic();
-
-        for (String s : fileTestData) {
-            if (s.contains(this.delimiterPatch)) {
-                result.pc = this.processPatchCategory(s);
-            }
-        }
+        
+        result.pc = super.getPatchCat(fileTestData, !this.useFullMatrixDetection);
         return result;
     }
 

@@ -21,10 +21,11 @@ import utdallas.edu.profl.replicate.patchcategory.PatchCategory;
 public class Patch implements Comparable {
 
     final private Stats statistics;
-    
-    int matchCount = 0;
-    int differCount = 0;
-  
+
+    public String getStatisticsString() {
+        return statistics.toString();
+    }
+
     public int id = 0;
     int orderingID = 0;
     double priority = 0;
@@ -63,38 +64,11 @@ public class Patch implements Comparable {
         Patch po = (Patch) o;
 
         if (this.priority == po.priority) {
+            // System.out.println(String.format("Deciding betweeen %d and %d (%s)", this.orderingID, po.orderingID, this.orderingID < po.orderingID ? this.id : po.id));
             return Integer.compare(this.orderingID, po.orderingID);
         } else {
             return Double.compare(po.priority, this.priority);
         }
-    }
-
-    private void addMatch() {
-        this.matchCount += 1;
-    }
-
-    private void addDifference() {
-        this.differCount += 1;
-    }
-
-    public void finalizeStatAdjustments(PatchCategory comparisonPatch) {
-        if (this.matchCount > this.differCount) {
-            if (GOOD_PATCHES.contains(comparisonPatch)) { // matches high-quality patch characteristic
-                statistics.addTruePositive();
-            } else if (BAD_PATCHES.contains(comparisonPatch)) { // matches low-quality patch characteristic
-                statistics.addTrueNegative();
-            }
-        } else {
-            if (GOOD_PATCHES.contains(comparisonPatch)) { // differs from high-quality patch characteristic
-                statistics.addFalsePositive();
-            } else if (BAD_PATCHES.contains(comparisonPatch)) { // differs from low-quality patch characteristic
-                statistics.addFalseNegative();
-            }
-        }
-
-        this.matchCount = 0;
-        this.differCount = 0;
-        this.priority = statistics.getPrimaryValue();
     }
 
     public void setOrderingID(int newOrder) {
@@ -118,17 +92,17 @@ public class Patch implements Comparable {
             if (co.equals(ComparisonOperator.CONTAIN_COLLECTION)) {
                 if (data instanceof Collection) {
 
-                    adjustStats((colData.contains(value)));
+                    adjustStats((colData.contains(value)), pc);
                 }
             } else if (co.equals(ComparisonOperator.NOT_CONTAIN_COLLECTION)) {
                 if (data instanceof Collection) {
 
-                    adjustStats(!colData.contains(value));
+                    adjustStats(!colData.contains(value), pc);
                 }
             } else if (co.equals(ComparisonOperator.CONTAIN_ELEMENT)) {
-                adjustStats(!Collections.disjoint((Collection) value, colData));
+                adjustStats(!Collections.disjoint((Collection) value, colData), pc);
             } else if (co.equals(ComparisonOperator.NOT_CONTAIN_ELEMENT)) {
-                adjustStats(Collections.disjoint((Collection) value, colData));
+                adjustStats(Collections.disjoint((Collection) value, colData), pc);
             } else if (co.equals(ComparisonOperator.ELEMENT_COMPARISON)) {
                 Set intersection = new TreeSet();
                 Set difference = new TreeSet();
@@ -140,7 +114,7 @@ public class Patch implements Comparable {
                 intersection.retainAll(valueSet);
 
                 for (Object o : intersection) {
-                    adjustStats(true);
+                    adjustStats(true, pc);
                 }
 
                 difference.addAll(dataSet);
@@ -148,7 +122,7 @@ public class Patch implements Comparable {
                 difference.removeAll(intersection);
 
                 for (Object o : difference) {
-                    adjustStats(false);
+                    adjustStats(false, pc);
                 }
 
             }
@@ -158,27 +132,39 @@ public class Patch implements Comparable {
             int comparison = comData.compareTo(comValue);
 
             if (co.equals(ComparisonOperator.EQ)) {
-                adjustStats(comparison == 0);
+                adjustStats(comparison == 0, pc);
             } else if (co.equals(ComparisonOperator.GTE)) {
-                adjustStats(comparison >= 0);
+                adjustStats(comparison >= 0, pc);
             } else if (co.equals(ComparisonOperator.LTE)) {
-                adjustStats(comparison <= 0);
+                adjustStats(comparison <= 0, pc);
             } else if (co.equals(ComparisonOperator.NEQ)) {
-                adjustStats(comparison != 0);
+                adjustStats(comparison != 0, pc);
             } else if (co.equals(ComparisonOperator.GT)) {
-                adjustStats(comparison > 0);
+                adjustStats(comparison > 0, pc);
             } else if (co.equals(ComparisonOperator.LT)) {
-                adjustStats(comparison < 0);
+                adjustStats(comparison < 0, pc);
             }
         }
+
+        this.priority = this.statistics.getPrimaryValue();
     }
 
-    void adjustStats(boolean characteristicMatches) {
-        if (characteristicMatches) { // patch characteristic matches
-            addMatch();
-        } else { // patch characteristic differs
-            addDifference();
+    void adjustStats(boolean characteristicMatches, PatchCategory validatingPatCat) {
+
+        if (GOOD_PATCHES.contains(validatingPatCat)) { // matches high-quality patch characteristic
+            if (characteristicMatches) {
+                this.statistics.addTruePositive();
+            } else {
+                this.statistics.addFalsePositive();
+            }
+        } else if (BAD_PATCHES.contains(validatingPatCat)) {
+            if (characteristicMatches) {
+                this.statistics.addTrueNegative();
+            } else {
+                this.statistics.addFalseNegative();
+            }
         }
+
     }
 
 }

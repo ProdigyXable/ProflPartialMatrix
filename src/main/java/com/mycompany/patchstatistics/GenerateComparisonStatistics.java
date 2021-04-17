@@ -7,6 +7,7 @@ package com.mycompany.patchstatistics;
 
 import com.mycompany.patchstatistics.tools.Arja;
 import com.mycompany.patchstatistics.tools.Astor;
+import com.mycompany.patchstatistics.tools.JsonTool;
 import com.mycompany.patchstatistics.tools.Nopol;
 import com.mycompany.patchstatistics.tools.Simfix;
 import com.mycompany.patchstatistics.tools.Tbar;
@@ -33,11 +34,11 @@ public class GenerateComparisonStatistics {
         Tool t;
         String toolFamilyName = args[2].trim().toLowerCase();
         String g = "method";
-        
-        if(args.length >= 5){
+
+        if (args.length >= 5) {
             g = args[4];
         }
-        
+
         if (toolFamilyName.equals("arja")) {
             t = new Arja(toolDirectory, g);
         } else if (toolFamilyName.equals("astor")) {
@@ -48,6 +49,8 @@ public class GenerateComparisonStatistics {
             t = new Simfix(toolDirectory, g);
         } else if (toolFamilyName.equals("tbar")) {
             t = new Tbar(toolDirectory, g);
+        } else if (toolFamilyName.equals("json")) {
+            t = new JsonTool(toolDirectory, g);
         } else {
             System.out.println("Failed to detect correct tool name");
             return;

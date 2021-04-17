@@ -19,10 +19,14 @@ import java.util.regex.Pattern;
  */
 public class Tbar extends Tool {
 
+    String delimiterLineNum = "Modified line: ";
+    String delimiterFixTemplate = "Fix template name: ";
+
     public Tbar(String dirString, String g) {
         super(dirString, g);
         this.delimiterMethod = "Modified method:";
         this.delimiterPatch = "Patch Category:";
+
     }
 
     @Override
@@ -30,14 +34,28 @@ public class Tbar extends Tool {
         Collection<String> fileTestData = this.readFileData(upf.getTest());
         Collection<String> result = new LinkedList();
 
-        boolean stop = false;
+        Collection<String> filePatchData = this.readFileData(upf.getPatch());
 
+        String lineNum = null;
+
+        for (String s : filePatchData) {
+            if (s.contains(this.delimiterLineNum)) {
+                lineNum = s.split(this.delimiterLineNum)[1].trim();
+            }
+        }
+
+        boolean stop = false;
         for (String s : fileTestData) {
             if (stop == false) {
                 if (s.contains(this.delimiterMethod)) {
-                    result.add(s.split(Pattern.quote(this.delimiterMethod))[1].trim());
+                    if (lineNum == null) {
+                        System.out.println("ERROR, COULD NOT GET PATCH NUMBER");
+                        System.err.println("ERROR, COULD NOT GET PATCH NUMBER");
+                    }
+
+                    result.add(String.format("%s#%s", s.split(Pattern.quote(this.delimiterMethod))[1].trim(), lineNum));
                 } else if (s.contains(this.delimiterStop)) {
-                    stop = true;
+                    // stop = true;
                 }
             }
         }
@@ -47,13 +65,14 @@ public class Tbar extends Tool {
     @Override
     public PatchCharacteristic getAttemptPatchCharacteristics(UnifiedPatchFile upf) throws Exception {
         Collection<String> fileTestData = this.readFileData(upf.getTest());
-        
         PatchCharacteristic result = new PatchCharacteristic();
+
         for (String s : fileTestData) {
-            if (s.contains(this.delimiterPatch)) {
-                result.pc = this.processPatchCategory(s);
+            if (false && s.contains(this.delimiterFixTemplate)) {
+                result.setCharacteristic("FixTemplate", s); // Tbar++;
             }
         }
+        result.pc = super.getPatchCat(fileTestData, !this.useFullMatrixDetection);
         return result;
     }
 

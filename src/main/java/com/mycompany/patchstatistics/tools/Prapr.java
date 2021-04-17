@@ -26,26 +26,31 @@ public class Prapr extends Tool {
     public void process(String metric) throws Exception {
         // Manipulate patches; promoting high-quality + demoting lower-quality
         for (METRICS m : ACTIVE_METRICS) {
+            LinkedList<Integer> queriedPatches = new LinkedList();
 
             if (!this.potentialQueriedPatches.get(m).isEmpty()) {
                 Integer lastKey = this.potentialQueriedPatches.get(m).lastKey();
-                this.queriedPatches = this.potentialQueriedPatches.get(m).get(lastKey);
+                queriedPatches = this.potentialQueriedPatches.get(m).get(lastKey);
             }
 
             super.shufflePopulation(this.patchSetOrderingOld);
+
+            if (queriedPatches.isEmpty()) {
+                continue;
+            }
 
             // Manipulate patches; promoting high-quality + demoting lower-quality
             this.reprioritize(m);
             PatchCategory patchCategory = null;
 
             for (int i = 0; i < this.patchSetOrderingOld.size(); i++) {
-                if (this.originalBaseline == DEFAULT_BASELINE && this.queriedPatches.contains(this.patchSetOrderingOld.get(i).id)) {
+                if (this.originalBaseline == DEFAULT_BASELINE && queriedPatches.contains(this.patchSetOrderingOld.get(i).id)) {
                     this.originalBaseline = i + 1;
                 }
             }
 
             for (int i = 0; i < this.patchSetOrderingNew.size(); i++) {
-                for (Integer pid : this.queriedPatches) {
+                for (Integer pid : queriedPatches) {
 
                     if (this.patchSetOrderingNew.get(i).id == pid && this.newBaseline == DEFAULT_BASELINE) {
                         this.newBaseline = i + 1;
@@ -61,7 +66,7 @@ public class Prapr extends Tool {
             }
 
             if (!patchCategoryString.equals("N/A") && this.originalBaseline != DEFAULT_BASELINE) {
-                System.out.println(String.format("%d, %d, %d, %f, %s, %s, METRIC-%s", this.originalBaseline, this.newBaseline, (this.newBaseline - this.originalBaseline), this.displacement(originalBaseline, newBaseline), patchCategoryString, this.projectID, m.name()));                
+                System.out.println(String.format("%d, %d, %d, %f, %s, %s, METRIC-%s", this.originalBaseline, this.newBaseline, (this.newBaseline - this.originalBaseline), this.displacement(originalBaseline, newBaseline), patchCategoryString, this.projectID, m.name()));
             }
 
             super.reset();

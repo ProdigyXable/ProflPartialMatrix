@@ -19,6 +19,8 @@ import java.util.regex.Pattern;
  */
 public class Astor extends Tool {
 
+    String delimiterLineNum = "Line: ";
+
     public Astor(String dirString, String g) {
         super(dirString, g);
         this.delimiterMethod = "Method: ";
@@ -30,14 +32,26 @@ public class Astor extends Tool {
         Collection<String> filePatchData = this.readFileData(upf.getPatch());
         Collection<String> result = new LinkedList();
 
-        boolean stop = false;
+        String lineNum = null;
 
+        for (String s : filePatchData) {
+            if (s.contains(this.delimiterLineNum)) {
+                lineNum = s.split(this.delimiterLineNum)[1].trim();
+            }
+        }
+
+        boolean stop = false;
         for (String s : filePatchData) {
             if (stop == false) {
                 if (s.contains(this.delimiterMethod)) {
-                    result.add(s.split(Pattern.quote(this.delimiterMethod))[1].trim());
+                    if (lineNum == null) {
+                        System.out.println("ERROR, COULD NOT GET PATCH NUMBER");
+                        System.err.println("ERROR, COULD NOT GET PATCH NUMBER");
+                    }
+
+                    result.add(String.format("%s#%s", s.split(Pattern.quote(this.delimiterMethod))[1].trim(), lineNum));
                 } else if (s.contains(this.delimiterStop)) {
-                    stop = true;
+                    // stop = true;
                 }
             }
         }
@@ -49,15 +63,11 @@ public class Astor extends Tool {
         Collection<String> fileTestData = this.readFileData(upf.getTest());
         PatchCharacteristic result = new PatchCharacteristic();
 
-        for (String s : fileTestData) {
-            if (s.contains(this.delimiterPatch)) {
-                result.pc = this.processPatchCategory(s);
-            }
-        }
+        result.pc = super.getPatchCat(fileTestData, !this.useFullMatrixDetection); 
         return result;
     }
-    
-        @Override
+
+    @Override
     void validateUPF() {
         TreeSet<UnifiedPatchFile> buffer = new TreeSet(this.unifiedPatchFiles);
 
