@@ -5,6 +5,7 @@
  */
 package com.mycompany.patchstatistics;
 
+import com.mycompany.patchstatistics.tools.AccumulationChange;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -145,11 +146,9 @@ public class Patch implements Comparable {
                 adjustStats(comparison < 0, pc);
             }
         }
-
-        this.priority = this.statistics.getPrimaryValue();
     }
 
-    void adjustStats(boolean characteristicMatches, PatchCategory validatingPatCat) {
+    public void adjustStats(boolean characteristicMatches, PatchCategory validatingPatCat) {
 
         if (GOOD_PATCHES.contains(validatingPatCat)) { // matches high-quality patch characteristic
             if (characteristicMatches) {
@@ -165,6 +164,37 @@ public class Patch implements Comparable {
             }
         }
 
+        this.priority = this.statistics.getPrimaryValue();
     }
 
+    public AccumulationChange countComparison(String key, Object value) throws Exception {
+        this.pChar.keySanityCheck(key);
+        Object data = this.pChar.characteristics.get(key);
+        Collection colData = (Collection) data;
+
+        AccumulationChange result = new AccumulationChange();
+
+        Set intersection = new TreeSet();
+        Set difference = new TreeSet();
+
+        Set dataSet = new TreeSet(colData);
+        Set valueSet = new TreeSet((Collection) value);
+
+        intersection.addAll(colData);
+        intersection.retainAll(valueSet);
+
+        for (Object o : intersection) {
+            result.incrementMatching();
+        }
+
+        difference.addAll(dataSet);
+        difference.addAll(valueSet);
+        difference.removeAll(intersection);
+
+        for (Object o : difference) {
+            result.incrementDiffering();
+        }
+
+        return result;
+    }
 }

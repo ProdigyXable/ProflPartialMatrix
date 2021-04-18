@@ -9,6 +9,7 @@ import com.mycompany.patchstatistics.PatchCharacteristic;
 import com.mycompany.patchstatistics.UnifiedPatchFile;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
@@ -69,10 +70,13 @@ public class Tbar extends Tool {
 
         for (String s : fileTestData) {
             if (false && s.contains(this.delimiterFixTemplate)) {
-                result.setCharacteristic("FixTemplate", s); // Tbar++;
+                result.defineCharacteristic(Configuration.KEY_FIX_TEMPLATE, new HashSet());
+                if (Configuration.USE_SEAPR_ADVANCED) {
+                    result.addElementToCharacteristic(Configuration.KEY_FIX_TEMPLATE, s); // SeApr++;
+                }
             }
         }
-        result.pc = super.getPatchCat(fileTestData, !this.useFullMatrixDetection);
+        result.pc = super.getPatchCat(fileTestData, Configuration.USE_PARTIAL_MATRIX_DETECTION);
         return result;
     }
 

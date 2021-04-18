@@ -126,8 +126,8 @@ public class importPraprRaw {
         pc.pc = patCat;
 
         Patch result = new Patch(pc, ++i, metric);
-        result.pChar.defineCharacteristic(Tool.MODIFIED_GRANULARITY, new HashSet());
-        result.pChar.addElementToCharacteristic(Tool.MODIFIED_GRANULARITY, modifiedMethods);
+        result.pChar.defineCharacteristic(Configuration.KEY_MODIFIED_GRANULARITY, new HashSet());
+        result.pChar.addElementToCharacteristic(Configuration.KEY_MODIFIED_GRANULARITY, modifiedMethods);
         return result;
     }
 

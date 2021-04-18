@@ -20,6 +20,10 @@ public class PatchCharacteristic {
     public PatchCategory pc;
     Map<String, Object> characteristics;
 
+    public Map<String, Object> getCharacteristics() {
+        return characteristics;
+    }
+
     public PatchCharacteristic() {
         this.characteristics = new TreeMap();
     }

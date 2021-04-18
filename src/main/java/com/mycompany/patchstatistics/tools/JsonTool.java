@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import org.json.simple.JSONObject;
@@ -30,9 +31,10 @@ public class JsonTool extends Tool {
     JSONParser parser = new JSONParser();
 
     public JsonTool(String file, String g) throws FileNotFoundException, IOException, ParseException {
-        for (METRICS m : this.ACTIVE_METRICS) {
+        for (METRICS m : Configuration.ACTIVE_METRICS) {
             this.potentialQueriedPatches.put(m, new TreeMap());
         }
+
         this.projectID = super.getJustName(new File(file)).toLowerCase();
         setGran(g);
 
@@ -80,8 +82,12 @@ public class JsonTool extends Tool {
         PatchCharacteristic result = new PatchCharacteristic();
         result.pc = this.processPatchCategory(upf.getJSON().get("patch_category").toString());
 
-        String mutator = upf.getJSON().get("mutator").toString();
-        result.setCharacteristic("Mutator", mutator); // PraPR++
+        if (Configuration.USE_SEAPR_ADVANCED) {
+            // String mutator = upf.getJSON().get("mutator").toString().split("_")[0];
+            String mutator = upf.getJSON().get("mutator").toString();
+            result.defineCharacteristic(Configuration.KEY_MUTATOR, new HashSet());
+            result.addElementToCharacteristic(Configuration.KEY_MUTATOR, mutator); // SeApr++;
+        }
 
         return result;
     }

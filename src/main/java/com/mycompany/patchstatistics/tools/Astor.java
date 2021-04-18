@@ -63,7 +63,7 @@ public class Astor extends Tool {
         Collection<String> fileTestData = this.readFileData(upf.getTest());
         PatchCharacteristic result = new PatchCharacteristic();
 
-        result.pc = super.getPatchCat(fileTestData, !this.useFullMatrixDetection); 
+        result.pc = super.getPatchCat(fileTestData, Configuration.USE_PARTIAL_MATRIX_DETECTION); 
         return result;
     }
 
