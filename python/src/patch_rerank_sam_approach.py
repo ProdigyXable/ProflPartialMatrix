@@ -242,7 +242,7 @@ class PatchRerankerSamApproach:
 
             stat_summary[tool] = result_dict
         
-        self.save_result_statistics(stat_summary)
+        # self.save_result_statistics(stat_summary)
     
 
     def save_result_statistics(self, stat_summary):
@@ -270,16 +270,10 @@ if __name__ == "__main__":
     output_dir = os.path.abspath("../eval/sam_approach")
     result_statistics_filename = os.path.abspath("../result_stats/sam_approach.csv")
 
-    with open(result_statistics_filename, 'w') as file:
-        file.write("approach,avg_eval,avg_improvement\n")
+    # with open(result_statistics_filename, 'w') as file:
+        # file.write("approach,avg_eval,avg_improvement\n")
 
-    start_time = time.time()
     for stat in STATS:
-        pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, result_statistics_filename, stats=stat, set_diff="asym")
-        pr.read_baselines()
-        pr.run_all_tools()
-
         pr = PatchRerankerSamApproach(data_dir, baseline_dir, output_dir, result_statistics_filename, stats=stat, set_diff="sym")
         pr.read_baselines()
         pr.run_all_tools()
-    print("--- {} mins ---".format((time.time() - start_time) / 60.0))

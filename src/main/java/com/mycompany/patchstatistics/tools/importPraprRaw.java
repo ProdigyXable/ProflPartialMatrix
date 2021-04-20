@@ -97,39 +97,37 @@ public class importPraprRaw {
         }
 
         //pc.setCharacteristic("mutator", patchData.get("mutator"));
-        
         GRANULARITY toolGran = Tool.techniqueGranularity;
         Collection<String> modifiedMethods = new HashSet();
 
-        
         if (toolGran.equals(Tool.GRANULARITY.STATEMENT)) {
-            
+
             String methodSig = String.format("%s:%s%s#%s", patchData.get("clazz"), patchData.get("method"), patchData.get("methodDesc"), patchData.get("lineNumber"));
             modifiedMethods.add(methodSig);
-            
+
         } else if (toolGran.equals(Tool.GRANULARITY.METHOD)) {
-            
+
             String methodSig = String.format("%s:%s%s", patchData.get("clazz"), patchData.get("method"), patchData.get("methodDesc"));
             modifiedMethods.add(methodSig);
-            
+
         } else if (toolGran.equals(Tool.GRANULARITY.CLASS)) {
-            
+
             String methodSig = String.format("%s", patchData.get("clazz"));
             modifiedMethods.add(methodSig);
-            
+
         } else if (toolGran.equals(Tool.GRANULARITY.PACKAGE)) {
-            
+
             String methodSig = String.format("%s", patchData.get("clazz"));
             modifiedMethods.add(methodSig.substring(0, methodSig.lastIndexOf(".")));
-            
+
         }
 
         PatchCategory patCat = processCat(failingTests, queue);
         pc.pc = patCat;
 
         Patch result = new Patch(pc, ++i, metric);
-        result.pChar.defineCharacteristic(Tool.MODIFIED_GRANULARITY, new HashSet());
-        result.pChar.addElementToCharacteristic(Tool.MODIFIED_GRANULARITY, modifiedMethods);
+        result.pChar.defineCharacteristic(Configuration.KEY_MODIFIED_GRANULARITY, new HashSet());
+        result.pChar.addElementToCharacteristic(Configuration.KEY_MODIFIED_GRANULARITY, modifiedMethods);
         return result;
     }
 

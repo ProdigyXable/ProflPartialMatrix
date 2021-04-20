@@ -35,9 +35,11 @@ public class Nopol extends Tool {
         for (String s : fileTestData) {
             if (stop == false) {
                 if (s.contains(this.delimiterMethod)) {
+                    System.out.println("Add in support for statement level.");
+                    System.err.println("Add in support for statement level.");
                     result.add(s.split(Pattern.quote(this.delimiterMethod))[1].trim());
                 } else if (s.contains(this.delimiterStop)) {
-                    stop = true;
+                    // stop = true;
                 }
             }
         }
@@ -49,16 +51,11 @@ public class Nopol extends Tool {
         Collection<String> fileTestData = this.readFileData(upf.getTest());
         PatchCharacteristic result = new PatchCharacteristic();
 
-        for (String s : fileTestData) {
-            if (s.contains(this.delimiterPatch)) {
-                result.pc = this.processPatchCategory(s);
-            }
-        }
-
+        result.pc = super.getPatchCat(fileTestData, Configuration.USE_PARTIAL_MATRIX_DETECTION);
         return result;
     }
-    
-        @Override
+
+    @Override
     void validateUPF() {
         TreeSet<UnifiedPatchFile> buffer = new TreeSet(this.unifiedPatchFiles);
 

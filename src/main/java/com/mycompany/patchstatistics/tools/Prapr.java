@@ -25,29 +25,34 @@ public class Prapr extends Tool {
     @Override
     public void process(String metric) throws Exception {
         // Manipulate patches; promoting high-quality + demoting lower-quality
-        for (METRICS m : ACTIVE_METRICS) {
+        for (METRICS m : Configuration.ACTIVE_METRICS) {
+            LinkedList<Integer> queriedPatches = new LinkedList();
 
             if (!this.potentialQueriedPatches.get(m).isEmpty()) {
                 Integer lastKey = this.potentialQueriedPatches.get(m).lastKey();
-                this.queriedPatches = this.potentialQueriedPatches.get(m).get(lastKey);
+                queriedPatches = this.potentialQueriedPatches.get(m).get(lastKey);
             }
 
             super.shufflePopulation(this.patchSetOrderingOld);
+
+            if (queriedPatches.isEmpty()) {
+                continue;
+            }
 
             // Manipulate patches; promoting high-quality + demoting lower-quality
             this.reprioritize(m);
             PatchCategory patchCategory = null;
 
             for (int i = 0; i < this.patchSetOrderingOld.size(); i++) {
-                if (this.originalBaseline == DEFAULT_BASELINE && this.queriedPatches.contains(this.patchSetOrderingOld.get(i).id)) {
+                if (this.originalBaseline == Configuration.DEFAULT_BASELINE && queriedPatches.contains(this.patchSetOrderingOld.get(i).id)) {
                     this.originalBaseline = i + 1;
                 }
             }
 
             for (int i = 0; i < this.patchSetOrderingNew.size(); i++) {
-                for (Integer pid : this.queriedPatches) {
+                for (Integer pid : queriedPatches) {
 
-                    if (this.patchSetOrderingNew.get(i).id == pid && this.newBaseline == DEFAULT_BASELINE) {
+                    if (this.patchSetOrderingNew.get(i).id == pid && this.newBaseline == Configuration.DEFAULT_BASELINE) {
                         this.newBaseline = i + 1;
                         patchCategory = this.patchSetOrderingNew.get(i).pChar.pc;
                     }
@@ -60,8 +65,8 @@ public class Prapr extends Tool {
                 patchCategoryString = patchCategory.getCategoryName();
             }
 
-            if (!patchCategoryString.equals("N/A") && this.originalBaseline != DEFAULT_BASELINE) {
-                System.out.println(String.format("%d, %d, %d, %f, %s, %s, METRIC-%s", this.originalBaseline, this.newBaseline, (this.newBaseline - this.originalBaseline), this.displacement(originalBaseline, newBaseline), patchCategoryString, this.projectID, m.name()));                
+            if (!patchCategoryString.equals("N/A") && this.originalBaseline != Configuration.DEFAULT_BASELINE) {
+                System.out.println(String.format("%d, %d, %d, %f, %s, %s, METRIC-%s", this.originalBaseline, this.newBaseline, (this.newBaseline - this.originalBaseline), this.displacement(originalBaseline, newBaseline), patchCategoryString, this.projectID, m.name()));
             }
 
             super.reset();
@@ -72,7 +77,7 @@ public class Prapr extends Tool {
         this.incorrectMethods = GenerateComparisonStatistics.getBuggyMethods(methodDir);
         this.patchSetOrderingOld.addAll(p);
 
-        for (METRICS m : ACTIVE_METRICS) {
+        for (METRICS m : Configuration.ACTIVE_METRICS) {
             this.potentialQueriedPatches.put(m, new TreeMap());
         }
     }
@@ -88,7 +93,7 @@ public class Prapr extends Tool {
     }
 
     public void setMetricHighQuality(PatchCharacteristic pChar, int id) {
-        if (this.ACTIVE_METRICS.contains(METRICS.HIGH_QUALITY)) {
+        if (Configuration.ACTIVE_METRICS.contains(METRICS.HIGH_QUALITY)) {
             PatchCategory pc = pChar.pc;
             if (pc.equals(DefaultPatchCategories.CLEAN_FIX_FULL) || pc.equals(DefaultPatchCategories.CLEAN_FIX_PARTIAL)) {
                 this.potentialQueriedPatches.get(METRICS.HIGH_QUALITY).putIfAbsent(0, new LinkedList());
@@ -98,7 +103,7 @@ public class Prapr extends Tool {
     }
 
     public void setMetricLowQuality(PatchCharacteristic pChar, int id) {
-        if (this.ACTIVE_METRICS.contains(METRICS.LOW_QUALITY)) {
+        if (Configuration.ACTIVE_METRICS.contains(METRICS.LOW_QUALITY)) {
             PatchCategory pc = pChar.pc;
             if (!pc.equals(DefaultPatchCategories.NONE_FIX) && !pc.equals(DefaultPatchCategories.NEG_FIX)) {
                 this.potentialQueriedPatches.get(METRICS.LOW_QUALITY).putIfAbsent(0, new LinkedList());
@@ -108,7 +113,7 @@ public class Prapr extends Tool {
     }
 
     public void setMetricPlausible(PatchCharacteristic pChar, int id) {
-        if (this.ACTIVE_METRICS.contains(METRICS.PLAUSIBLE)) {
+        if (Configuration.ACTIVE_METRICS.contains(METRICS.PLAUSIBLE)) {
             PatchCategory pc = pChar.pc;
             if (pc.equals(DefaultPatchCategories.CLEAN_FIX_FULL)) {
                 this.potentialQueriedPatches.get(METRICS.PLAUSIBLE).putIfAbsent(pc.getCategoryPriority(), new LinkedList());
@@ -118,9 +123,9 @@ public class Prapr extends Tool {
     }
 
     public void setMetricPINC(PatchCharacteristic pChar, int id) {
-        if (this.ACTIVE_METRICS.contains(METRICS.P_INC)) {
+        if (Configuration.ACTIVE_METRICS.contains(METRICS.P_INC)) {
             PatchCategory pc = pChar.pc;
-            for (Object modifiedMethod : (Collection< String>) pChar.getCharacteristic(Tool.MODIFIED_GRANULARITY)) {
+            for (Object modifiedMethod : (Collection< String>) pChar.getCharacteristic(Configuration.KEY_MODIFIED_GRANULARITY)) {
                 for (Object incorrectMethod : this.incorrectMethods) {
 
                     if (incorrectMethod.equals(modifiedMethod)) {
@@ -136,8 +141,8 @@ public class Prapr extends Tool {
     }
 
     public void setMetricIncorrect(PatchCharacteristic pChar, int id) {
-        if (ACTIVE_METRICS.contains(METRICS.INCORRECT)) {
-            for (Object modifiedMethod : (Collection<String>) pChar.getCharacteristic(Tool.MODIFIED_GRANULARITY)) {
+        if (Configuration.ACTIVE_METRICS.contains(METRICS.INCORRECT)) {
+            for (Object modifiedMethod : (Collection<String>) pChar.getCharacteristic(Configuration.KEY_MODIFIED_GRANULARITY)) {
                 for (Object incorrectMethod : this.incorrectMethods) {
                     if (incorrectMethod.equals(modifiedMethod)) {
                         PatchCategory pc = pChar.pc;
