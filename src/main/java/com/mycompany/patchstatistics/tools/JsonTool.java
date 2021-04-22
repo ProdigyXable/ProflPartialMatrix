@@ -83,8 +83,8 @@ public class JsonTool extends Tool {
         result.pc = this.processPatchCategory(upf.getJSON().get("patch_category").toString());
 
         if (Configuration.USE_SEAPR_ADVANCED) {
-            // String mutator = upf.getJSON().get("mutator").toString().split("_")[0];
-            String mutator = upf.getJSON().get("mutator").toString();
+            String mutator = upf.getJSON().get("mutator").toString().split("_")[0];
+            // String mutator = upf.getJSON().get("mutator").toString();
             result.defineCharacteristic(Configuration.KEY_MUTATOR, new HashSet());
             result.addElementToCharacteristic(Configuration.KEY_MUTATOR, mutator); // SeApr++;
         }

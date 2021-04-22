@@ -33,31 +33,36 @@ public class GenerateComparisonStatistics {
 
         Tool t;
         String toolFamilyName = args[2].trim().toLowerCase();
-        String g = "method";
+        String methodGranularity = "method"; // default granularity
 
         if (args.length >= 5) {
-            g = args[4];
+            methodGranularity = args[4];
+        }
+
+        HistoricalInformation history = null;
+        if (args.length >= 6) {
+            history = new HistoricalInformation(args[5]);
         }
 
         if (toolFamilyName.equals("arja")) {
-            t = new Arja(toolDirectory, g);
+            t = new Arja(toolDirectory, methodGranularity);
         } else if (toolFamilyName.equals("astor")) {
-            t = new Astor(toolDirectory, g);
+            t = new Astor(toolDirectory, methodGranularity);
         } else if (toolFamilyName.equals("nopol")) {
-            t = new Nopol(toolDirectory, g);
+            t = new Nopol(toolDirectory, methodGranularity);
         } else if (toolFamilyName.equals("simfix")) {
-            t = new Simfix(toolDirectory, g);
+            t = new Simfix(toolDirectory, methodGranularity);
         } else if (toolFamilyName.equals("tbar")) {
-            t = new Tbar(toolDirectory, g);
+            t = new Tbar(toolDirectory, methodGranularity);
         } else if (toolFamilyName.equals("json")) {
-            t = new JsonTool(toolDirectory, g);
+            t = new JsonTool(toolDirectory, methodGranularity);
         } else {
             System.out.println("Failed to detect correct tool name");
             return;
         }
 
         t.setIncorrectMethod(incorrectMethods);
-        t.process(args[3]);
+        t.process(args[3], history);
         return;
     }
 

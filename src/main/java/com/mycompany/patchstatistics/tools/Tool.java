@@ -5,6 +5,7 @@
  */
 package com.mycompany.patchstatistics.tools;
 
+import com.mycompany.patchstatistics.HistoricalInformation;
 import com.mycompany.patchstatistics.Patch;
 import com.mycompany.patchstatistics.PatchCharacteristic;
 import com.mycompany.patchstatistics.UnifiedPatchFile;
@@ -21,6 +22,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import org.json.simple.JSONObject;
 import utdallas.edu.profl.replicate.patchcategory.DefaultPatchCategories;
 import utdallas.edu.profl.replicate.patchcategory.PatchCategory;
 
@@ -29,61 +31,83 @@ import utdallas.edu.profl.replicate.patchcategory.PatchCategory;
  * @author Sam Benton
  */
 public abstract class Tool implements ToolInterface {
-
+    
     int originalBaseline = Configuration.DEFAULT_BASELINE;
     int newBaseline = Configuration.DEFAULT_BASELINE;
     public String projectID;
-
+    
     TreeMap<METRICS, TreeMap<Integer, LinkedList<Integer>>> potentialQueriedPatches = new TreeMap();
-
+    
+    Collection<String> incorrectMethods;
+    
+    TreeSet<File> toolPatchFiles;
+    TreeSet<File> toolTestFiles;
+    LinkedList<Patch> patchSetOrderingNew = new LinkedList();
+    LinkedList<Patch> patchSetOrderingOld = new LinkedList();
+    LinkedList<UnifiedPatchFile> unifiedPatchFiles = new LinkedList();
+    
+    String statMetric;
+    String delimiterMethod;
+    String delimiterPatch;
+    
+    final String delimiterStop = "------";
+    
+    static GRANULARITY techniqueGranularity;
+    
+    boolean randomizeInitialOrder = false;
+    
     abstract void validateUPF();
-
+    
     private HashMap<Map<String, Object>, LinkedList<Patch>> generatePatchMap(LinkedList<Patch> patchSetDuplicate) {
         HashMap<Map<String, Object>, LinkedList<Patch>> result = new HashMap();
         for (Patch p : patchSetDuplicate) {
             if (!result.containsKey(p.pChar.getCharacteristics())) {
                 result.put(p.pChar.getCharacteristics(), new LinkedList());
             }
-
+            
             result.get(p.pChar.getCharacteristics()).add(p);
         }
-
+        
         for (Entry<Map<String, Object>, LinkedList<Patch>> e : result.entrySet()) {
             Collections.sort(e.getValue());
         }
-
+        
         return result;
     }
-
+    
+    private void initializeHistory(HistoricalInformation history) {
+        System.out.println("Initializing history");
+        String subject = this.projectID.split("_")[0];
+        String version = this.projectID.split("_")[1];
+        
+        for (Object subjectNameObject : history.jsonData.keySet()) {
+            String subjectName = (String) subjectNameObject;
+            if (subjectName.toLowerCase().equals(subject)) {
+                JSONObject versionData = (JSONObject) history.jsonData.get(subjectNameObject);
+                for (Object versionIdObject : versionData.keySet()) {
+                    String versionId = (String) versionIdObject;
+                    if (Integer.valueOf(version).equals(Integer.valueOf(versionId))) {
+                        JSONObject patchData = (JSONObject) versionData.get(versionIdObject);
+                        System.out.println(String.format("Adding %d patches to history", patchData.size()));
+                    }
+                }
+            }
+        }
+        
+        System.exit(1);
+    }
+    
     public enum METRICS {
         PLAUSIBLE, P_INC, INCORRECT, LOW_QUALITY, HIGH_QUALITY
     }
-
+    
     public enum GRANULARITY {
         PACKAGE, CLASS, METHOD, STATEMENT
     }
-
-    Collection<String> incorrectMethods;
-
-    TreeSet<File> toolPatchFiles;
-    TreeSet<File> toolTestFiles;
-    LinkedList<Patch> patchSetOrderingNew = new LinkedList();
-    LinkedList<Patch> patchSetOrderingOld = new LinkedList();
-    LinkedList<UnifiedPatchFile> unifiedPatchFiles = new LinkedList();
-
-    String statMetric;
-    String delimiterMethod;
-    String delimiterPatch;
-
-    final String delimiterStop = "------";
-
-    static GRANULARITY techniqueGranularity;
-
-    boolean randomizeInitialOrder = false;
-
+    
     public Tool() {
     }
-
+    
     public Tool(String dirString, String gran) {
         File dir = new File(dirString);
         this.projectID = dir.getName().replace("_", "-").replace("AstorMain-", "").toLowerCase(); // unification of tool format
@@ -92,7 +116,7 @@ public abstract class Tool implements ToolInterface {
         for (METRICS m : Configuration.ACTIVE_METRICS) {
             this.potentialQueriedPatches.put(m, new TreeMap());
         }
-
+        
         for (File f : dir.listFiles()) {
             if (f.getName().equals("patches")) {
                 // Load patch folder
@@ -102,13 +126,13 @@ public abstract class Tool implements ToolInterface {
                 toolTestFiles = new TreeSet(Arrays.asList(f.listFiles((file) -> !file.getName().contains(".swp"))));
             }
         }
-
+        
         unifyPatchTests(toolPatchFiles, toolTestFiles);
         setGran(gran);
-
+        
         return;
     }
-
+    
     static void setGran(String gran) {
         if (gran.equals("package")) {
             techniqueGranularity = GRANULARITY.PACKAGE;
@@ -120,7 +144,7 @@ public abstract class Tool implements ToolInterface {
             techniqueGranularity = GRANULARITY.METHOD;
         }
     }
-
+    
     protected double displacement(int oldBaseline, int newBaseline) {
         return (0.0 + oldBaseline - newBaseline) / (oldBaseline);
     }
@@ -149,20 +173,20 @@ public abstract class Tool implements ToolInterface {
     private void unifyPatchTests(TreeSet<File> toolPatchFiles, TreeSet<File> toolTestFiles) {
         TreeSet<File> pDuplicate = new TreeSet(toolPatchFiles);
         TreeSet<File> tDuplicate = new TreeSet(toolTestFiles);
-
+        
         for (File pFile : toolPatchFiles) {
             String pName = getJustName(pFile);
-
+            
             for (File tFile : toolTestFiles) {
                 String tName = getJustName(tFile);
-
+                
                 if (pName.equals(tName)) {
                     this.unifiedPatchFiles.add(new UnifiedPatchFile(pFile, tFile, pName));
                     pDuplicate.remove(pFile);
                     tDuplicate.remove(tFile);
                 }
             }
-
+            
         }
 
         // Add patches lacking test files
@@ -174,21 +198,21 @@ public abstract class Tool implements ToolInterface {
         for (File tFile : tDuplicate) {
             this.unifiedPatchFiles.add(new UnifiedPatchFile(null, tFile, getJustName(tFile)));
         }
-
+        
         validateUPF();
         return;
     }
-
+    
     void reset() {
         this.originalBaseline = Configuration.DEFAULT_BASELINE;
         this.newBaseline = Configuration.DEFAULT_BASELINE;
         this.patchSetOrderingNew.clear();
     }
-
+    
     Collection<String> readFileData(File f) throws IOException {
-
+        
         Collection<String> result = new HashSet();
-
+        
         if (f != null) {
             try {
                 result.addAll(Files.readAllLines(f.toPath()));
@@ -199,7 +223,7 @@ public abstract class Tool implements ToolInterface {
         }
         return result;
     }
-
+    
     PatchCategory processPatchCategory(String s) {
         PatchCategory pc;
 
@@ -224,30 +248,31 @@ public abstract class Tool implements ToolInterface {
             pc = null;
             // System.out.println(String.format("Could not properly process patch category - %s", s));
         }
-
+        
         return pc;
     }
-
-    public void process(String metric) throws Exception {
+    
+    public void process(String metric, HistoricalInformation history) throws Exception {
         // Load + create modifiable list of patch information
         this.loadPatches(metric);
+        this.initializeHistory(history);
 
         // Iteration through each metric in the ACTIVE_METRICS set
         for (METRICS m : Configuration.ACTIVE_METRICS) {
             LinkedList<Integer> queriedPatches = new LinkedList();
-
+            
             if (!this.potentialQueriedPatches.get(m).isEmpty()) {
                 Integer lastKey = this.potentialQueriedPatches.get(m).lastKey();
                 queriedPatches = this.potentialQueriedPatches.get(m).get(lastKey);
             }
-
+            
             if (queriedPatches.isEmpty()) {
                 continue; // shortcut
             }
 
             // Manipulate patches; promoting high-quality and/or demoting lower-quality
             this.reprioritize(m);
-
+            
             PatchCategory patchCategory = null;
 
             // Establish original baseline
@@ -266,9 +291,9 @@ public abstract class Tool implements ToolInterface {
                     }
                 }
             }
-
+            
             String patchCategoryString = "N/A";
-
+            
             if (patchCategory != null) {
                 patchCategoryString = patchCategory.getCategoryName();
             }
@@ -284,57 +309,57 @@ public abstract class Tool implements ToolInterface {
                         this.projectID, m.name()
                 ));
             }
-
+            
             this.reset();
         }
-
+        
         return;
     }
-
+    
     public void setIncorrectMethod(Collection<String> incorrectMethods) {
         this.incorrectMethods = incorrectMethods;
     }
-
+    
     void loadPatches(String metric) throws Exception {
-
+        
         boolean earlyQuit = true;
         this.statMetric = metric;
         TreeMap<Integer, Patch> sortedMap = new TreeMap();
-
+        
         for (int i = 0; i < this.unifiedPatchFiles.size(); i++) {
-
+            
             UnifiedPatchFile upf = this.unifiedPatchFiles.get(i);
-
+            
             Collection<String> modifiedStatements = this.getAttemptModifiedElements(upf);
-
+            
             Collection<String> modifiedMethods = new TreeSet();
-
+            
             Collection<String> modifiedClasses = new TreeSet();
-
+            
             for (String m : modifiedStatements) {
                 String buffer = m.substring(0, m.lastIndexOf("#"));
                 modifiedMethods.add(buffer);
             }
-
+            
             for (String m : modifiedMethods) {
                 String buffer = m.substring(0, m.lastIndexOf("."));
-
+                
                 modifiedClasses.add(buffer);
             }
-
+            
             Collection<String> modifiedPackages = new TreeSet();
             for (String m : modifiedClasses) {
                 String buffer = m.substring(0, m.lastIndexOf("."));
                 modifiedPackages.add(buffer);
             }
-
+            
             PatchCharacteristic pChar = this.getAttemptPatchCharacteristics(upf);
             PatchCategory pc = pChar.pc;
-
+            
             if (pc == null) {
                 continue;
             }
-
+            
             pChar.defineCharacteristic(Configuration.KEY_MODIFIED_GRANULARITY, new HashSet());
             if (this.techniqueGranularity.equals(GRANULARITY.STATEMENT)) {
                 pChar.addElementToCharacteristic(Configuration.KEY_MODIFIED_GRANULARITY, modifiedStatements); // Set modified methods / code elements per patch
@@ -345,12 +370,12 @@ public abstract class Tool implements ToolInterface {
             } else if (this.techniqueGranularity.equals(GRANULARITY.PACKAGE)) {
                 pChar.addElementToCharacteristic(Configuration.KEY_MODIFIED_GRANULARITY, modifiedPackages); // Set modified methods / code elements per patch
             }
-
+            
             Integer id = upf.getItemID();
-
+            
             Patch patch = new Patch(pChar, id, metric);
             sortedMap.put(patch.getOrderingID(), patch);
-
+            
             for (METRICS m : Configuration.ACTIVE_METRICS) {
                 if (m.equals(METRICS.INCORRECT)) {
                     for (String modifiedMethod : modifiedMethods) {
@@ -380,7 +405,7 @@ public abstract class Tool implements ToolInterface {
                 } else if (m.equals(METRICS.P_INC)) {
                     for (String modifiedMethod : modifiedMethods) {
                         for (String incorrectMethod : this.incorrectMethods) {
-
+                            
                             if (incorrectMethod.contains(modifiedMethod)) {
                                 if (pc.equals(DefaultPatchCategories.CLEAN_FIX_FULL)) {
                                     // Get original order patches
@@ -391,33 +416,33 @@ public abstract class Tool implements ToolInterface {
                         }
                     }
                 }
-
+                
                 if (!this.potentialQueriedPatches.get(m).isEmpty()) {
                     earlyQuit = false;
                 }
             }
-
+            
         }
-
+        
         if (earlyQuit) {
             System.exit(-10);
         }
-
+        
         for (Integer key : sortedMap.keySet()) {
             this.patchSetOrderingOld.add(sortedMap.get(key));
         }
-
+        
         shufflePopulation(this.patchSetOrderingOld);
-
+        
     }
-
+    
     void reprioritize(METRICS m) throws Exception {
         int comparisons = 0;
         this.patchSetOrderingNew.clear();
-
+        
         LinkedList<Patch> patchSetDuplicate = new LinkedList();
         int originalSize = this.patchSetOrderingOld.size();
-
+        
         for (Patch p : this.patchSetOrderingOld) {
             patchSetDuplicate.add(new Patch(p));
         }
@@ -430,25 +455,25 @@ public abstract class Tool implements ToolInterface {
         ////////////////////////////////////////////////////////////////////////
 
         for (int i = 0; i < originalSize; i++) {
-
+            
             Patch poppedPatch = patchSetDuplicate.pop(); // Pop lowest priority patch
             poppedPatch.setOrderingID(i); // Save + maintain order of popped patches
 
             // System.out.println(String.format("\t%d, %s, %s", poppedPatch.id, poppedPatch.pChar.pc.getCategoryName(), poppedPatch.getStatisticsString())); // DEBUG
             this.patchSetOrderingNew.add(poppedPatch);
             LinkedList<Integer> data = new LinkedList();
-
+            
             if (!this.potentialQueriedPatches.get(m).isEmpty()) {
                 Integer lastKey = this.potentialQueriedPatches.get(m).lastKey();
                 data = this.potentialQueriedPatches.get(m).get(lastKey);
             }
-
+            
             if (data.contains(poppedPatch.id)) {
                 break; // SHORTCUT
             }
-
+            
             PatchCategory pc = poppedPatch.pChar.pc;
-
+            
             if (Configuration.USE_OPTIMIZED_APPROACH) {
                 // Iterate through buckets
                 for (Entry<Map<String, Object>, LinkedList<Patch>> e : patchMap.entrySet()) {
@@ -463,7 +488,7 @@ public abstract class Tool implements ToolInterface {
                     if (e.getValue().isEmpty()) {
                         continue;
                     }
-
+                    
                     Patch firstBucketPatch = e.getValue().getFirst();
 
                     // Get keys / ids of buckets
@@ -476,7 +501,7 @@ public abstract class Tool implements ToolInterface {
                             for (int index = 0; index < ac.countMatching; index++) {
                                 p.adjustStats(true, pc);
                             }
-
+                            
                             for (int index = 0; index < ac.countDiffering; index++) {
                                 p.adjustStats(false, pc);
                             }
@@ -505,12 +530,12 @@ public abstract class Tool implements ToolInterface {
 
         // System.out.println(String.format("total comparisons performed = %d", comparisons));
     }
-
+    
     void shufflePopulation(LinkedList<Patch> collection) {
         // Shuffles initial order of patch population
         if (randomizeInitialOrder) {
             Collections.shuffle(collection);
-
+            
             for (int order = 0; order < collection.size(); order++) {
                 collection.get(order).setOrderingID(order);
             }
@@ -519,19 +544,19 @@ public abstract class Tool implements ToolInterface {
             Collections.sort(collection);
         }
     }
-
+    
     PatchCategory getPatchCat(Collection<String> fileTestData, boolean usePartialMatrix) {
         Collection<String> failing = new TreeSet();
         Collection<String> passing = new TreeSet();
         PatchCategory result;
-
+        
         int ff = 0;
         int fp = 0;
         int pf = 0;
         int pp = 0;
-
+        
         boolean stop = false;
-
+        
         for (String item : fileTestData) {
             if (item.contains("Fail->")) {
                 failing.add(String.format("%s %s", item.split(" ")[1], item.split(" ")[0]));
@@ -539,7 +564,7 @@ public abstract class Tool implements ToolInterface {
                 passing.add(String.format("%s %s", item.split(" ")[1], item.split(" ")[0]));
             }
         }
-
+        
         for (String s : failing) {
             if (!stop) {
                 if (s.contains(Configuration.CONSTANT_FF)) {
@@ -550,7 +575,7 @@ public abstract class Tool implements ToolInterface {
                 }
             }
         }
-
+        
         for (String s : passing) {
             if (!stop) {
                 if (s.contains(Configuration.CONSTANT_PF)) {
@@ -561,7 +586,7 @@ public abstract class Tool implements ToolInterface {
                 }
             }
         }
-
+        
         if (fp > 0 && pf == 0) {
             if (ff == 0) {
                 result = DefaultPatchCategories.CLEAN_FIX_FULL;
@@ -583,5 +608,5 @@ public abstract class Tool implements ToolInterface {
         // System.out.println(String.format("%s %d, %d, %d, %d", result.getCategoryName(), ff, fp, pf, pp));
         return result;
     }
-
+    
 }

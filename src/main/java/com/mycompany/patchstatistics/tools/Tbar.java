@@ -69,11 +69,9 @@ public class Tbar extends Tool {
         PatchCharacteristic result = new PatchCharacteristic();
 
         for (String s : fileTestData) {
-            if (false && s.contains(this.delimiterFixTemplate)) {
+            if (Configuration.USE_SEAPR_ADVANCED && s.contains(this.delimiterFixTemplate)) {
                 result.defineCharacteristic(Configuration.KEY_FIX_TEMPLATE, new HashSet());
-                if (Configuration.USE_SEAPR_ADVANCED) {
-                    result.addElementToCharacteristic(Configuration.KEY_FIX_TEMPLATE, s); // SeApr++;
-                }
+                result.addElementToCharacteristic(Configuration.KEY_FIX_TEMPLATE, s); // SeApr++;
             }
         }
         result.pc = super.getPatchCat(fileTestData, Configuration.USE_PARTIAL_MATRIX_DETECTION);

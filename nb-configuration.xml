@@ -9,8 +9,9 @@
     <config-data xmlns="http://www.netbeans.org/ns/maven-config-data/1">
         <configurations>
             <configuration id="arja" profiles=""/>
-            <configuration id="prapr" profiles=""/>
             <configuration id="json" profiles=""/>
+            <configuration id="prapr" profiles=""/>
+            <configuration id="json_history" profiles=""/>
         </configurations>
     </config-data>
 </project-shared-configuration>
