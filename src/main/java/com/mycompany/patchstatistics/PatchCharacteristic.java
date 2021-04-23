@@ -24,6 +24,11 @@ public class PatchCharacteristic {
         return characteristics;
     }
 
+    @Override
+    public String toString() {
+        return "PatchCharacteristic{" + "pc=" + pc + ", characteristics=" + characteristics + '}';
+    }
+
     public PatchCharacteristic() {
         this.characteristics = new TreeMap();
     }

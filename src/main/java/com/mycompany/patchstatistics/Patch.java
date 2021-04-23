@@ -6,13 +6,11 @@
 package com.mycompany.patchstatistics;
 
 import com.mycompany.patchstatistics.tools.AccumulationChange;
-import java.util.Arrays;
+import com.mycompany.patchstatistics.tools.Configuration;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
-import utdallas.edu.profl.replicate.patchcategory.DefaultPatchCategories;
 import utdallas.edu.profl.replicate.patchcategory.PatchCategory;
 
 /**
@@ -33,18 +31,6 @@ public class Patch implements Comparable {
 
     public PatchCharacteristic pChar;
 
-    static HashSet<PatchCategory> GOOD_PATCHES = new HashSet(Arrays.asList(
-            DefaultPatchCategories.CLEAN_FIX_FULL,
-            DefaultPatchCategories.CLEAN_FIX_PARTIAL,
-            DefaultPatchCategories.NOISY_FIX_FULL,
-            DefaultPatchCategories.NOISY_FIX_PARTIAL
-    ));
-
-    static HashSet<PatchCategory> BAD_PATCHES = new HashSet(Arrays.asList(
-            DefaultPatchCategories.NONE_FIX,
-            DefaultPatchCategories.NEG_FIX
-    ));
-
     public Patch(PatchCharacteristic pchar, int id, String m) {
         this.statistics = new Stats(m);
 
@@ -55,6 +41,8 @@ public class Patch implements Comparable {
 
     public Patch(Patch p) {
         this.statistics = new Stats(p.statistics);
+        this.priority = this.statistics.getPrimaryValue();
+
         this.pChar = p.pChar;
         this.id = p.id;
         this.orderingID = p.getOrderingID();
@@ -70,6 +58,11 @@ public class Patch implements Comparable {
         } else {
             return Double.compare(po.priority, this.priority);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Patch{" + "statistics=" + statistics + ", id=" + id + ", orderingID=" + orderingID + ", priority=" + priority + ", pChar=" + pChar + '}';
     }
 
     public void setOrderingID(int newOrder) {
@@ -150,13 +143,13 @@ public class Patch implements Comparable {
 
     public void adjustStats(boolean characteristicMatches, PatchCategory validatingPatCat) {
 
-        if (GOOD_PATCHES.contains(validatingPatCat)) { // matches high-quality patch characteristic
+        if (Configuration.GOOD_PATCHES.contains(validatingPatCat)) { // matches high-quality patch characteristic
             if (characteristicMatches) {
                 this.statistics.addTruePositive();
             } else {
                 this.statistics.addFalsePositive();
             }
-        } else if (BAD_PATCHES.contains(validatingPatCat)) {
+        } else if (Configuration.BAD_PATCHES.contains(validatingPatCat)) {
             if (characteristicMatches) {
                 this.statistics.addTrueNegative();
             } else {

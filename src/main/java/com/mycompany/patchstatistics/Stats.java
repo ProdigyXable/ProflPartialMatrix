@@ -11,6 +11,13 @@ package com.mycompany.patchstatistics;
  */
 class Stats {
 
+    double truePositive = 1;
+    double falsePositive = 1;
+    double trueNegative = 1;
+    double falseNegative = 1;
+
+    double primaryValue;
+
     String metric;
 
     public Stats(String metric) {
@@ -19,14 +26,13 @@ class Stats {
 
     public Stats(Stats s) {
         this.metric = s.metric;
+        this.truePositive = s.truePositive;
+        this.falsePositive = s.falsePositive;
+        this.trueNegative = s.falseNegative;
+        this.falseNegative = s.falseNegative;
+        
+        this.updateStats();
     }
-
-    double truePositive = 1;
-    double falsePositive = 1;
-    double trueNegative = 1;
-    double falseNegative = 1;
-
-    double primaryValue;
 
     void addTruePositive() {
         truePositive++;
@@ -78,6 +84,7 @@ class Stats {
         } else if (this.metric.toLowerCase().equals("dstar2")) {
             this.primaryValue = (ef * ef) / (ep + nf + epsilon);
         } else {
+            System.out.println(this.metric);
             System.out.println("ERROR, unknown formula found");
             System.err.println("ERROR, unknown formula found");
             System.exit(-2);

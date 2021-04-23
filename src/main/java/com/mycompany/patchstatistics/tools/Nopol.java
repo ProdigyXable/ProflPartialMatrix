@@ -26,7 +26,7 @@ public class Nopol extends Tool {
     }
 
     @Override
-    public Collection<String> getAttemptModifiedElements(UnifiedPatchFile upf) throws IOException {
+    public Collection<String> getFeatures(UnifiedPatchFile upf) throws IOException {
         Collection<String> fileTestData = this.readFileData(upf.getTest());
         Collection<String> result = new LinkedList();
 

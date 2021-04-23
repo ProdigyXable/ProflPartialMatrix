@@ -26,7 +26,7 @@ public class Arja extends Tool {
     }
 
     @Override
-    public Collection<String> getAttemptModifiedElements(UnifiedPatchFile upf) throws IOException {
+    public Collection<String> getFeatures(UnifiedPatchFile upf) throws IOException {
         Collection<String> fileTestData = this.readFileData(upf.getTest());
         Collection<String> result = new LinkedList();
 
@@ -50,7 +50,7 @@ public class Arja extends Tool {
     public PatchCharacteristic getAttemptPatchCharacteristics(UnifiedPatchFile upf) throws Exception {
         Collection<String> fileTestData = this.readFileData(upf.getTest());
         PatchCharacteristic result = new PatchCharacteristic();
-        
+
         result.pc = super.getPatchCat(fileTestData, Configuration.USE_PARTIAL_MATRIX_DETECTION);
         return result;
     }

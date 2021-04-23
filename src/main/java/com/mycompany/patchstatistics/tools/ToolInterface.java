@@ -16,7 +16,7 @@ import java.util.Collection;
  */
 public interface ToolInterface {
 
-    Collection<String> getAttemptModifiedElements(UnifiedPatchFile upf) throws IOException;
+    Collection<String> getFeatures(UnifiedPatchFile upf) throws IOException;
 
     PatchCharacteristic getAttemptPatchCharacteristics(UnifiedPatchFile upf) throws Exception;
 }

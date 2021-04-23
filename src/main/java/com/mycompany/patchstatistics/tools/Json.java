@@ -7,6 +7,7 @@ package com.mycompany.patchstatistics.tools;
 
 import com.mycompany.patchstatistics.PatchCharacteristic;
 import com.mycompany.patchstatistics.UnifiedPatchFile;
+import com.mycompany.patchstatistics.tools.Configuration.METRICS;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -23,20 +24,21 @@ import org.json.simple.parser.ParseException;
  *
  * @author Sam Benton
  */
-public class JsonTool extends Tool {
+public class Json extends Tool {
 
     JSONObject methodMap;
     JSONObject patchData;
 
     JSONParser parser = new JSONParser();
 
-    public JsonTool(String file, String g) throws FileNotFoundException, IOException, ParseException {
+    public Json(String file, String gran) throws FileNotFoundException, IOException, ParseException {
+        setGran(gran);
+
         for (METRICS m : Configuration.ACTIVE_METRICS) {
             this.potentialQueriedPatches.put(m, new TreeMap());
         }
 
-        this.projectID = super.getJustName(new File(file)).toLowerCase();
-        setGran(g);
+        this.projectID = super.getJustName(new File(file)).toLowerCase().replace("_", "-");
 
         JSONObject result = (JSONObject) parser.parse(new FileReader(file));
         for (Object keyObj : result.keySet()) {
@@ -54,7 +56,6 @@ public class JsonTool extends Tool {
 
     @Override
     void validateUPF() {
-
     }
 
     private void processPatches() {
@@ -66,7 +67,7 @@ public class JsonTool extends Tool {
     }
 
     @Override
-    public Collection<String> getAttemptModifiedElements(UnifiedPatchFile upf) throws IOException {
+    public Collection<String> getFeatures(UnifiedPatchFile upf) throws IOException {
         Collection<String> result = new TreeSet<>();
 
         String methodID = upf.getJSON().get("method").toString();
@@ -82,7 +83,7 @@ public class JsonTool extends Tool {
         PatchCharacteristic result = new PatchCharacteristic();
         result.pc = this.processPatchCategory(upf.getJSON().get("patch_category").toString());
 
-        if (Configuration.USE_SEAPR_ADVANCED) {
+        if (Configuration.USE_SEAPR_ADVANCED && upf.getJSON().containsKey("mutator")) {
             String mutator = upf.getJSON().get("mutator").toString().split("_")[0];
             // String mutator = upf.getJSON().get("mutator").toString();
             result.defineCharacteristic(Configuration.KEY_MUTATOR, new HashSet());

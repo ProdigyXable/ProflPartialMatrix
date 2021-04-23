@@ -26,7 +26,7 @@ public class Simfix extends Tool {
     }
 
     @Override
-    public Collection<String> getAttemptModifiedElements(UnifiedPatchFile upf) throws IOException {
+    public Collection<String> getFeatures(UnifiedPatchFile upf) throws IOException {
         Collection<String> filePatchData = this.readFileData(upf.getPatch());
         Collection<String> result = new LinkedList();
 

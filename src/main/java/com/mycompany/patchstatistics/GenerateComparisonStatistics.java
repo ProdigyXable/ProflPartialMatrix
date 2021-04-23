@@ -7,7 +7,8 @@ package com.mycompany.patchstatistics;
 
 import com.mycompany.patchstatistics.tools.Arja;
 import com.mycompany.patchstatistics.tools.Astor;
-import com.mycompany.patchstatistics.tools.JsonTool;
+import com.mycompany.patchstatistics.tools.HistoricalInformation;
+import com.mycompany.patchstatistics.tools.Json;
 import com.mycompany.patchstatistics.tools.Nopol;
 import com.mycompany.patchstatistics.tools.Simfix;
 import com.mycompany.patchstatistics.tools.Tbar;
@@ -40,9 +41,6 @@ public class GenerateComparisonStatistics {
         }
 
         HistoricalInformation history = null;
-        if (args.length >= 6) {
-            history = new HistoricalInformation(args[5]);
-        }
 
         if (toolFamilyName.equals("arja")) {
             t = new Arja(toolDirectory, methodGranularity);
@@ -55,10 +53,14 @@ public class GenerateComparisonStatistics {
         } else if (toolFamilyName.equals("tbar")) {
             t = new Tbar(toolDirectory, methodGranularity);
         } else if (toolFamilyName.equals("json")) {
-            t = new JsonTool(toolDirectory, methodGranularity);
+            t = new Json(toolDirectory, methodGranularity);
         } else {
             System.out.println("Failed to detect correct tool name");
             return;
+        }
+
+        if (args.length >= 6) {
+            history = new HistoricalInformation(args[5], t.projectID, methodGranularity, args[3], t.getClass().getSimpleName());
         }
 
         t.setIncorrectMethod(incorrectMethods);
