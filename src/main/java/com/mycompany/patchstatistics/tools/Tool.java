@@ -574,23 +574,23 @@ public abstract class Tool implements ToolInterface {
         HashMap<Map<String, Object>, LinkedList<Patch>> bucketedCore = this.generatePatchMap(corePatches);
 
         // for each history bucket
-        for (Entry<Map<String, Object>, LinkedList<Patch>> historyEntry : bucketedHistory.entrySet()) {
-            int length = historyEntry.getValue().size();
-            Patch firstHistoryPatch = historyEntry.getValue().getFirst();
+        for (Entry<Map<String, Object>, LinkedList<Patch>> historyDataItem : bucketedHistory.entrySet()) {
+            int length = historyDataItem.getValue().size();
+            Patch firstHistoryPatch = historyDataItem.getValue().getFirst();
 
             // for each core bucket
-            for (Entry<Map<String, Object>, LinkedList<Patch>> coreEntry : bucketedCore.entrySet()) {
-                Patch firstCorePatch = coreEntry.getValue().getFirst();
+            for (Entry<Map<String, Object>, LinkedList<Patch>> coreDataItem : bucketedCore.entrySet()) {
+                Patch firstCorePatch = coreDataItem.getValue().getFirst();
 
                 // for each PatchCharacteristic key
-                for (String entryKey : historyEntry.getKey().keySet()) {
+                for (String entryKey : historyDataItem.getKey().keySet()) {
 
                     // calculate required adjustments change
                     AccumulationChange ac = firstHistoryPatch.countComparison(entryKey, firstCorePatch.pChar.getCharacteristic(entryKey));
                     for (int repeatCount = 0; repeatCount < length; repeatCount++) {
 
                         // Increment tuples of non-history patches
-                        for (Patch p : coreEntry.getValue()) {
+                        for (Patch p : coreDataItem.getValue()) {
                             for (int index = 0; index < ac.countMatching; index++) {
                                 p.adjustStats(true, firstHistoryPatch.pChar.pc);
                             }

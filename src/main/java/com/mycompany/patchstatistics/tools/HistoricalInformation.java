@@ -48,7 +48,7 @@ public class HistoricalInformation extends Tool {
             for (File data : dataFiles) {
 //                 System.out.println(String.format("Loading history from %s", data));
                 jsonData = (JSONObject) parser.parse(new FileReader(data));
-                processPatches();
+                processPatches(data);
             }
         } catch (IOException ex) {
             System.out.println(String.format("History data from %s does not exist ...", jsonDir));
@@ -73,9 +73,11 @@ public class HistoricalInformation extends Tool {
         for (Object o : modifiedMethods) {
             String method = (String) o;
             String methodID = method.trim();
+            
             String lineNum = "null";
-
-            result.add(String.format("%s#%s", methodID, lineNum));
+            String methodSig = String.format("%s#%s", methodID, lineNum);
+            
+            result.add(methodSig);
         }
 
         return result;
@@ -89,7 +91,7 @@ public class HistoricalInformation extends Tool {
         return result;
     }
 
-    private void processPatches() throws Exception {
+    private void processPatches(File data) throws Exception {
         String subject = this.projectID.split("-")[0];
         String version = this.projectID.split("-")[1];
 
@@ -100,14 +102,16 @@ public class HistoricalInformation extends Tool {
                 for (Object versionIdObject : versionData.keySet()) {
                     String versionId = (String) versionIdObject;
                     if (Integer.valueOf(version).equals(Integer.valueOf(versionId))) {
+                        // System.out.println(String.format("\tLoading from %s-%s", subject, version));
                         JSONObject patchData = (JSONObject) versionData.get(versionIdObject);
-
+                        // System.out.println(String.format("\tLoading %d patches", patchData.keySet().size()));
+                        
                         for (Object patchID : patchData.keySet()) {
+                            // System.out.println(String.format("\t\tLoading patch %s", patchID));
                             JSONObject patchJsonData = (JSONObject) patchData.get(patchID);
                             this.unifiedPatchFiles.add(new UnifiedPatchFile(patchJsonData, String.valueOf(this.unifiedPatchFiles.size())));
                         }
 
-                        return;
                     }
                 }
             }
