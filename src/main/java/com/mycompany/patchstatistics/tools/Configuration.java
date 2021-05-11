@@ -32,7 +32,9 @@ public class Configuration {
 
     public static final boolean USE_PARTIAL_MATRIX_DETECTION = true; // use partial or full matrices
     public static final boolean USE_OPTIMIZED_APPROACH = true; // Use new approach magnitudes faster than original result?
-    public static final boolean USE_SEAPR_ADVANCED = true; // Use SeAPR++ on select tools?
+    public static final boolean USE_SEAPR_ADVANCED = !true; // Use SeAPR++ on select tools?
+    public static final boolean USE_PERFORMANCE_SHORTCUTS = true;
+    public static final boolean USE_MEMORYLESS_APPROACH = false;
 
     public enum METRICS {
         PLAUSIBLE, P_INC, INCORRECT, LOW_QUALITY, HIGH_QUALITY

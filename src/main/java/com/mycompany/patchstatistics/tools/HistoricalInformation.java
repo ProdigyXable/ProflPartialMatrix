@@ -31,14 +31,14 @@ public class HistoricalInformation extends Tool {
 
     public JSONObject jsonData;
     JSONParser parser = new JSONParser();
-    String originalToolName;
+    String toolNameOriginal;
 
     public HistoricalInformation(String jsonDir, String projectIDString, String gran, String formula, String originalToolName) throws Exception {
         setGran(gran);
         this.statFormula = formula;
 
         this.projectID = projectIDString;
-        this.originalToolName = originalToolName.toLowerCase();
+        this.toolNameOriginal = originalToolName.toLowerCase();
 
         try {
 //             System.out.println(String.format("Loading history from %s", jsonDir));
@@ -47,7 +47,6 @@ public class HistoricalInformation extends Tool {
 
             for (File data : dataFiles) {
 //                 System.out.println(String.format("Loading history from %s", data));
-                jsonData = (JSONObject) parser.parse(new FileReader(data));
                 processPatches(data);
             }
         } catch (IOException ex) {
@@ -69,15 +68,22 @@ public class HistoricalInformation extends Tool {
     public Collection<String> getFeatures(UnifiedPatchFile upf) throws IOException {
         Collection<String> result = new TreeSet<>();
 
-        JSONArray modifiedMethods = (JSONArray) upf.getJSON().get("patch");
-        for (Object o : modifiedMethods) {
-            String method = (String) o;
-            String methodID = method.trim();
-            
-            String lineNum = "null";
+        Object unknownType = upf.getJSON().get("patch");
+        String lineNum = "null";
+        String methodID;
+        if (unknownType instanceof String) {
+            methodID = ((String) unknownType).trim();
             String methodSig = String.format("%s#%s", methodID, lineNum);
-            
             result.add(methodSig);
+        } else {
+            JSONArray modifiedMethods = (JSONArray) unknownType;
+            for (Object o : modifiedMethods) {
+                String method = (String) o;
+                methodID = method.trim();
+
+                String methodSig = String.format("%s#%s", methodID, lineNum);
+                result.add(methodSig);
+            }
         }
 
         return result;
@@ -86,26 +92,32 @@ public class HistoricalInformation extends Tool {
     @Override
     public PatchCharacteristic getAttemptPatchCharacteristics(UnifiedPatchFile upf) throws Exception {
         PatchCharacteristic result = new PatchCharacteristic();
-        result.pc = this.processPatchCategory(upf.getJSON().get("patch_category").toString());
+        String patCatName = upf.getJSON().get("patch_category").toString();
+        result.pc = this.processPatchCategory(patCatName);
 
+        // System.out.println(String.format("historyPatch  %s -> %s", patCatName, result.pc.getCategoryName()));
         return result;
     }
 
     private void processPatches(File data) throws Exception {
+        jsonData = (JSONObject) parser.parse(new FileReader(data));
+
         String subject = this.projectID.split("-")[0];
-        String version = this.projectID.split("-")[1];
+        String versionStringId = this.projectID.split("-")[1];
 
         for (Object subjectNameObject : jsonData.keySet()) {
             String subjectName = (String) subjectNameObject;
-            if (subjectName.toLowerCase().equals(subject)) {
+            if (subjectName.toLowerCase().equals(subject.toLowerCase())) {
                 JSONObject versionData = (JSONObject) jsonData.get(subjectNameObject);
+
                 for (Object versionIdObject : versionData.keySet()) {
-                    String versionId = (String) versionIdObject;
-                    if (Integer.valueOf(version).equals(Integer.valueOf(versionId))) {
-                        // System.out.println(String.format("\tLoading from %s-%s", subject, version));
+                    String versionNumId = (String) versionIdObject;
+
+                    if (Integer.valueOf(versionStringId).equals(Integer.valueOf(versionNumId))) {
                         JSONObject patchData = (JSONObject) versionData.get(versionIdObject);
-                        // System.out.println(String.format("\tLoading %d patches", patchData.keySet().size()));
-                        
+//                        System.out.println(String.format("\tLoading from %s %s-%s", data.getName(), subject, versionNumId));
+//                        System.out.println(String.format("\t\t- Loading %d patches", patchData.keySet().size()));
+
                         for (Object patchID : patchData.keySet()) {
                             // System.out.println(String.format("\t\tLoading patch %s", patchID));
                             JSONObject patchJsonData = (JSONObject) patchData.get(patchID);
@@ -164,9 +176,7 @@ public class HistoricalInformation extends Tool {
             }
 
             Integer id = upf.getItemID();
-
             Patch patch = new Patch(pChar, id, this.statFormula);
-
             sortedMap.put(patch.getOrderingID(), patch);
 
         }
@@ -183,20 +193,23 @@ public class HistoricalInformation extends Tool {
 
         for (File f : dataFiles) {
             String name = f.getName().split(Pattern.quote("."))[0].toLowerCase().trim();
-            if (this.originalToolName.equals("json") && name.equals("prapr")) {
+            if (this.toolNameOriginal.equals("json") && name.equals("prapr")) {
 //                System.out.println("Skipping " + name);
                 continue;
-            } else if (name.equals("prapr")) {
-                 continue;
-            } else if (this.originalToolName.equals(name)) {
-//                System.out.println("Skipping " + name);
+            } else if (false) {
                 continue;
+            } else if (this.toolNameOriginal.toLowerCase().equals(name.toLowerCase())) {
+                // System.out.println("Skipping " + name);
+                continue;
+            } else {
+                // System.out.println(String.format("Not skipping '%s' vs '%s'", this.toolNameOriginal, name));
             }
 
             result.add(f);
         }
 
-        return result.toArray(new File[result.size()]);
+        return result.toArray(
+                new File[result.size()]);
     }
 
 }

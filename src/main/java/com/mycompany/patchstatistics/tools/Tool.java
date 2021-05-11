@@ -296,7 +296,7 @@ public abstract class Tool implements ToolInterface {
             Patch poppedPatch = patchSetDuplicate.pop(); // Pop lowest priority patch
             poppedPatch.setOrderingID(i); // Save + maintain order of popped patches
 
-            // System.out.println(String.format("\t%d, %s, %s", poppedPatch.id, poppedPatch.pChar.pc.getCategoryName(), poppedPatch.getStatisticsString())); // DEBUG
+//            System.out.println(String.format("\t%d, %s, %s", poppedPatch.id, poppedPatch.pChar.pc.getCategoryName(), poppedPatch.getStatisticsString())); // DEBUG
             this.patchSetOrderingNew.add(poppedPatch);
             LinkedList<Integer> data = new LinkedList();
 
@@ -334,7 +334,9 @@ public abstract class Tool implements ToolInterface {
 
                         // Perform comparison on leading patch in the bucket instead of all patches in the bucket
                         AccumulationChange ac = firstBucketPatch.countComparison(pCharKey, poppedPatch.pChar.getCharacteristic(pCharKey));
+
                         for (Patch p : e.getValue()) {
+                            // System.out.println(String.format("[actual abc=before] %s", p));
                             for (int index = 0; index < ac.countMatching; index++) {
                                 p.adjustStats(true, pc);
                             }
@@ -342,7 +344,10 @@ public abstract class Tool implements ToolInterface {
                             for (int index = 0; index < ac.countDiffering; index++) {
                                 p.adjustStats(false, pc);
                             }
+
+                            // System.out.println(String.format("[actual abc=after] %s", p));
                         }
+
                     }
                 }
             } else {
@@ -352,11 +357,13 @@ public abstract class Tool implements ToolInterface {
                     for (String key : p.pChar.getKeys()) {
                         comparisons += 1;
                         // Promote / demote if popped patch characteristics are found in other patches
+
                         if (poppedPatch.pChar.getCharacteristic(key) instanceof Collection) {
                             p.prioritizePatch(pc, key, poppedPatch.pChar.getCharacteristic(key), Patch.ComparisonOperator.ELEMENT_COMPARISON);
                         } else {
                             p.prioritizePatch(pc, key, poppedPatch.pChar.getCharacteristic(key), Patch.ComparisonOperator.EQ);
                         }
+
                     }
                 }
             }
@@ -575,7 +582,6 @@ public abstract class Tool implements ToolInterface {
 
         // for each history bucket
         for (Entry<Map<String, Object>, LinkedList<Patch>> historyDataItem : bucketedHistory.entrySet()) {
-            int length = historyDataItem.getValue().size();
             Patch firstHistoryPatch = historyDataItem.getValue().getFirst();
 
             // for each core bucket
@@ -587,17 +593,20 @@ public abstract class Tool implements ToolInterface {
 
                     // calculate required adjustments change
                     AccumulationChange ac = firstHistoryPatch.countComparison(entryKey, firstCorePatch.pChar.getCharacteristic(entryKey));
-                    for (int repeatCount = 0; repeatCount < length; repeatCount++) {
 
+                    // could be more optimized by bucketing based on (modified elements) and (2) patch category
+                    for (Patch historyPatch : historyDataItem.getValue()) {
                         // Increment tuples of non-history patches
                         for (Patch p : coreDataItem.getValue()) {
                             for (int index = 0; index < ac.countMatching; index++) {
-                                p.adjustStats(true, firstHistoryPatch.pChar.pc);
+                                p.adjustStats(true, historyPatch.pChar.pc);
                             }
 
                             for (int index = 0; index < ac.countDiffering; index++) {
-                                p.adjustStats(false, firstHistoryPatch.pChar.pc);
+                                p.adjustStats(false, historyPatch.pChar.pc);
                             }
+
+                            // System.out.println(String.format("[history-detailed(%d)] %s %s", firstCorePatch.id, historyPatch.id, historyPatch.pChar.pc.getCategoryName()));
                         }
                     }
                 }

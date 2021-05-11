@@ -62,7 +62,7 @@ public class Patch implements Comparable {
 
     @Override
     public String toString() {
-        return "Patch{" + "statistics=" + statistics + ", id=" + id + ", orderingID=" + orderingID + ", priority=" + priority + ", pChar=" + pChar + '}';
+        return "Patch{" + "statistics=" + statistics + ", id=" + id + ", orderingID=" + orderingID + ", priority=" + priority + '}';
     }
 
     public void setOrderingID(int newOrder) {
@@ -118,7 +118,6 @@ public class Patch implements Comparable {
                 for (Object o : difference) {
                     adjustStats(false, pc);
                 }
-
             }
         } else if (data instanceof Comparable) {
             Comparable comData = (Comparable) data;

@@ -42,17 +42,17 @@ public class GenerateComparisonStatistics {
 
         HistoricalInformation history = null;
 
-        if (toolFamilyName.equals("arja")) {
+        if (toolFamilyName.equals("arja") || toolFamilyName.equals("genprog") || toolFamilyName.equals("kali") || toolFamilyName.equals("rsrepair")) {
             t = new Arja(toolDirectory, methodGranularity);
-        } else if (toolFamilyName.equals("astor")) {
+        } else if (toolFamilyName.equals("astor") || toolFamilyName.equals("cardumen") || toolFamilyName.equals("jgenprog") || toolFamilyName.equals("jkali") || toolFamilyName.equals("jmutrepair")) {
             t = new Astor(toolDirectory, methodGranularity);
-        } else if (toolFamilyName.equals("nopol")) {
+        } else if (toolFamilyName.equals("nopol") || toolFamilyName.equals("dynamoth")) {
             t = new Nopol(toolDirectory, methodGranularity);
         } else if (toolFamilyName.equals("simfix")) {
             t = new Simfix(toolDirectory, methodGranularity);
-        } else if (toolFamilyName.equals("tbar")) {
+        } else if (toolFamilyName.equals("tbar") || toolFamilyName.equals("avatar") || toolFamilyName.equals("kpar") || toolFamilyName.equals("fixminer")) {
             t = new Tbar(toolDirectory, methodGranularity);
-        } else if (toolFamilyName.equals("json")) {
+        } else if (toolFamilyName.equals("json") || toolFamilyName.equals("prapra")) {
             t = new Json(toolDirectory, methodGranularity);
         } else {
             System.out.println("Failed to detect correct tool name");
@@ -60,7 +60,7 @@ public class GenerateComparisonStatistics {
         }
 
         if (args.length >= 6) {
-            history = new HistoricalInformation(args[5], t.projectID, methodGranularity, args[3], t.getClass().getSimpleName());
+            history = new HistoricalInformation(args[5], t.projectID, methodGranularity, args[3], toolFamilyName);
         }
 
         t.setIncorrectMethod(incorrectMethods);

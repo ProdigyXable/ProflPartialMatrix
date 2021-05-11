@@ -5,6 +5,7 @@
  */
 package com.mycompany.patchstatistics;
 
+import com.mycompany.patchstatistics.tools.Configuration;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -51,10 +52,18 @@ public class PatchCharacteristic {
         if (o instanceof Collection) {
             if (element instanceof Collection) {
                 for (Object obj : (Collection) element) {
-                    ((Collection) o).add(obj.hashCode());
+                    if (Configuration.USE_PERFORMANCE_SHORTCUTS) {
+                        ((Collection) o).add(obj.hashCode()); // performance optimization
+                    } else {
+                        ((Collection) o).add(obj);
+                    }
                 }
             } else {
-                ((Collection) o).add(element.hashCode());
+                if (Configuration.USE_PERFORMANCE_SHORTCUTS) {
+                    ((Collection) o).add(element.hashCode()); // performance optimization
+                } else {
+                    ((Collection) o).add(element);
+                }
             }
         }
     }

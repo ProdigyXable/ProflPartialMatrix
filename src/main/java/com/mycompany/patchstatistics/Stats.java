@@ -5,6 +5,8 @@
  */
 package com.mycompany.patchstatistics;
 
+import com.mycompany.patchstatistics.tools.Configuration;
+
 /**
  *
  * @author Sam Benton
@@ -28,9 +30,9 @@ class Stats {
         this.metric = s.metric;
         this.truePositive = s.truePositive;
         this.falsePositive = s.falsePositive;
-        this.trueNegative = s.falseNegative;
+        this.trueNegative = s.trueNegative;
         this.falseNegative = s.falseNegative;
-        
+
         this.updateStats();
     }
 
@@ -92,10 +94,12 @@ class Stats {
         }
 
         // uncomment for memoryless
-//        truePositive = 0;
-//        trueNegative = 0;
-//        falseNegative = 0;
-//        falsePositive = 0;
+        if (Configuration.USE_MEMORYLESS_APPROACH) {
+            truePositive = 0;
+            trueNegative = 0;
+            falseNegative = 0;
+            falsePositive = 0;
+        }
     }
 
     double getPrimaryValue() {
