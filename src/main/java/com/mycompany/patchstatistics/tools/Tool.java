@@ -296,7 +296,7 @@ public abstract class Tool implements ToolInterface {
             Patch poppedPatch = patchSetDuplicate.pop(); // Pop lowest priority patch
             poppedPatch.setOrderingID(i); // Save + maintain order of popped patches
 
-//            System.out.println(String.format("\t%d, %s, %s", poppedPatch.id, poppedPatch.pChar.pc.getCategoryName(), poppedPatch.getStatisticsString())); // DEBUG
+            // System.out.println(String.format("\t%d, %s, %s", poppedPatch.id, poppedPatch.pChar.pc.getCategoryName(), poppedPatch.getStatisticsString())); // DEBUG
             this.patchSetOrderingNew.add(poppedPatch);
             LinkedList<Integer> data = new LinkedList();
 
