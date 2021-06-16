@@ -24,6 +24,7 @@ public class Configuration {
     public static String KEY_MODIFIED_GRANULARITY = "ModifiedElementGranularity";
     public static String KEY_FIX_TEMPLATE = "FixTemplate";
     public static String KEY_MUTATOR = "MutatorInformation";
+    public static String KEY_TIME = "_PatchDuration";
 
     public static final String CONSTANT_FP = "[Fail->Pass]";
     public static final String CONSTANT_FF = "[Fail->Fail]";

@@ -90,6 +90,10 @@ public class Json extends Tool {
             result.addElementToCharacteristic(Configuration.KEY_MUTATOR, mutator); // SeApr++;
         }
 
+        
+        String patchTime = upf.getJSON().get("overallDuration").toString();
+        result.defineCharacteristic(Configuration.KEY_TIME, patchTime);
+
         return result;
     }
 }

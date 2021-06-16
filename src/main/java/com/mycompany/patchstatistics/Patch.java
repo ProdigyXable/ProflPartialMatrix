@@ -162,31 +162,32 @@ public class Patch implements Comparable {
     public AccumulationChange countComparison(String key, Object value) throws Exception {
         this.pChar.keySanityCheck(key);
         Object data = this.pChar.characteristics.get(key);
-        Collection colData = (Collection) data;
-
         AccumulationChange result = new AccumulationChange();
 
-        Set intersection = new TreeSet();
-        Set difference = new TreeSet();
+        if (data instanceof Collection) {
+            Collection colData = (Collection) data;
 
-        Set dataSet = new TreeSet(colData);
-        Set valueSet = new TreeSet((Collection) value);
+            Set intersection = new TreeSet();
+            Set difference = new TreeSet();
 
-        intersection.addAll(colData);
-        intersection.retainAll(valueSet);
+            Set dataSet = new TreeSet(colData);
+            Set valueSet = new TreeSet((Collection) value);
 
-        for (Object o : intersection) {
-            result.incrementMatching();
+            intersection.addAll(colData);
+            intersection.retainAll(valueSet);
+
+            for (Object o : intersection) {
+                result.incrementMatching();
+            }
+
+            difference.addAll(dataSet);
+            difference.addAll(valueSet);
+            difference.removeAll(intersection);
+
+            for (Object o : difference) {
+                result.incrementDiffering();
+            }
         }
-
-        difference.addAll(dataSet);
-        difference.addAll(valueSet);
-        difference.removeAll(intersection);
-
-        for (Object o : difference) {
-            result.incrementDiffering();
-        }
-
         return result;
     }
 }

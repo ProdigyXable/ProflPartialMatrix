@@ -97,6 +97,10 @@ public abstract class Tool implements ToolInterface {
         return (0.0 + oldBaseline - newBaseline) / (oldBaseline);
     }
 
+    protected double displacement(long oldBaseline, long newBaseline) {
+        return (0.0 + oldBaseline - newBaseline) / (oldBaseline);
+    }
+
     /**
      * Returns the a file's name without the extension
      *
@@ -207,6 +211,8 @@ public abstract class Tool implements ToolInterface {
 
         // Iteration through each metric in the ACTIVE_METRICS set
         for (METRICS m : Configuration.ACTIVE_METRICS) {
+            long originalTiming = 0;
+            long newTiming = 0;
             LinkedList<Integer> queriedPatches = new LinkedList();
 
             if (!this.potentialQueriedPatches.get(m).isEmpty()) {
@@ -220,8 +226,11 @@ public abstract class Tool implements ToolInterface {
 
             // Establish original baseline
             for (int i = 0; i < this.patchSetOrderingOld.size(); i++) {
-                if (this.originalBaseline == Configuration.DEFAULT_BASELINE && queriedPatches.contains(this.patchSetOrderingOld.get(i).id)) {
-                    this.originalBaseline = 1 + i;
+                if (this.originalBaseline == Configuration.DEFAULT_BASELINE) {
+                    originalTiming += Long.parseUnsignedLong(this.patchSetOrderingOld.get(i).pChar.getCharacteristic(Configuration.KEY_TIME).toString());
+                    if (queriedPatches.contains(this.patchSetOrderingOld.get(i).id)) {
+                        this.originalBaseline = 1 + i;
+                    }
                 }
             }
 
@@ -237,6 +246,7 @@ public abstract class Tool implements ToolInterface {
 
             // Establish new baseline
             for (int i = 0; i < this.patchSetOrderingNew.size(); i++) {
+                newTiming += Long.valueOf(this.patchSetOrderingNew.get(i).pChar.getCharacteristic(Configuration.KEY_TIME).toString());
                 for (Integer pid : queriedPatches) {
                     if (this.patchSetOrderingNew.get(i).id == pid && this.newBaseline == Configuration.DEFAULT_BASELINE) {
                         this.newBaseline = 1 + i;
@@ -253,11 +263,20 @@ public abstract class Tool implements ToolInterface {
 
             // Output results
             if (!patchCategoryString.equals("N/A") && this.originalBaseline != Configuration.DEFAULT_BASELINE) {
-                System.out.println(String.format("%d, %d, %d, %f, %s, %s, METRIC-%s",
+                System.out.println(String.format("%d, %d, %d, %f, %s, %s, METRIC-%s, PATCH_REDUCTION",
                         this.originalBaseline,
                         this.newBaseline,
                         this.newBaseline - this.originalBaseline,
                         this.displacement(originalBaseline, newBaseline),
+                        patchCategoryString,
+                        this.projectID, m.name()
+                ));
+
+                System.out.println(String.format("%d, %d, %d, %f, %s, %s, METRIC-%s, TIME_REDUCTION",
+                        originalTiming,
+                        newTiming,
+                        newTiming - originalTiming,
+                        this.displacement(originalTiming, newTiming),
                         patchCategoryString,
                         this.projectID, m.name()
                 ));
@@ -355,15 +374,16 @@ public abstract class Tool implements ToolInterface {
                 for (Patch p : patchSetDuplicate) {
                     // For each patch characteristic ...
                     for (String key : p.pChar.getKeys()) {
-                        comparisons += 1;
-                        // Promote / demote if popped patch characteristics are found in other patches
-
-                        if (poppedPatch.pChar.getCharacteristic(key) instanceof Collection) {
-                            p.prioritizePatch(pc, key, poppedPatch.pChar.getCharacteristic(key), Patch.ComparisonOperator.ELEMENT_COMPARISON);
-                        } else {
-                            p.prioritizePatch(pc, key, poppedPatch.pChar.getCharacteristic(key), Patch.ComparisonOperator.EQ);
+                        // Skip keys starting with "_"
+                        if (!key.startsWith("_")) {
+                            comparisons += 1;
+                            // Promote / demote if popped patch characteristics are found in other patches
+                            if (poppedPatch.pChar.getCharacteristic(key) instanceof Collection) {
+                                p.prioritizePatch(pc, key, poppedPatch.pChar.getCharacteristic(key), Patch.ComparisonOperator.ELEMENT_COMPARISON);
+                            } else {
+                                p.prioritizePatch(pc, key, poppedPatch.pChar.getCharacteristic(key), Patch.ComparisonOperator.EQ);
+                            }
                         }
-
                     }
                 }
             }
