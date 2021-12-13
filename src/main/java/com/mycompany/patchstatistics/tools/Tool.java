@@ -133,7 +133,10 @@ public abstract class Tool implements ToolInterface {
                 String tName = getJustName(tFile);
 
                 if (pName.equals(tName)) {
-                    this.unifiedPatchFiles.add(new UnifiedPatchFile(pFile, tFile, pName));
+                    if (tFile.getName().endsWith("tests")) {
+                        this.unifiedPatchFiles.add(new UnifiedPatchFile(pFile, tFile, pName));
+                    }
+
                     pDuplicate.remove(pFile);
                     tDuplicate.remove(tFile);
                 }
@@ -146,7 +149,7 @@ public abstract class Tool implements ToolInterface {
             this.unifiedPatchFiles.add(new UnifiedPatchFile(pFile, null, getJustName(pFile)));
         }
 
-        // Add patches lacking patch files
+        // Add test lacking patch files
         for (File tFile : tDuplicate) {
             this.unifiedPatchFiles.add(new UnifiedPatchFile(null, tFile, getJustName(tFile)));
         }

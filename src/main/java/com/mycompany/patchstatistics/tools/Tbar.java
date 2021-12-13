@@ -22,6 +22,7 @@ public class Tbar extends Tool {
 
     String delimiterLineNum = "Modified line: ";
     String delimiterFixTemplate = "Fix template name: ";
+    String delimiterTimeDuration = "Time test duration:";
 
     public Tbar(String dirString, String g) {
         super(dirString, g);
@@ -67,13 +68,19 @@ public class Tbar extends Tool {
     public PatchCharacteristic getAttemptPatchCharacteristics(UnifiedPatchFile upf) throws Exception {
         Collection<String> fileTestData = this.readFileData(upf.getTest());
         PatchCharacteristic result = new PatchCharacteristic();
+        Long time = 1L;
 
         for (String s : fileTestData) {
             if (Configuration.USE_SEAPR_ADVANCED && s.contains(this.delimiterFixTemplate)) {
                 result.defineCharacteristic(Configuration.KEY_FIX_TEMPLATE, new HashSet());
                 result.addElementToCharacteristic(Configuration.KEY_FIX_TEMPLATE, s); // SeApr++;
+            } else if (s.contains(this.delimiterTimeDuration)) {
+                time = new Long(s.split(Pattern.quote(this.delimiterTimeDuration))[1].replace("ms", "").trim());
             }
+
         }
+
+        result.defineCharacteristic(Configuration.KEY_TIME, time);
         result.pc = super.getPatchCat(fileTestData, Configuration.USE_PARTIAL_MATRIX_DETECTION);
         return result;
     }
